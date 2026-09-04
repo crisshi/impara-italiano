@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>🇮🇹 跟着油管博主学意大利语 · 看视频学口语</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --paper:#F7F1E6; --paper-deep:#EFE5D2;
+    --terracotta:#B4582E; --terracotta-deep:#8F3F1F;
+    --olive:#6E7443; --olive-deep:#4E5430;
+    --ink:#3A2E26; --ink-soft:#6B5B4F;
+    --cream:#FBF7EE; --gold:#E0A94E; --gold-soft:#F0C878;
+    --line:#E3D7C0; --white:#FFFDF8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+    background:var(--paper); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Noto Serif SC',Georgia,'Songti SC',SimSun,serif;}
+
+  /* ===== 顶部导航 ===== */
+  .topbar{
+    position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+    gap:12px;padding:10px 16px;background:var(--ink);color:var(--paper);font-size:12px;
+  }
+  .tb-left,.tb-right{flex:0 0 auto;min-width:80px;display:flex;justify-content:flex-start;}
+  .tb-right{justify-content:flex-end;}
+  .tb-title{flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.06em;}
+  .tb-title b{color:var(--gold-soft);font-weight:500;}
+  .tb-back{
+    display:inline-flex;align-items:center;gap:4px;color:var(--gold-soft);
+    text-decoration:none;font-size:13px;letter-spacing:.02em;font-weight:500;
+    padding:4px 10px;border:1px solid rgba(240,200,120,.4);border-radius:999px;cursor:pointer;
+    transition:all .15s;background:none;
+  }
+  .tb-back:hover{background:rgba(240,200,120,.15);color:#F8D98F;}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#F4E6CE 0%,var(--paper) 100%);border-bottom:1px solid var(--line);}
+  .hero-inner{max-width:1100px;margin:0 auto;padding:40px 24px 32px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);gap:36px;align-items:center;}
+  .hero-copy .kicker{
+    display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.18em;color:var(--terracotta-deep);
+    background:rgba(180,88,46,.09);border:1px solid rgba(180,88,46,.25);padding:5px 12px;border-radius:999px;font-weight:500;
+  }
+  .hero-copy .house-no{font-family:Georgia,serif;font-size:15px;color:var(--gold);letter-spacing:.1em;margin-top:14px;font-weight:700;}
+  .hero-copy h1{font-family:'Noto Serif SC',Georgia,serif;font-size:clamp(30px,4.6vw,48px);font-weight:900;line-height:1.15;margin:6px 0 4px;letter-spacing:.01em;}
+  .hero-copy .it-sub{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(15px,2vw,20px);color:var(--olive-deep);margin-bottom:12px;}
+  .hero-copy .intro{font-size:15px;color:var(--ink-soft);max-width:520px;margin-bottom:20px;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;
+    padding:10px 20px;border-radius:999px;text-decoration:none;cursor:pointer;border:none;
+    transition:transform .15s, box-shadow .15s, background .15s;
+  }
+  .btn-primary{background:var(--terracotta);color:#fff;}
+  .btn-primary:hover{background:var(--terracotta-deep);transform:translateY(-1px);box-shadow:0 6px 14px rgba(180,88,46,.3);}
+  .btn-ghost{background:var(--white);color:var(--olive-deep);border:1px solid var(--line);}
+  .btn-ghost:hover{background:var(--paper-deep);transform:translateY(-1px);}
+  .hero-visual{position:relative;}
+  .hero-visual .frame{border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 14px 34px rgba(58,46,38,.14);position:relative;background:linear-gradient(135deg,#2c8a70,#1e6f5c 55%,#e8853a);height:220px;display:flex;align-items:center;justify-content:center;}
+  .hero-visual .frame .big-emoji{font-size:110px;opacity:.9;filter:drop-shadow(0 8px 16px rgba(0,0,0,.25));}
+  .hero-visual .badge{position:absolute;top:14px;left:14px;background:rgba(58,46,38,.78);color:var(--gold-soft);font-size:12px;letter-spacing:.12em;padding:6px 12px;border-radius:8px;}
+  .hero-visual .cito-float{position:absolute;right:-14px;bottom:-18px;background:var(--ink);color:var(--paper);border-radius:14px;padding:12px 16px;font-size:12px;box-shadow:0 10px 24px rgba(58,46,38,.28);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;gap:9px;letter-spacing:.06em;}
+  .cito-float .led{width:9px;height:9px;border-radius:50%;background:#5BB85C;box-shadow:0 0 8px #5BB85C;}
+
+  /* ===== 区块 ===== */
+  .section{max-width:1100px;margin:0 auto;padding:30px 24px;}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:22px;}
+  .sec-head h2{font-family:'Noto Serif SC',Georgia,serif;font-size:24px;font-weight:700;}
+  .sec-head .en{font-family:Georgia,serif;font-style:italic;color:var(--ink-soft);font-size:14px;}
+  .sec-head .meta{font-size:13px;color:var(--olive-deep);}
+
+  /* ===== 统计 & 筛选 ===== */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;}
+  .stat{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:13px 6px;text-align:center;}
+  .stat b{display:block;font-size:1.3rem;color:var(--terracotta);font-family:Georgia,serif;}
+  .stat span{font-size:11px;color:var(--ink-soft);}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:20px;}
+  .search{flex:1 1 200px;padding:9px 14px;border:1.5px solid var(--line);border-radius:999px;font-size:13px;outline:none;background:var(--white);font-family:inherit;color:var(--ink);}
+  .search:focus{border-color:var(--terracotta);}
+  .chip{padding:6px 13px;border-radius:999px;font-size:12px;font-weight:600;background:var(--white);border:1.5px solid var(--line);color:var(--ink-soft);cursor:pointer;user-select:none;transition:all .15s;}
+  .chip:hover{border-color:var(--olive);color:var(--olive-deep);}
+  .chip.on{background:var(--terracotta);border-color:var(--terracotta);color:#fff;}
+
+  /* ===== 剧集卡片（目录） ===== */
+  .episode-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+  .ep-card{
+    display:flex;flex-direction:row;flex-wrap:wrap;align-items:stretch;background:var(--white);border:1px solid var(--line);
+    border-radius:18px;overflow:hidden;cursor:pointer;
+    transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .ep-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(58,46,38,.12);border-color:#d9c9a8;}
+  .ep-card .ep-cover{position:relative;flex:0 0 46%;height:170px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .ep-card .ep-cover .cv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:54px;background:linear-gradient(160deg,var(--cc1,#E8F3EF),var(--cc2,#CFE4DC));}
+  .ep-card .ep-cover img.cv{object-fit:cover;width:100%;height:100%;}
+  .ep-card .ep-cover .ep-no{position:absolute;top:8px;left:8px;background:rgba(58,46,38,.78);color:var(--gold-soft);font-size:11px;letter-spacing:.1em;padding:4px 9px;border-radius:7px;z-index:2;}
+  .ep-card .ep-cover .ep-time{position:absolute;bottom:10px;right:10px;background:rgba(247,241,230,.92);color:var(--terracotta-deep);font-family:Georgia,serif;font-size:12px;font-weight:700;padding:2px 9px;border-radius:7px;z-index:2;}
+  .ep-card .ep-body{padding:14px 15px 13px;display:flex;flex-direction:column;flex:1;min-width:0;}
+  .ep-card h3{font-family:'Noto Serif SC',Georgia,serif;font-size:16.5px;font-weight:700;line-height:1.35;}
+  .ep-card .ep-it{font-family:Georgia,serif;font-style:italic;font-size:12.5px;color:var(--olive-deep);margin:3px 0 7px;}
+  .ep-card .ep-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .ep-card .ep-meta{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:11px;color:var(--ink-soft);}
+  .ep-card .ep-meta .stars{color:var(--gold);letter-spacing:1px;}
+  .ep-card .ep-actions{flex:0 0 100%;display:flex;gap:8px;padding:12px 15px 14px;margin-top:0;border-top:1px solid var(--line);}
+  .ep-card .mini-btn{
+    flex:1;display:inline-flex;align-items:center;justify-content:center;gap:5px;font-size:13px;font-weight:600;white-space:nowrap;
+    padding:9px 10px;border-radius:10px;cursor:pointer;border:1px solid transparent;text-decoration:none;transition:all .15s;
+  }
+  .mini-btn.primary{background:var(--terracotta);color:#fff;}
+  .mini-btn.primary:hover{background:var(--terracotta-deep);}
+  .mini-btn.secondary{background:var(--white);color:var(--olive-deep);border-color:var(--line);}
+  .mini-btn.secondary:hover{background:var(--paper-deep);}
+  .mini-btn.pending{background:#EDE7DA;color:var(--ink-soft);border-color:var(--line);cursor:not-allowed;}
+  .mini-btn.locked{background:var(--terracotta);color:#fff;opacity:.92;}
+  .mini-btn.locked:hover{background:var(--terracotta);}
+  .ep-card.locked .ep-cover .cv{filter:grayscale(.5) brightness(.8);}
+  .ep-card.locked .ep-cover::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(20,14,8,.2),rgba(20,14,8,.5));}
+  .lock-badge{position:absolute;top:8px;right:8px;z-index:3;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;background:rgba(255,250,240,.92);box-shadow:0 2px 8px rgba(0,0,0,.22);}
+  .tag-pending{font-size:11px;color:var(--ink-soft);background:var(--paper-deep);padding:2px 8px;border-radius:999px;align-self:flex-start;margin-top:2px;}
+
+  /* ===== 单集学习页通用 ===== */
+  .ep-hero{max-width:1100px;margin:0 auto;padding:22px 24px 8px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .ep-hero .backpill{
+    display:inline-flex;align-items:center;gap:6px;color:var(--olive-deep);text-decoration:none;font-size:13px;font-weight:500;
+    background:var(--white);border:1px solid var(--line);padding:6px 14px;border-radius:999px;cursor:pointer;transition:all .15s;
+  }
+  .ep-hero .backpill:hover{background:var(--paper-deep);}
+  .ep-hero .kicker{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.14em;color:var(--terracotta-deep);background:rgba(180,88,46,.09);border:1px solid rgba(180,88,46,.25);padding:4px 11px;border-radius:999px;font-weight:600;}
+  .ep-hero h1{font-family:'Noto Serif SC',Georgia,serif;font-size:clamp(20px,3vw,30px);font-weight:900;margin:6px 0 2px;}
+  .ep-hero .sub{font-size:13px;color:var(--ink-soft);}
+  .mode-switch{margin-left:auto;}
+  .mode-switch a{
+    display:inline-flex;align-items:center;gap:6px;background:var(--terracotta);border-color:var(--terracotta);color:#fff;
+    text-decoration:none;font-size:13px;font-weight:600;padding:8px 15px;border-radius:999px;cursor:pointer;transition:all .15s;
+  }
+  .mode-switch a:hover{background:var(--terracotta-deep);}
+
+  /* ===== 泛听视图 ===== */
+  .listen-all-card{max-width:1100px;margin:0 auto;background:var(--white);border:1px solid var(--line);border-radius:20px;padding:22px 24px;box-shadow:0 10px 28px rgba(58,46,38,.07);}
+  .video-box{position:relative;background:#111;border-radius:14px;overflow:hidden;margin-bottom:14px;box-shadow:0 10px 24px rgba(0,0,0,.25);}
+  .video-box video{width:100%;display:block;max-height:58vh;background:#000;object-fit:contain;margin:0 auto;}
+  .all-player{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--paper-deep);border-radius:14px;padding:12px 16px;margin-bottom:18px;}
+  .all-player .big-play{
+    width:48px;height:48px;border-radius:50%;background:var(--terracotta);color:#fff;border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s, transform .15s;font-size:19px;
+  }
+  .all-player .big-play:hover{background:var(--terracotta-deep);transform:scale(1.05);}
+  .all-player .progress{flex:1;min-width:180px;cursor:pointer;}
+  .all-player .progress .pbar{height:6px;background:#DDD2BC;border-radius:99px;overflow:hidden;position:relative;}
+  .all-player .progress .pbar i{position:absolute;left:0;top:0;bottom:0;background:var(--terracotta);border-radius:99px;width:0%;}
+  .all-player .progress .ptext{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);margin-top:4px;}
+  .all-player .mode-toggle{display:flex;gap:4px;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:3px;}
+  .all-player .mode-toggle button{border:none;background:transparent;padding:6px 13px;border-radius:8px;font-size:12.5px;cursor:pointer;color:var(--ink-soft);font-weight:600;transition:all .15s;}
+  .all-player .mode-toggle button.active{background:var(--terracotta);color:#fff;}
+  .listen-hint{font-size:12px;color:var(--ink-soft);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+  .listen-hint .lh-txt{flex:1;}
+  .txt-toggle{flex-shrink:0;background:var(--paper-deep);border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:12px;color:var(--olive-deep);cursor:pointer;white-space:nowrap;transition:all .15s;}
+  .txt-toggle:hover{background:var(--terracotta);color:#fff;border-color:var(--terracotta);}
+  .all-lines.hide-txt .ln-it,.all-lines.hide-txt .ln-zh{display:none;}
+  .all-lines.hide-txt .ln-body{min-height:34px;display:flex;align-items:center;}
+  .listen-hint b{color:var(--terracotta);}
+  .all-lines{display:grid;gap:9px;max-height:460px;overflow:auto;padding-right:6px;padding-bottom:96px;}
+  .all-line{
+    display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:11px;align-items:start;
+    background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:11px 13px;cursor:pointer;transition:all .15s;
+  }
+  .all-line:hover{border-color:#d9c9a8;background:#FFFDF6;}
+  .all-line.playing{border-color:var(--terracotta);background:#FFF3EA;}
+  .all-line .ln-no{font-family:Georgia,serif;font-size:12.5px;color:var(--terracotta);font-weight:700;padding-top:2px;}
+  .all-line .ln-body .ln-it{font-family:Georgia,serif;font-size:15px;color:var(--ink);}
+  .all-line .ln-body .ln-zh{font-size:12.5px;color:var(--ink-soft);margin-top:1px;}
+  .all-line .ln-play{
+    width:31px;height:31px;border-radius:50%;background:var(--paper-deep);border:1px solid var(--line);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:12px;color:var(--olive-deep);flex-shrink:0;
+  }
+  .all-line .ln-play:hover{background:var(--terracotta);color:#fff;}
+  .all-line.playing .ln-play{background:var(--terracotta);color:#fff;}
+
+  /* ===== 精听视图 ===== */
+  .player-shell{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start;padding:6px 24px 20px;}
+  .listen-card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:26px 28px;box-shadow:0 10px 28px rgba(58,46,38,.07);}
+  .listen-card .lc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+  .lc-head .lc-no{font-family:Georgia,serif;font-size:12.5px;color:var(--terracotta);letter-spacing:.16em;font-weight:700;}
+  .lc-head .lc-role{display:inline-flex;align-items:center;gap:7px;background:rgba(110,116,67,.12);color:var(--olive-deep);border:1px solid rgba(110,116,67,.28);font-size:12px;padding:4px 11px;border-radius:999px;font-weight:600;}
+  .listen-card .it-full{font-family:Georgia,'Times New Roman',serif;font-size:clamp(18px,2.4vw,24px);line-height:1.5;margin-bottom:10px;color:var(--ink);}
+  .listen-card .it-full .w{cursor:pointer;border-radius:4px;padding:0 1px;}
+  .listen-card .it-full .w:hover{background:#f5ead2;}
+  .listen-card .it-full .w.speaking{background:var(--terracotta);color:#fff;}
+  .listen-card .zh-full{font-size:15px;color:var(--ink-soft);border-left:3px solid var(--gold);padding-left:14px;margin-bottom:18px;line-height:1.8;}
+  .audio-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .audio-row .play-btn{
+    width:46px;height:46px;border-radius:50%;background:var(--terracotta);color:#fff;border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .15s, transform .15s;flex-shrink:0;
+  }
+  .audio-row .play-btn:hover{background:var(--terracotta-deep);transform:scale(1.05);}
+  .audio-row .wave{color:var(--olive-deep);font-size:12.5px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .audio-row .wave b{color:var(--terracotta);}
+  .nav-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .nav-row .nbtn{
+    background:var(--white);border:1.5px solid var(--line);color:var(--olive-deep);border-radius:999px;padding:7px 16px;
+    font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit;
+  }
+  .nav-row .nbtn:hover{border-color:var(--terracotta);color:var(--terracotta-deep);}
+  .nav-row .nbtn:disabled{opacity:.4;cursor:not-allowed;}
+  .note-box{background:#FFF9EE;border:1px solid #EFDFC2;border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .note-box .note-title{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--terracotta-deep);letter-spacing:.06em;margin-bottom:8px;}
+  .note-box p,.note-box li{font-size:13.5px;color:var(--ink);line-height:1.75;}
+  .note-box ul{margin:4px 0 4px 18px;}
+  .note-box b{color:var(--olive-deep);}
+  .note-box .v-ex{color:var(--olive-deep);font-size:13px;margin-top:3px;}
+  .note-box .v-ex-zh{color:var(--ink-soft);font-size:12.5px;margin-bottom:2px;}
+  /* 精听划线词：悬停显示意思 */
+  .it-full .kw{position:relative;border-bottom:2px dashed var(--gold);font-weight:700;cursor:pointer;}
+  .it-full .kw::after{content:attr(data-m);position:absolute;bottom:135%;left:0;background:#3A2E26;color:#fff;padding:5px 10px;border-radius:7px;font-size:12px;font-weight:500;white-space:nowrap;box-shadow:0 6px 16px rgba(0,0,0,.18);opacity:0;pointer-events:none;transform:translateY(4px);transition:all .15s;z-index:60;max-width:240px;overflow:hidden;text-overflow:ellipsis;}
+  .it-full .kw:hover::after{opacity:1;transform:translateY(0);}
+  .it-full .kw:hover{background:rgba(222,171,66,.18);}
+  .it-full .w{cursor:pointer;border-radius:4px;transition:background .15s;}
+  .it-full .w:hover{background:rgba(222,171,66,.16);}
+  .it-full .w.lit{background:var(--gold);color:#fff;border-radius:4px;}
+
+  /* 精听逐句导航列表 */
+  .listen-list{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:16px 16px 96px;box-shadow:0 10px 28px rgba(58,46,38,.07);position:sticky;top:64px;}
+  .listen-list h4{font-size:13px;color:var(--ink-soft);letter-spacing:.06em;margin-bottom:10px;border-bottom:1px dashed var(--line);padding-bottom:8px;}
+  .listen-list .ll-line{
+    display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:9px;cursor:pointer;transition:background .12s;
+    font-size:12.5px;color:var(--ink);border:1px solid transparent;margin-bottom:4px;
+  }
+  .listen-list .ll-line:hover{background:var(--paper-deep);}
+  .listen-list .ll-line.active{background:#FFF3EA;border-color:var(--terracotta);color:var(--terracotta-deep);font-weight:600;}
+  .listen-list .ll-line .ll-no{font-family:Georgia,serif;font-size:11px;color:var(--ink-soft);flex-shrink:0;width:18px;}
+  .listen-list .ll-line.active .ll-no{color:var(--terracotta);}
+
+  /* ===== 迷你播放器 ===== */
+  .mini-player{
+    position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:999;display:flex;align-items:center;gap:10px;
+    background:rgba(255,249,238,.97);border:1.5px solid #E3CFA8;border-radius:16px;box-shadow:0 8px 30px rgba(58,46,38,.20);
+    padding:9px 14px;max-width:660px;width:min(660px,94vw);backdrop-filter:blur(6px);
+  }
+  .mini-player.hidden{display:none;}
+  .mini-player .mp-badge{font-size:10.5px;color:#B0713C;font-weight:700;letter-spacing:.05em;white-space:nowrap;background:#FFF1DC;border-radius:8px;padding:3px 8px;flex-shrink:0;}
+  .mini-player .mp-title{font-size:12.5px;color:#3A2E26;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;flex-shrink:1;min-width:0;}
+  .mini-player .mp-play{width:34px;height:34px;border-radius:50%;border:none;background:#C67A4E;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;padding:0;font-size:14px;}
+  .mini-player .mp-play:hover{background:#B4582E;}
+  .mini-player .mp-progress{flex:1;height:5px;background:#EDE0C8;border-radius:4px;overflow:hidden;min-width:60px;cursor:pointer;position:relative;}
+  .mini-player .mp-progress i{display:block;height:100%;background:#C67A4E;width:0%;border-radius:4px;}
+  .mini-player .mp-time{font-size:10.5px;color:#8A6E54;font-variant-numeric:tabular-nums;min-width:30px;text-align:right;flex-shrink:0;}
+  .mini-player .mp-close{width:24px;height:24px;border-radius:50%;border:none;background:transparent;color:#B0713C;font-size:15px;cursor:pointer;flex-shrink:0;line-height:1;padding:0;}
+  .mini-player .mp-close:hover{background:#F6E7CE;}
+
+  /* ===== 悬浮返回 ===== */
+  #floatBack{
+    position:fixed;right:18px;bottom:70px;z-index:60;display:none;align-items:center;gap:5px;
+    background:var(--terracotta);color:#FFF;font-size:13px;font-weight:600;text-decoration:none;padding:10px 15px;
+    border-radius:999px;box-shadow:0 6px 18px rgba(143,63,31,.35);cursor:pointer;transition:transform .15s, box-shadow .15s;border:none;
+  }
+  #floatBack:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(143,63,31,.4);}
+
+  /* ===== 解锁 ===== */
+  .unlock-modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;}
+  .unlock-modal.hidden{display:none;}
+  .um-mask{position:absolute;inset:0;background:rgba(30,22,10,.55);backdrop-filter:blur(2px);}
+  .um-box{position:relative;width:min(420px,92vw);background:linear-gradient(180deg,#fffdf7,#fff6e6);border:1px solid #eedbbd;border-radius:22px;padding:30px 26px 26px;text-align:center;box-shadow:0 20px 60px rgba(70,45,15,.35);animation:umPop .25s ease;}
+  @keyframes umPop{from{transform:scale(.92);opacity:0;}to{transform:scale(1);opacity:1;}}
+  .um-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:18px;color:#a08a68;cursor:pointer;}
+  .um-icon{font-size:40px;margin-bottom:6px;}
+  .um-box h3{font-family:'Noto Serif SC',Georgia,serif;color:#3c2c1c;font-size:23px;margin:4px 0 8px;}
+  .um-sub{color:#6b5638;font-size:14px;line-height:1.7;margin:0 0 18px;}
+  .um-box input{width:100%;box-sizing:border-box;padding:12px 14px;font-size:16px;text-align:center;letter-spacing:.15em;border:1.5px solid #dcc9a6;border-radius:12px;background:#fffdf8;color:#3c2c1c;outline:none;font-family:inherit;}
+  .um-box input:focus{border-color:var(--terracotta);}
+  .um-btn{width:100%;margin-top:12px;}
+  .um-err{color:#c0392b;font-size:13px;min-height:18px;margin:10px 0 0;}
+
+  /* 空状态 / toast */
+  .empty-state{text-align:center;padding:50px 24px;color:var(--ink-soft);background:var(--white);border:1px dashed var(--line);border-radius:20px;}
+  .empty-state .es-icon{font-size:36px;margin-bottom:10px;}
+  .toast{position:fixed;left:50%;bottom:74px;transform:translateX(-50%) translateY(14px);z-index:2100;background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;transition:all .2s;pointer-events:none;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  .footer{margin-top:34px;background:var(--ink);color:var(--paper);padding:30px 24px;text-align:center;}
+  .footer .slogan{font-family:Georgia,serif;font-style:italic;font-size:15px;color:var(--gold-soft);margin-bottom:6px;}
+  .footer .brandline{font-size:12px;letter-spacing:.14em;color:rgba(247,241,230,.7);}
+
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr;padding-top:30px;}
+    .hero-visual{max-width:540px;margin:0 auto;width:100%;}
+    .episode-grid{grid-template-columns:1fr;}
+    .player-shell{grid-template-columns:1fr;}
+    .listen-list{position:static;}
+    .cito-float{right:10px;bottom:-14px;}
+  }
+  @media (max-width:520px){
+    .section{padding:24px 14px;}
+    .listen-card{padding:20px 16px;}
+    .mini-player{flex-wrap:wrap;padding:8px 12px;gap:7px;}
+    .mini-player .mp-progress{order:5;flex-basis:100%;}
+    .ep-card{flex-direction:column;}
+    .ep-card .ep-cover{flex:none;min-height:120px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar"><span class="tb-left"></span><span class="tb-title">ITALIANO CON YOUTUBER · 跟着油管博主学意大利语 <b>· 看视频学口语</b></span><span class="tb-right"></span></div>
+
+<main id="app"></main>
+
+<a id="floatBack" title="返回目录">← <span>目录</span></a>
+
+<div class="mini-player hidden" id="miniPlayer"></div>
+<div class="toast" id="toast"></div>
+
+<div class="unlock-modal hidden" id="umodal">
+  <div class="um-mask"></div>
+  <div class="um-box">
+    <button class="um-close" id="umClose">✕</button>
+    <div class="um-icon">🔒</div>
+    <h3>解锁全部课程</h3>
+    <p class="um-sub">第 1 期免费试听。输入激活码，一次性解锁全部已上线课程，永久有效。</p>
+    <input id="umCode" placeholder="请输入激活码 RA26-2026" autocomplete="off">
+    <div class="um-err" id="umErr"></div>
+    <button class="btn btn-primary um-btn" id="umGo">🔓 立即解锁</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="slogan">Ascolta, ripeti, parla — 看视频，磨耳朵，练口语。</div>
+  <div class="brandline">ITALIANO CON YOUTUBER · 意大利语视频学习</div>
+</footer>
+
+<script>
+/* ============ 数据 ============ */
+const THEMES = {
+  '生活美学':{e:'🎨',c:'#d4728a'}, '日常生活vlog':{e:'☕',c:'#d9a441'}, '制作美食':{e:'🍳',c:'#e8853a'},
+  '街头采访':{e:'🎤',c:'#8a6fd1'}, '美容护肤':{e:'💆',c:'#d7659a'}, '生活感悟':{e:'🌿',c:'#4a9d7c'},
+  '投资理财':{e:'📈',c:'#4c9a52'}, '个人成长':{e:'🌱',c:'#7aa53d'}, '经济文化':{e:'🏛️',c:'#6b79c9'},
+  '旅游生活':{e:'✈️',c:'#4c9fc9'}, '时尚穿搭':{e:'👗',c:'#b05fa8'}, '电视剧片段':{e:'🎬',c:'#7c6bc4'},
+  '情景对话':{e:'💬',c:'#4ba8a2'}, '搞笑娱乐':{e:'😂',c:'#e0665e'}, '生活吐槽':{e:'😤',c:'#8a8378'},
+  '语言学习':{e:'📚',c:'#4a9d8c'}, '动画片段':{e:'🧸',c:'#e08a3c'}
+};
+
+/* ============ 50 期目录 ============ */
+const EPS = [
+  {n:1,title:"优雅是一种超越时间的表达形式",it:"L'eleganza senza tempo",theme:"生活美学",diff:4,blog:"Elena Tee",dur:"1:23",desc:"追随新潮虽有趣，但真正的优雅是超越时间的表达。跟着 Elena 学地道短语。",st:"free"},
+  {n:2,title:"如何度过你的一天",it:"Come passo la mia giornata",theme:"日常生活vlog",diff:1,blog:"Easy Italian",dur:"1:12",desc:"一个意大利女孩的一天：起床、早餐、送妹妹上学、学习、做饭……超实用的日常动词。",st:"lock"},
+  {n:3,title:"美味的皮塔饼",it:"La piadina deliziosa",theme:"制作美食",diff:3,blog:"Cucina Botanica",dur:"1:45",desc:"在家做超好吃的皮塔饼：揉面、擀皮、煎烤、配鹰嘴豆泥……厨房里的地道表达。",st:"lock"},
+  {n:4,title:"我的新眼镜首次亮相",it:"I miei nuovi occhiali",theme:"日常生活vlog",diff:2,blog:"Learn Italian with Lucrezia",dur:"0:45",desc:"Lucrezia 的新眼镜首次亮相！陪她度过悠闲的周日早晨：等姐姐、去市中心散步，学最地道的日常表达。",st:"lock"},
+  {n:5,title:"屋里很冷，甚至比外面还冷",it:"Fa più freddo rispetto a fuori",theme:"日常生活vlog",diff:2,blog:"Learn Italian with Lucrezia",dur:"0:44",desc:"冬天屋里比外面还冷？Lucrezia 裹着小毯子，聊聊午睡、受凉和明天的电视录制，学最地道的天气与日常表达。",st:"lock"},
+  {n:6,title:"在米兰，10 欧元能买到什么？",it:"Cosa compri con 10 euro a Milano?",theme:"街头采访",diff:3,blog:"Easy Italian",dur:"2:23",desc:"街头采访米兰路人：10 欧元能在米兰买到什么？物价与购物表达。",st:"lock"},
+  {n:7,title:"一个小而稳定的习惯",it:"Una piccola abitudine consolidata",theme:"生活美学",diff:4,blog:"Iaia De Rose",dur:"0:51",desc:"养成一个微小而稳定的习惯：每天运动10分钟，让健康饮食成为自然。锻炼、习惯与状态的地道表达。",st:"lock"},
+  {n:8,title:"这周天气一直不好",it:"Che brutto tempo questa settimana",theme:"日常生活vlog",diff:3,blog:"AlessiaHomeLover",dur:"0:23",desc:"连绵阴雨的一周，Alessia 的居家日常和天气吐槽。",st:"lock"},
+  {n:9,title:"如何选择适合自己的完美面部精华",it:"Come scegliere il siero perfetto",theme:"美容护肤",diff:5,blog:"Vanessa Ziletti",dur:"0:52",desc:"护肤博主的精华选择指南：选对精华、按顺序使用，专业词汇多。",st:"lock"},
+  {n:10,title:"车子的油箱已经快空了",it:"Il serbatoio è quasi vuoto",theme:"日常生活vlog",diff:2,blog:"Learn Italian with Lucrezia",dur:"1:06",desc:"去加油站的路上，聊聊车和出行的话题：加油、油价、自助加油区。",st:"lock"},
+  {n:11,title:"算了吧，排队的人太多了！",it:"Lascia perdere, che fila!",theme:"日常生活vlog",diff:2,blog:"Learn Italian with Lucrezia",dur:"0:54",desc:"遇到超长的队伍怎么办？学学地道的\"算了吧\"表达。",st:"lock"},
+  {n:12,title:"巧克力还是覆盆子？",it:"Cioccolato o lamponi?",theme:"制作美食",diff:2,blog:"dietista.paolastavolone",dur:"0:22",desc:"营养师实测爆火的酸奶吐司食谱：把鸡蛋、酸奶、蜂蜜混进全麦面包，覆盆子还是巧克力豆二选一。",st:"lock"},
+  {n:13,title:"我更喜欢稍微软一点的披萨",it:"Preferisco la pizza più morbida",theme:"街头采访",diff:1,blog:"justitalian_",dur:"0:26",desc:"街头采访：那不勒斯披萨还是罗马披萨？松软厚边还是薄脆？听听路人怎么说。",st:"lock"},
+  {n:14,title:"意大利经济到底靠什么支撑起来的",it:"Su cosa si regge l'economia italiana",theme:"经济文化",diff:4,blog:"Will Media",dur:"0:45",desc:"深度解析意大利经济结构，社科词汇较多。",st:"lock"},
+  {n:15,title:"你觉得旅行重要吗？",it:"Pensi che viaggiare sia importante?",theme:"街头采访",diff:3,blog:"Coffee Break Languages",dur:"2:00",desc:"街头采访：旅行对人生意味着什么？观点表达。",st:"soon"},
+  {n:16,title:"我需要倾诉",it:"Ho bisogno di sfogarmi",theme:"日常生活vlog",diff:3,blog:"Elena Tee",dur:"1:45",desc:"情绪表达与倾诉，学学\"我需要倾诉\"怎么说。",st:"soon"},
+  {n:17,title:"为什么学会设立界限这么重要？",it:"Perché è importante dire di no",theme:"生活感悟",diff:5,blog:"Annalisa Pellegrino Psicologa",dur:"3:10",desc:"心理学博主讲设立个人界限，词汇较抽象。",st:"soon"},
+  {n:18,title:"你是做什么工作的？",it:"Che lavoro fai?",theme:"街头采访",diff:2,blog:"Easy Italian",dur:"1:20",desc:"街头采访职业，最常用的自我介绍句式。",st:"soon"},
+  {n:19,title:"你在哪里工作？",it:"Dove lavori?",theme:"街头采访",diff:1,blog:"Easy Italian",dur:"1:10",desc:"工作地点与通勤的表达，基础入门。",st:"soon"},
+  {n:20,title:"这是一道能温暖人心的美食!",it:"Un piatto che scalda il cuore",theme:"日常生活vlog",diff:2,blog:"Learn Italian with Lucrezia",dur:"2:00",desc:"Lucrezia 的暖心家常菜，厨艺与感受表达。",st:"soon"},
+  {n:21,title:"我常常会有那种可以做很多事情的感觉",it:"Mi sento di poter fare tantissime cose",theme:"日常生活vlog",diff:2,blog:"Learn Italian with Lucrezia",dur:"1:50",desc:"充满能量的一天，表达\"干劲十足\"的感觉。",st:"soon"},
+  {n:22,title:"你多大了？",it:"Quanti anni hai?",theme:"街头采访",diff:2,blog:"Easy Italian",dur:"1:15",desc:"年龄话题的街头采访，基础问答。",st:"soon"},
+  {n:23,title:"如果你来日本，不要只去便利店",it:"Se vieni in Giappone...",theme:"旅游生活",diff:4,blog:"fiammettaphotos",dur:"2:40",desc:"日本旅行攻略，旅游与美食词汇丰富。",st:"soon"},
+  {n:24,title:"鞋子的款式和颜色，可以彻底改变你的穿搭",it:"Le scarpe cambiano tutto",theme:"时尚穿搭",diff:3,blog:"AnnaVenere Moda",dur:"2:15",desc:"时尚博主教你选鞋，穿搭词汇。",st:"soon"},
+  {n:25,title:"这是一个面部彩妆盘",it:"Questa è una palette di trucco",theme:"美容护肤",diff:4,blog:"Over Glow",dur:"2:30",desc:"开箱一个彩妆盘，美妆产品词汇。",st:"soon"},
+  {n:26,title:"你每天工作几个小时？",it:"Quante ore lavori al giorno?",theme:"街头采访",diff:1,blog:"Easy Italian",dur:"1:05",desc:"工作与生活平衡的街头采访，基础表达。",st:"soon"},
+  {n:27,title:"关于意大利人的刻板印象",it:"Gli stereotipi sugli italiani",theme:"经济文化",diff:3,blog:"Studio Italiano InClasse",dur:"2:20",desc:"聊聊对意大利人的刻板印象，文化话题。",st:"soon"},
+  {n:28,title:"一本任何年龄段都能从中获得乐趣的书",it:"Un libro per tutte le età",theme:"日常生活vlog",diff:2,blog:"Learn Italian with Lucrezia",dur:"1:40",desc:"Lucrezia 推荐一本书，阅读与感受表达。",st:"soon"},
+  {n:29,title:"一场圣诞主题的美食之旅",it:"Un viaggio gastronomico di Natale",theme:"日常生活vlog",diff:3,blog:"Learn Italian with Lucrezia",dur:"2:10",desc:"圣诞美食之旅，节日与食物词汇。",st:"soon"},
+  {n:30,title:"不是标题党，真的发生过",it:"Non è clickbait, è successo davvero",theme:"日常生活vlog",diff:5,blog:"ferschetty",dur:"3:00",desc:"讲述一段真实经历，叙事表达与高级词汇。",st:"soon"},
+  {n:31,title:"阅读，会慢慢把我的身体引入梦乡",it:"Leggere mi porta a dormire",theme:"日常生活vlog",diff:5,blog:"Elena Tee",dur:"2:50",desc:"睡前阅读的仪式感，柔和细腻的表达。",st:"soon"},
+  {n:32,title:"它的质地爽脆，味道非常清淡",it:"Croccante e delicato",theme:"制作美食",diff:3,blog:"GialloZafferanoTV",dur:"2:00",desc:"测评一道口感爽脆的菜品，味觉词汇。",st:"soon"},
+  {n:33,title:"配上米饭一下子就变成了一道正餐",it:"Con il riso diventa un pasto",theme:"制作美食",diff:3,blog:"adaparisi",dur:"2:05",desc:"家常快手菜，如何搭配成完整一餐。",st:"soon"},
+  {n:34,title:"这本书讲的是身份认同",it:"Questo libro parla di identità",theme:"生活感悟",diff:5,blog:"Giulia Telli",dur:"3:15",desc:"关于身份认同的深度书评，抽象词汇多。",st:"soon"},
+  {n:35,title:"如果你的早餐总是千篇一律",it:"Se la colazione è sempre uguale",theme:"制作美食",diff:4,blog:"Cotto al Dente",dur:"2:25",desc:"早餐创新灵感，厨艺与日常表达。",st:"soon"},
+  {n:36,title:"我是自由职业者。",it:"Sono un freelance.",theme:"街头采访",diff:2,blog:"Coffee Break Languages",dur:"1:10",desc:"职业自我介绍，短句实用。",st:"soon"},
+  {n:37,title:"你平时空闲时会做些什么？",it:"Cosa fai nel tempo libero?",theme:"街头采访",diff:1,blog:"Coffee Break Languages",dur:"1:05",desc:"休闲爱好问答，入门必备。",st:"soon"},
+  {n:38,title:"您是哪里人？",it:"Di dov'è?",theme:"街头采访",diff:1,blog:"Coffee Break Languages",dur:"1:00",desc:"籍贯与城市的表达，礼貌用语。",st:"soon"},
+  {n:39,title:"是的，比我原本预期的还要好。",it:"Sì, meglio del previsto.",theme:"街头采访",diff:5,blog:"Giusy Di Girolamo",dur:"2:45",desc:"街头反馈与评价，表达\"超出预期\"。",st:"soon"},
+  {n:40,title:"这些越南春卷简直让人欲罢不能！",it:"Questi involtini sono irresistibili!",theme:"制作美食",diff:4,blog:"chefincamicia",dur:"2:35",desc:"越南春卷制作，感叹与赞美表达。",st:"soon"},
+  {n:41,title:"从街头美食、到色彩缤纷的街区",it:"Dal cibo di strada ai quartieri colorati",theme:"旅游生活",diff:4,blog:"thetravelization",dur:"2:50",desc:"城市漫步与美食打卡，旅行描述词汇。",st:"soon"},
+  {n:42,title:"我从来没想过会成为日本餐厅的形象大使",it:"Non avrei mai pensato di essere...",theme:"日常生活vlog",diff:3,blog:"eriko.erikottero",dur:"2:20",desc:"一个意大利女孩的日本餐厅故事，叙事情感表达。",st:"soon"},
+  {n:43,title:"你一天的生活大概是什么样的？",it:"Com'è la tua giornata tipo?",theme:"街头采访",diff:2,blog:"Coffee Break Languages",dur:"1:25",desc:"一日作息问答，日常动词大集合。",st:"soon"},
+  {n:44,title:"有件事我真的永远都搞不懂",it:"C'è una cosa che non capirò mai",theme:"日常生活vlog",diff:3,blog:"Learn Italian with Lucrezia",dur:"1:55",desc:"吐槽那些永远搞不懂的事，幽默表达。",st:"soon"},
+  {n:45,title:"你最喜欢的意大利城市是哪个？",it:"Qual è la tua città italiana preferita?",theme:"街头采访",diff:2,blog:"Coffee Break Languages",dur:"1:15",desc:"城市偏好问答，地名与喜好表达。",st:"soon"},
+  {n:46,title:"为什么叫\"鸽子蛋糕\"呢？",it:"Perché si chiama 'colomba'?",theme:"经济文化",diff:2,blog:"Studio Italiano InClasse",dur:"1:50",desc:"意大利复活节糕点背后的文化故事。",st:"soon"},
+  {n:47,title:"敲碎巧克力蛋找礼物最有趣了！",it:"Rompere l'uovo di Pasqua è divertente!",theme:"经济文化",diff:2,blog:"Studio Italiano InClasse",dur:"1:35",desc:"复活节巧克力蛋习俗，节日词汇。",st:"soon"},
+  {n:48,title:"天气预报说明天会下很大的雨",it:"Domani pioverà tantissimo",theme:"日常生活vlog",diff:2,blog:"Learn Italian with Lucrezia",dur:"1:40",desc:"天气话题 + 未来时态，日常实用。",st:"soon"},
+  {n:49,title:"简单的三个字，可以彻底改变你的人生。",it:"Tre parole che cambiano la vita",theme:"个人成长",diff:2,blog:"Iaia De Rose",dur:"1:45",desc:"关于三个神奇的字，励志与表达。",st:"soon"},
+  {n:50,title:"这可不是你平常吃到的普通肉丸子",it:"Non sono polpette qualsiasi",theme:"制作美食",diff:4,blog:"Piovono Ricette",dur:"2:30",desc:"特色肉丸子的做法，厨艺词汇进阶。",st:"soon"},
+];
+
+/* ============ 学习内容（1-3期） ============ */
+const STEPS = [
+  '看无字幕视频/音频，尝试听辨（听不懂没关系，多听几遍再进下一步）',
+  '浏览中文，尝试用意大利语翻译出来',
+  '浏览中意对照，看看母语者与自己的表达有什么不同',
+  '学习地道表达，积累词汇和短语',
+  '逐句跟读，模仿语音语调、停顿和连读',
+  '再刷一遍无字幕视频，看自己能否听懂',
+  '讲故事练习：用所学表达 freestyle 编个故事（选做）🎉'
+];
+
+/* 每句在视频中的起止时间（秒），由 whisper 对齐生成，精听/逐句播放视频原声 */
+const TS = {
+1:[[0,8.2],[9.34,17.86],[19,32.96]],
+2:[[0.62,10.76],[11.56,20],[20.58,30.32]],
+3:[[0,4.16],[4.72,8.76],[12.69,19.37],[19.37,24.37],[26.24,29.4],[29.4,37.76],[38.4,43.38]],
+4:[[0.0, 3.2], [3.66, 8.22], [8.52, 16.3], [16.9, 25.88], [25.88, 35.78], [36.32, 45.44]],5:[[0.0, 6.08], [6.08, 9.76], [10.54, 17.1], [17.16, 24.52], [25.22, 37.76], [37.78, 43.22]]
+,
+6:[[0.0,17.34],[18.16,37.7],[38.08,51.42],[51.56,70.76],[70.98,95.46],[96.48,108.78],[108.78,129.7],[129.7,142.26]]
+,
+7:[[0.0,10.06],[10.32,21.84],[22.2,28.46],[28.46,41.68],[41.78,50.56]]
+,
+8:[[0.0,7.06],[7.06,14.28],[14.28,16.82],[16.82,23.48]]
+,
+9:[[0.0,2.88],[4.82,13.04],[13.04,35.84],[35.84,40.4],[40.4,47.2],[47.2,52.5]]
+,
+10:[[0.0,8.62],[9.14,17.24],[17.4,23.32],[23.98,28.66],[28.82,35.22],[35.56,41.12],[41.52,47.64],[48.08,51.06],[51.5,59.72],[60.1,65.52]]
+,
+11:[[0.0,12.0],[13.3,18.76],[21.82,25.4],[25.4,38.2],[38.52,44.14],[46.22,53.58]]
+,
+12:[[1.34,8.56],[8.48,15.14],[15.56,17.96],[18.08,21.8]]
+,
+13:[[0.0,2.68],[3.06,5.18],[5.18,8.8],[8.8,11.64],[11.64,14.7],[14.7,18.6],[18.8,21.38],[21.38,23.98],[23.98,25.78]]
+,
+14:[[0.0,6.88],[6.88,10.1],[10.1,16.78],[17.38,22.8],[25.38,36.02],[36.02,40.4],[40.4,44.24]]
+};
+
+const WTS={"1":[[[0.0,0.68],[0.68,0.82],[0.82,1.32],[1.32,1.56],[1.56,1.88],[1.88,2.64],[2.64,2.94],[2.94,3.66],[3.86,3.98],[3.98,4.1],[4.66,5.42],[5.42,5.6],[5.6,5.9],[5.9,6.28],[6.28,6.48],[6.48,6.94],[6.94,7.5],[7.5,7.68],[7.68,7.98],[7.98,8.2],[8.2,8.72]],[[9.34,9.56],[10.06,10.68],[10.68,10.92],[10.92,11.06],[11.06,11.46],[11.66,12.32],[12.32,12.66],[12.66,13.32],[13.76,14.28],[14.28,14.46],[14.46,15.32],[15.32,15.92],[15.92,16.22],[16.22,16.72],[16.92,17.5],[17.5,17.86],[17.86,18.7]],[[19.0,19.12],[19.12,19.34],[19.34,19.86],[19.86,20.74],[20.74,20.86],[20.86,21.88],[21.88,22.2],[22.2,22.4],[22.4,22.56],[22.56,23.1],[23.1,23.22],[23.22,24.1],[24.36,24.54],[24.54,24.68],[24.68,25.34],[25.34,25.6],[25.6,26.02],[26.02,26.16],[26.16,26.86],[27.06,27.36],[27.36,28.36],[28.36,28.46],[28.46,28.7],[28.7,29.16],[29.16,29.4],[29.4,30.04],[30.04,30.18],[30.18,30.72],[30.72,31.08],[31.08,31.14],[31.14,31.62],[31.62,32.42],[32.42,32.62],[32.62,32.96],[32.96,33.74]]],"2":[[[0.62,1.12],[1.12,1.62],[1.62,2.04],[2.04,2.58],[2.58,3.22],[3.22,4.6],[4.6,5.14],[5.14,5.32],[5.32,5.7],[5.7,6.14],[6.14,6.36],[6.36,6.56],[6.56,6.84],[6.84,7.4],[7.4,8.16],[8.16,8.46],[8.46,8.9],[8.9,9.12],[9.12,9.42],[9.42,9.92],[9.92,10.5],[10.5,10.76],[10.76,11.51]],[[11.56,12.38],[12.38,13.2],[13.2,13.46],[13.46,13.68],[13.68,13.78],[13.78,14.26],[14.26,14.58],[14.58,15.1],[15.1,16.26],[16.26,17.92],[17.92,18.04],[18.04,18.18],[18.18,18.42],[18.42,18.78],[18.78,19.22],[19.22,19.48],[19.48,19.64],[19.84,20.0],[20.0,20.53]],[[20.58,21.54],[21.54,22.08],[22.08,22.2],[22.2,22.5],[22.5,22.66],[22.66,23.18],[23.18,23.78],[23.78,24.16],[24.16,24.48],[24.48,24.56],[24.56,24.74],[24.74,25.1],[25.1,25.22],[25.22,25.7],[26.24,26.6],[26.6,26.76],[26.76,26.88],[26.88,27.18],[27.18,27.88],[27.88,28.22],[28.22,28.42],[28.42,28.86],[28.86,28.9],[28.9,29.18],[29.18,29.68],[29.68,29.96],[29.96,30.07],[30.07,30.18],[30.18,30.32],[30.32,30.72]]],"3":[[[0.0,0.24],[0.24,0.52],[0.52,0.64],[0.64,0.72],[0.72,1.06],[1.06,1.26],[1.26,1.38],[1.38,1.86],[1.86,2.16],[2.16,2.24],[2.24,2.3],[2.3,2.64],[2.92,3.22],[3.22,3.36],[3.36,3.78],[3.78,3.94],[3.94,4.16],[4.16,4.67]],[[4.72,5.2],[5.2,5.44],[5.44,5.78],[5.78,5.98],[5.98,6.08],[6.08,6.3],[6.3,6.42],[6.42,6.88],[7.04,7.12],[7.12,7.34],[7.34,7.49],[7.34,7.58],[7.58,7.82],[7.82,7.98],[7.98,8.32],[8.32,8.56],[8.56,8.76],[8.76,9.08]],[[12.69,13.13],[13.13,13.57],[13.57,13.75],[13.75,13.95],[13.95,14.37],[14.37,14.51],[14.51,14.99],[14.99,15.25],[15.25,15.43],[15.43,15.77],[15.77,16.29],[16.29,16.59],[16.59,16.91],[16.91,17.31],[17.31,17.47],[17.47,17.83],[18.21,18.35],[18.35,18.51],[18.51,18.73],[18.73,19.32]],[[19.37,19.63],[19.63,19.73],[19.73,20.17],[20.17,20.39],[20.39,20.47],[20.47,20.59],[20.59,20.75],[20.75,20.95],[20.95,21.17],[21.17,21.47],[21.47,21.69],[21.69,21.99],[21.99,22.57],[22.57,22.75],[22.75,22.87],[22.87,22.97],[22.97,23.21],[23.21,23.35],[23.35,23.55],[23.55,24.37]],[[26.24,26.68],[26.68,26.82],[26.82,27.28],[27.28,27.82],[27.82,28.0],[28.0,28.1],[28.1,28.38],[28.38,28.56],[28.56,28.66],[28.66,28.9],[28.9,29.04],[29.04,29.35]],[[29.4,29.84],[29.84,29.99],[29.84,30.04],[30.04,30.36],[30.36,30.56],[30.56,30.76],[30.76,31.26],[31.26,31.82],[31.82,32.3],[32.3,32.78],[32.78,32.88],[32.88,33.2],[33.2,33.6],[33.6,33.89],[33.89,34.18],[34.18,34.62],[34.62,34.98],[34.98,35.14],[35.14,35.38],[35.38,35.84],[35.84,35.96],[35.96,36.18],[36.18,36.66],[36.66,37.08],[37.08,37.76]],[[38.4,38.9],[38.9,39.16],[39.16,39.38],[39.38,39.72],[39.72,40.3],[40.3,40.42],[40.42,40.6],[40.6,40.74],[40.74,41.22],[41.22,41.3],[41.3,41.67],[41.67,42.04],[42.04,42.32],[42.32,42.68],[42.68,42.8],[42.8,43.38]]],"4":[[[0.0,0.5],[0.5,0.5],[0.5,1.1],[1.1,1.3],[1.3,2.07],[2.08,2.52],[2.52,3.2]],[[3.66,4.08],[4.08,4.34],[4.34,4.92],[4.92,5.12],[5.12,5.68],[5.68,5.96],[5.96,6.22],[6.22,6.45],[6.46,6.72],[6.72,6.94],[6.94,7.56],[7.56,7.71],[7.72,8.22]],[[8.63,8.78],[8.78,9.1],[9.1,9.52],[9.52,10.2],[10.2,10.43],[10.44,10.56],[10.56,11.28],[11.28,12.33],[12.34,12.54],[12.54,12.94],[12.94,13.46],[13.46,14.07],[14.08,15.14],[15.14,15.9],[15.9,16.3]],[[16.9,17.16],[17.16,17.36],[17.36,17.56],[17.56,19.37],[19.38,20.54],[20.54,21.06],[21.06,21.23],[21.24,21.84],[21.84,22.19],[22.2,22.76],[22.86,23.0],[23.0,23.52],[23.52,24.5],[24.5,24.76],[24.76,25.88]],[[25.73,25.88],[25.88,26.6],[26.6,27.2],[27.2,27.48],[27.48,27.64],[27.64,27.77],[27.78,28.2],[28.2,28.96],[28.96,29.5],[29.5,30.06],[30.06,30.98],[31.52,31.6],[31.6,31.73],[31.74,32.1],[32.1,32.21],[32.22,32.74],[32.74,32.85],[32.86,33.24],[33.24,33.44],[33.44,33.55],[33.56,34.02],[34.02,34.66],[34.66,34.91],[34.92,35.58],[35.58,35.78]],[[36.19,36.34],[36.34,36.72],[36.72,37.26],[37.26,37.26],[37.26,38.26],[38.26,38.47],[38.48,38.74],[38.74,38.81],[38.82,38.94],[39.3,39.3],[39.3,40.02],[40.04,40.24],[40.24,40.58],[40.58,40.78],[40.78,42.71],[42.72,43.2],[43.2,43.82],[43.82,44.06],[44.06,44.68],[44.68,44.84],[44.84,45.44]]],"5":[[[0.0,0.3],[0.3,1.12],[1.46,1.7],[1.7,1.86],[1.86,2.22],[2.22,2.36],[2.36,2.9],[3.28,3.7],[3.7,3.86],[3.86,4.24],[4.24,4.92],[4.92,5.14],[5.14,5.34],[5.34,6.08]],[[6.08,6.92],[6.92,7.32],[7.44,7.54],[7.54,7.72],[7.72,8.88],[8.88,9.18],[9.18,9.76]],[[10.54,11.18],[11.18,11.34],[11.34,11.66],[11.66,11.9],[11.9,12.08],[12.08,12.4],[12.4,12.6],[12.6,13.32],[13.32,14.68],[14.7,15.1],[15.1,15.32],[15.32,15.72],[15.72,16.08],[16.08,17.1]],[[17.16,17.26],[17.26,17.42],[17.42,18.24],[18.24,19.18],[19.18,19.44],[19.44,19.92],[20.38,20.82],[20.82,20.96],[20.96,21.16],[21.16,21.48],[21.64,21.84],[21.84,22.46],[22.46,22.7],[22.7,23.0],[23.0,23.34],[23.34,23.52],[23.52,23.6],[23.6,23.68],[23.68,24.52]],[[25.22,25.8],[25.8,25.94],[25.94,26.18],[26.42,26.7],[26.7,26.9],[26.9,27.58],[27.58,27.76],[27.76,27.94],[27.94,28.1],[28.1,28.44],[28.44,29.42],[29.42,30.26],[30.26,30.4],[30.4,30.48],[30.48,30.76],[30.76,31.04],[31.04,33.48],[33.48,33.7],[33.7,34.36],[34.36,34.74],[34.74,35.94],[35.94,36.08],[36.08,36.82],[36.82,36.92],[36.92,37.76]],[[37.78,38.04],[38.04,38.56],[38.56,38.96],[38.96,39.7],[39.7,40.0],[40.0,40.58],[40.58,40.98],[40.98,41.62],[41.62,41.8],[41.8,42.5],[41.8,42.5],[42.6,43.22]]],"6":[[[0.0,0.22],[0.22,0.38],[0.38,0.86],[0.86,1.18],[1.18,1.68],[1.82,2.18],[2.18,2.4],[2.4,2.54],[2.54,3.04],[3.26,3.32],[3.32,3.76],[4.12,4.22],[4.22,4.34],[4.34,4.78],[4.78,4.98],[4.98,5.48],[5.74,6.1],[6.1,6.92],[7.56,8.08],[8.08,8.24],[8.24,8.66],[8.66,8.8],[8.8,9.3],[9.3,9.54],[9.54,9.72],[9.72,10.14],[10.14,11.26],[11.76,12.04],[12.26,12.46],[12.46,12.56],[12.56,12.8],[12.8,13.18],[13.18,13.6],[13.6,13.76],[13.76,14.14],[14.28,14.44],[14.44,14.62],[14.62,14.96],[14.96,15.2],[15.2,15.48],[15.48,15.94],[16.34,16.6],[16.6,16.74],[16.74,17.04],[17.04,17.14],[17.14,17.34]],[[18.16,18.4],[18.4,18.6],[18.6,19.16],[19.16,19.32],[19.32,19.68],[19.68,19.88],[19.88,20.08],[20.08,20.48],[21.48,22.0],[22.0,22.2],[22.0,22.18],[22.18,22.36],[22.72,22.94],[22.94,23.18],[23.18,23.66],[24.42,24.94],[24.94,25.34],[25.34,25.54],[26.52,27.06],[27.06,27.26],[27.26,27.76],[27.76,27.96],[29.08,29.62],[29.62,29.86],[29.86,30.18],[30.18,30.46],[30.58,30.84],[31.56,31.62],[31.62,31.94],[31.94,33.0],[33.0,33.34],[33.34,34.54],[34.94,34.94],[34.94,35.14],[35.14,35.34],[35.34,35.66],[35.66,36.42],[36.66,36.72],[36.72,37.04],[37.04,37.2],[37.2,37.42],[37.42,37.7]],[[38.08,38.28],[38.28,38.52],[38.52,38.98],[38.98,39.16],[39.16,39.56],[39.86,40.54],[40.54,40.86],[40.86,40.96],[40.96,41.08],[41.08,41.42],[41.42,41.62],[41.44,41.56],[41.56,41.7],[41.7,41.86],[41.86,42.0],[42.0,42.42],[42.64,42.74],[42.74,42.92],[42.92,43.18],[43.18,43.6],[43.8,44.1],[44.72,44.86],[44.86,45.06],[45.26,45.28],[45.28,45.7],[45.78,45.88],[45.88,46.54],[46.76,47.24],[47.24,47.54],[47.54,48.36],[48.6,48.64],[48.64,49.02],[49.02,49.44],[49.44,49.78],[50.52,50.74],[50.74,50.9],[50.9,51.42]],[[51.56,51.68],[51.68,51.88],[51.88,52.34],[52.34,53.02],[53.02,54.08],[54.08,54.8],[55.28,56.68],[56.68,57.54],[57.54,58.1],[58.26,58.62],[58.62,58.82],[58.82,59.04],[59.04,59.16],[59.16,59.64],[62.22,62.98],[62.98,63.36],[63.36,63.76],[63.98,64.04],[64.04,64.74],[64.74,65.4],[65.4,65.8],[65.8,66.2],[66.2,66.54],[66.54,66.96],[67.26,67.44],[67.6,67.68],[67.68,67.78],[67.78,67.9],[67.98,68.6],[69.64,69.64],[69.64,69.92],[69.94,70.0],[70.0,70.18],[70.18,70.76]],[[70.98,71.18],[70.98,71.74],[71.74,72.12],[72.12,72.62],[72.62,73.32],[73.58,73.9],[73.9,74.2],[75.24,76.5],[76.5,76.62],[76.62,76.86],[76.86,77.04],[77.04,77.82],[78.28,79.22],[79.22,80.0],[80.0,80.48],[80.48,80.68],[80.48,81.12],[81.12,81.36],[81.36,81.46],[81.46,81.72],[81.72,81.9],[81.9,82.06],[82.06,82.44],[82.44,82.94],[82.94,83.14],[83.64,83.8],[83.8,84.06],[84.06,84.24],[84.24,84.46],[84.86,85.34],[85.34,85.54],[85.54,85.72],[85.72,85.92],[86.94,87.94],[87.94,91.06],[91.06,91.18],[91.18,91.52],[91.52,91.64],[91.64,91.86],[91.86,92.34],[92.88,93.4],[94.14,94.66],[94.88,95.1],[95.1,95.26],[95.26,95.46]],[[96.48,96.9],[96.9,97.02],[97.02,97.12],[97.12,97.46],[97.46,97.7],[97.7,97.86],[97.86,98.3],[98.3,98.54],[98.54,98.7],[98.7,98.96],[99.68,100.2],[100.2,100.36],[100.36,100.44],[100.44,100.76],[101.46,101.56],[101.56,101.62],[101.62,101.88],[102.34,102.64],[102.64,102.82],[102.82,103.12],[103.12,103.26],[103.26,103.56],[103.56,103.84],[103.84,104.02],[104.02,104.42],[105.62,105.86],[105.86,106.14],[106.14,106.56],[106.84,106.96],[106.96,107.04],[107.04,107.22],[107.22,107.72],[107.72,108.0],[108.0,108.78]],[[108.78,109.46],[109.46,111.58],[111.58,111.82],[111.82,112.06],[112.06,112.34],[112.46,113.1],[113.1,113.3],[113.98,114.48],[114.48,114.86],[114.86,115.4],[115.4,115.54],[115.54,115.62],[115.62,115.74],[115.74,116.02],[116.02,117.74],[117.74,117.94],[117.94,118.54],[118.54,118.72],[118.72,118.96],[118.96,119.26],[119.26,119.48],[119.48,119.92],[120.34,120.6],[120.6,120.66],[120.66,120.82],[120.96,121.02],[121.02,121.56],[121.56,121.78],[121.78,122.08],[122.08,122.46],[122.46,122.7],[122.7,122.82],[122.82,123.2],[123.2,123.64],[123.64,124.04],[124.14,124.36],[124.36,125.26],[125.26,125.36],[125.36,125.58],[125.58,125.9],[125.9,126.34],[126.56,126.76],[126.76,127.62],[127.62,127.96],[127.96,128.1],[128.1,128.62],[128.62,128.86],[128.86,129.1],[129.1,129.1],[129.1,129.7]],[[129.7,130.34],[130.82,131.6],[131.6,131.82],[131.82,132.08],[132.08,132.44],[133.26,134.0],[134.0,134.2],[134.56,134.68],[134.68,134.9],[134.9,135.36],[135.38,135.64],[135.64,136.12],[136.12,136.26],[136.26,136.4],[136.46,136.5],[136.5,136.9],[136.9,137.4],[137.4,137.52],[137.52,138.02],[138.02,138.92],[138.92,139.06],[139.06,139.26],[139.8,139.8],[139.8,140.98],[140.98,141.2],[141.2,141.36],[141.36,141.58],[141.58,141.78],[141.58,141.74],[141.74,141.82],[141.82,141.9],[141.9,142.06],[142.06,142.26]]],7:[[[0.0,0.36],[0.36,0.48],[0.48,0.82],[0.82,1.02],[1.02,1.18],[1.18,1.38],[1.26,1.78],[1.78,2.02],[2.02,2.34],[2.34,2.84],[2.84,3.72],[3.72,3.92],[3.92,4.52],[4.52,4.92],[4.92,5.18],[5.18,5.36],[5.36,6.36],[7.04,7.82],[7.82,8.22],[8.22,8.72],[8.72,9.18],[9.18,9.58],[9.58,9.7],[9.7,10.06]],[[10.32,10.56],[10.56,10.94],[10.94,11.18],[11.18,11.76],[11.76,12.0],[12.0,12.38],[12.38,12.6],[12.6,13.2],[13.32,13.62],[13.62,13.9],[13.9,14.04],[14.04,14.44],[14.44,15.16],[15.16,15.48],[15.48,16.1],[16.7,17.14],[17.14,17.52],[17.52,18.12],[18.9,19.22],[19.22,19.76],[19.76,20.38],[20.38,21.84]],[[22.2,23.06],[23.06,23.54],[23.54,23.78],[23.78,24.1],[24.1,25.16],[25.16,26.34],[26.5,26.56],[26.56,26.74],[26.74,27.2],[27.2,27.62],[27.62,28.46]],[[28.46,29.04],[29.04,29.2],[29.2,29.4],[29.4,29.64],[29.64,30.48],[30.48,31.0],[31.0,31.56],[31.56,31.74],[31.74,32.16],[32.16,32.64],[33.12,33.22],[33.22,33.42],[33.42,34.38],[34.38,34.66],[34.66,35.16],[35.16,35.68],[35.68,36.16],[36.16,36.28],[36.28,36.42],[36.42,36.94],[36.94,37.12],[37.12,37.42],[37.42,38.14],[38.14,38.68],[38.68,39.06],[39.06,39.18],[39.18,39.54],[39.54,39.9],[39.9,40.4],[40.4,41.0],[41.0,41.68]],[[41.78,41.86],[41.86,42.04],[42.04,42.2],[42.2,42.42],[42.42,42.86],[42.86,43.38],[43.86,44.08],[44.08,44.58],[44.58,44.7],[44.7,44.96],[45.12,45.22],[45.22,45.64],[45.64,45.82],[45.82,46.3],[46.3,46.48],[46.48,47.06],[47.38,47.9],[47.9,48.72],[48.72,48.92],[48.92,49.68],[49.68,49.88],[49.88,50.56]]],8:[[[0.0,0.38],[0.38,0.62],[0.62,0.84],[0.84,1.16],[1.16,1.44],[1.44,1.8],[1.8,2.32],[2.32,2.74],[2.74,3.2],[3.2,3.44],[3.44,4.12],[4.12,4.82],[4.82,5.16],[5.16,5.64],[5.8,5.98],[5.98,6.22],[6.22,7.06]],[[7.06,7.5],[7.5,8.18],[8.18,8.44],[8.44,8.6],[8.6,9.0],[9.0,9.18],[9.18,9.6],[9.6,9.82],[9.82,10.08],[10.08,10.66],[10.66,10.92],[10.92,11.44],[11.44,11.56],[11.56,11.96],[11.96,12.62],[12.62,12.9],[13.04,13.12],[13.12,13.24],[13.24,13.74],[13.74,14.28]],[[14.28,14.54],[14.54,15.48],[15.48,15.8],[15.8,16.14],[16.14,16.28],[16.28,16.82]],[[16.82,17.22],[17.22,17.64],[17.64,18.04],[18.04,18.54],[18.54,19.02],[19.2,19.54],[19.54,19.82],[19.82,20.68],[20.68,20.86],[20.86,21.16],[21.16,21.66],[22.16,22.72],[22.72,23.48]]],9:[[[0.0,0.24],[0.24,0.56],[0.56,0.7],[0.7,0.93],[0.93,1.16],[1.16,1.62],[1.62,1.84],[1.84,2.06],[2.2,2.3],[2.3,2.56],[2.56,2.88]],[[4.82,5.46],[5.46,6.1],[6.1,6.28],[6.28,7.04],[7.04,7.28],[7.28,7.48],[7.48,8.18],[8.18,8.32],[8.32,8.56],[8.56,9.18],[9.18,9.9],[9.9,10.66],[10.8,11.32],[11.56,11.96],[11.96,12.44],[12.44,12.56],[12.56,13.04]],[[13.04,13.36],[13.36,13.78],[13.78,13.9],[13.9,14.06],[14.06,14.22],[14.22,14.42],[14.56,14.74],[14.74,15.1],[15.1,15.94],[15.94,16.8],[16.8,17.1],[17.1,17.98],[17.98,18.24],[18.24,18.38],[18.38,19.22],[19.22,19.36],[19.36,19.74],[19.74,20.04],[20.04,20.64],[20.64,21.32],[21.32,21.6],[21.6,21.74],[21.74,22.06],[22.54,22.74],[22.74,22.92],[22.92,23.3],[23.3,23.76],[23.76,23.94],[23.94,24.32],[24.32,24.8],[24.8,25.74],[25.74,25.82],[25.82,26.02],[25.82,26.14],[26.14,26.96],[26.96,27.44],[27.44,27.68],[27.68,27.96],[27.96,28.5],[28.5,28.74],[28.74,29.7],[29.7,30.1],[30.1,30.4],[30.4,30.58],[30.58,30.72],[30.72,30.94],[30.94,31.26],[31.26,31.78],[31.78,32.04],[32.04,32.54],[32.54,32.66],[32.66,32.88],[32.88,33.18],[33.18,33.54],[33.54,34.16],[34.16,34.84],[35.16,35.5],[35.5,35.64],[35.64,35.84]],[[35.84,36.2],[36.2,36.4],[36.4,36.88],[36.88,37.0],[37.0,37.36],[37.36,37.64],[37.64,38.1],[38.1,38.44],[38.44,38.6],[38.6,39.08],[39.08,39.3],[39.3,39.52],[39.52,39.7],[39.7,40.04],[40.04,40.4]],[[40.4,40.66],[40.66,41.02],[41.02,41.42],[41.42,42.4],[42.42,42.76],[42.76,43.44],[43.44,43.6],[43.6,44.8],[44.96,45.41],[45.41,45.86],[45.86,46.08],[46.08,46.24],[46.24,46.78],[46.78,47.2]],[[47.2,47.38],[47.38,47.72],[47.72,47.84],[47.84,48.28],[48.28,48.52],[48.52,49.22],[49.22,50.08],[50.08,50.26],[50.26,50.46],[51.08,51.28],[51.28,51.96],[51.96,52.16],[52.16,52.5]]],10:[[[0.0,0.56],[0.56,1.26],[1.26,1.84],[1.84,2.48],[2.48,2.66],[2.66,2.8],[2.8,3.0],[3.0,3.6],[4.02,4.62],[4.62,4.84],[4.84,5.04],[5.04,5.78],[5.78,6.16],[6.16,6.42],[6.42,6.52],[6.52,6.6],[6.6,7.08],[7.08,7.32],[7.32,7.6],[7.6,8.62]],[[9.14,9.46],[9.46,9.66],[9.66,10.34],[10.88,10.94],[10.94,11.32],[11.32,11.48],[11.48,12.14],[12.14,13.0],[13.0,13.2],[13.2,13.74],[14.12,14.22],[14.22,14.56],[14.56,14.78],[14.78,15.04],[15.04,15.44],[15.44,15.84],[15.84,16.02],[16.02,16.3],[16.3,16.6],[16.6,17.24]],[[17.4,17.8],[17.8,17.94],[17.94,18.24],[18.24,18.48],[18.48,18.64],[18.64,19.14],[19.14,19.28],[19.28,19.88],[20.2,20.28],[20.28,20.82],[20.82,21.1],[21.1,21.4],[21.48,21.62],[21.62,21.82],[21.62,21.74],[21.76,21.82],[21.82,22.32],[22.32,22.58],[22.58,23.32]],[[23.98,24.58],[24.58,25.06],[25.78,26.3],[26.3,26.82],[26.82,27.2],[27.2,27.34],[27.6,27.78],[27.78,28.24],[28.24,28.36],[28.36,28.42],[28.42,28.66]],[[28.82,29.2],[29.2,29.34],[29.34,29.48],[29.48,30.12],[30.12,30.4],[30.4,30.94],[30.94,31.4],[31.4,31.62],[31.62,31.8],[31.8,31.98],[31.98,32.38],[32.38,32.58],[32.58,33.04],[33.04,33.66],[33.66,33.88],[33.88,34.14],[34.14,34.3],[34.3,34.42],[34.42,34.56],[34.56,34.76],[34.76,34.86],[34.86,35.22]],[[35.56,35.76],[35.76,36.06],[36.06,36.28],[36.28,36.56],[36.56,37.16],[37.16,37.98],[37.98,38.86],[38.86,39.04],[39.04,39.48],[39.48,39.96],[39.96,40.16],[40.16,41.12]],[[41.52,42.04],[42.04,42.22],[42.22,42.82],[42.82,42.98],[42.98,43.28],[43.68,44.0],[44.0,44.22],[44.22,44.92],[44.92,45.16],[45.16,45.56],[45.56,45.7],[45.7,45.86],[45.86,46.32],[46.32,46.64],[46.64,47.64]],[[48.08,48.36],[48.36,48.6],[48.6,48.7],[48.7,49.28],[49.28,49.86],[49.86,50.06],[50.06,50.4],[50.4,51.06]],[[51.5,52.12],[52.12,52.26],[52.26,52.6],[52.6,52.72],[52.72,53.58],[53.58,53.86],[53.86,54.62],[55.18,55.34],[55.34,55.7],[56.0,56.76],[56.76,57.14],[57.14,57.46],[57.46,57.66],[57.46,57.82],[58.3,58.42],[58.42,59.12],[59.12,59.32],[59.32,59.42],[59.42,59.72]],[[60.1,60.18],[60.18,60.5],[60.5,60.74],[60.74,61.42],[61.42,61.58],[61.58,62.14],[62.14,62.48],[62.48,62.66],[62.66,62.82],[63.18,63.4],[63.4,63.86],[63.86,64.14],[64.14,64.56],[64.56,64.88],[64.88,65.52]]],11:[[[0.0,0.72],[1.3,1.68],[1.68,1.82],[1.82,2.42],[2.42,2.62],[2.62,3.0],[3.0,3.22],[3.22,3.5],[3.5,3.7],[3.7,3.8],[3.8,3.98],[3.98,4.66],[4.76,5.56],[5.56,5.92],[5.92,6.52],[6.52,6.62],[6.62,6.78],[6.78,7.24],[7.24,7.62],[7.62,7.78],[7.78,8.0],[8.0,8.16],[8.16,8.24],[8.24,8.5],[8.5,8.72],[9.26,9.62],[10.04,11.46],[11.46,12.0]],[[13.3,14.06],[14.06,14.56],[14.56,14.84],[15.7,16.1],[16.56,17.74],[17.74,18.02],[18.02,18.32],[18.32,18.76]],[[21.82,22.2],[22.2,22.34],[22.34,22.72],[24.08,24.84],[24.84,25.04]],[[25.4,26.98],[27.04,27.2],[27.2,27.46],[27.46,27.94],[27.94,28.3],[28.3,29.06],[29.06,29.54],[29.54,30.64],[30.64,30.94],[30.94,31.32],[31.32,31.6],[31.6,32.06],[32.06,32.7],[32.7,34.44],[34.44,35.4],[35.4,35.68],[35.68,35.88],[35.68,35.88],[35.68,35.88],[35.68,35.88],[36.76,37.1],[37.1,37.72],[37.72,38.2]],[[38.52,40.28],[40.28,41.4],[41.07,42.3],[42.3,42.9],[42.9,43.16],[43.16,43.58],[43.58,44.14]],[[46.22,46.82],[46.82,46.92],[46.92,46.98],[46.98,47.28],[47.28,47.98],[47.98,48.18],[48.18,48.48],[48.48,48.88],[48.88,49.02],[49.02,49.22],[49.22,49.34],[49.34,50.04],[50.04,50.78],[50.78,51.08],[51.08,51.22],[51.22,51.56],[51.56,51.72],[51.72,52.08],[52.08,52.78],[52.78,53.12],[53.12,53.58]]],12:[[[1.34,1.98],[1.98,2.2],[2.2,2.72],[3.44,3.92],[3.92,4.7],[4.7,4.88],[4.88,5.24],[5.24,5.62],[5.62,5.9],[5.9,6.22],[6.22,6.74],[6.9,7.38],[7.38,8.28]],[[8.48,8.56],[8.56,8.64],[8.64,9.04],[9.04,9.36],[9.36,9.64],[9.64,10.0],[10.0,10.18],[10.18,10.54],[10.54,10.94],[10.94,11.28],[11.46,12.06],[12.06,12.18],[12.18,12.48],[12.48,12.62],[12.62,12.8],[12.8,13.32],[13.32,13.5],[13.5,13.7],[13.7,14.1],[14.1,14.6],[14.6,14.74],[14.74,15.14]],[[15.56,16.12],[16.12,16.82],[16.82,17.0],[17.0,17.28],[17.28,17.34],[17.34,17.96]],[[18.08,18.24],[18.24,18.66],[18.66,18.9],[18.9,19.44],[19.44,19.5],[19.5,19.74],[19.74,19.94],[20.04,20.7],[20.7,20.76],[20.76,20.96],[21.2,21.8]]],13:[[[0.0,0.36],[0.36,1.08],[1.08,1.42],[1.42,1.82],[1.82,2.68]],[[3.06,3.44],[3.44,4.24],[4.24,5.18]],[[5.18,6.22],[6.22,6.66],[6.66,7.58],[7.84,7.98],[7.98,8.8]],[[8.8,9.14],[9.14,9.64],[9.74,9.86],[9.86,9.98],[9.98,10.26],[10.26,10.46],[10.68,10.86],[10.86,11.04],[11.04,11.64]],[[11.64,11.9],[11.9,12.38],[12.38,13.1],[13.28,13.6],[13.6,13.76],[13.76,13.9],[13.9,14.08],[14.08,14.16],[14.26,14.56],[14.26,14.7]],[[14.7,15.42],[15.42,16.04],[16.04,16.34],[16.34,16.86],[16.86,17.52],[17.64,17.76],[17.76,17.88],[17.88,18.02],[18.02,18.6]],[[18.8,19.42],[19.42,20.04],[20.04,20.64],[20.64,21.38]],[[21.38,21.86],[21.86,22.24],[22.24,22.56],[22.74,22.76],[22.76,23.68],[23.68,23.98]],[[23.98,24.18],[24.3,24.4],[24.4,24.48],[24.48,24.72],[24.72,24.84],[24.84,25.02],[25.02,25.2],[25.2,25.78]]],14:[[[0.0,0.3],[0.3,0.78],[0.78,0.92],[0.92,1.22],[1.22,1.66],[1.66,1.96],[1.96,2.1],[2.1,2.36],[2.36,2.52],[2.52,2.62],[2.62,2.8],[2.8,3.12],[3.12,3.5],[3.66,3.76],[3.76,3.88],[3.88,4.12],[4.12,4.56],[4.56,4.96],[4.96,5.1],[5.1,5.2],[5.2,5.5],[5.5,5.58],[5.58,6.02],[6.02,6.22],[6.22,6.38],[6.38,6.56],[6.56,6.88]],[[6.88,7.38],[7.38,7.58],[7.58,7.7],[7.7,7.74],[7.74,7.94],[7.94,8.44],[8.44,8.98],[8.98,9.32],[9.32,9.56],[9.56,10.1]],[[10.1,10.54],[10.54,10.74],[10.74,11.02],[11.02,11.16],[11.16,11.52],[11.52,11.66],[11.66,12.12],[12.12,12.5],[12.5,12.78],[12.78,12.98],[12.98,13.14],[13.14,13.38],[13.38,13.72],[14.02,14.24],[14.24,14.54],[14.64,14.76],[14.76,15.18],[15.38,15.7],[15.8,15.92],[15.92,16.08],[16.08,16.28],[16.28,16.48],[16.48,16.78]],[[17.38,17.9],[18.2,18.3],[18.3,18.62],[18.96,19.24],[19.24,19.36],[19.36,19.52],[19.52,19.88],[20.26,20.6],[20.6,21.12],[21.12,21.44],[21.44,21.76],[21.76,22.08],[22.08,22.8]],[[25.38,25.9],[25.96,26.14],[26.14,26.34],[26.34,26.44],[26.44,26.62],[26.62,26.86],[26.86,27.24],[27.24,27.66],[27.66,27.78],[27.78,28.06],[28.06,28.14],[28.14,28.16],[28.16,28.46],[28.62,29.06],[29.06,29.48],[29.48,29.66],[29.66,29.8],[29.8,29.98],[29.98,30.36],[30.84,30.96],[30.96,31.3],[31.3,31.46],[31.46,31.9],[31.9,32.44],[32.44,32.62],[32.62,33.2],[33.2,33.7],[33.7,34.2],[34.2,34.76],[34.76,34.9],[34.9,35.06],[35.06,35.26],[35.26,35.58]],[[35.58,36.02],[36.02,36.24],[36.24,36.62],[36.62,36.86],[36.86,37.0],[37.0,37.16],[37.16,37.28],[37.28,37.7],[37.7,37.82],[37.82,38.16],[38.16,38.66],[38.66,38.82],[38.82,39.44],[39.44,40.4]],[[40.4,40.52],[40.52,40.66],[40.66,40.92],[40.92,41.3],[41.3,41.7],[41.7,42.32],[42.32,42.62],[42.62,42.82],[42.82,43.04],[43.04,43.38],[43.38,43.84],[43.84,44.24]]]};
+
+const LESSONS = {
+1: {
+  zh:"追随新潮可能既刺激又有趣，但真正的优雅远不止于简单地拥抱当下的流行趋势。经典优雅是一种超越时间的表达形式，能够跨越时代和风格，始终保持其现代性。它是那种低调而精致的品质，不需要炫耀，而是通过对细节的关注、对自我的清晰认知，以及善于选择那些能真正凸显个人魅力的元素。",
+  it:"Seguire le novità può essere stimolante e divertente, ma l'eleganza autentica va ben oltre il semplice abbracciare il trend del momento. L'eleganza classica è una forma d'espressione senza tempo, capace di attraversare epoche e stili, rimanendo sempre attuale. È quella qualità discreta e sofisticata che non ha bisogno di ostentazione, ma si manifesta nella cura dei dettagli, nella consapevolezza di sé e nella capacità di scegliere ciò che davvero valorizza la propria personalità.",
+  sent:[
+    {it:"Seguire le novità può essere stimolante e divertente, ma l'eleganza autentica va ben oltre il semplice abbracciare il trend del momento.",zh:"追随新潮可能既刺激又有趣，但真正的优雅远不止于简单地拥抱当下的流行趋势。"},
+    {it:"L'eleganza classica è una forma d'espressione senza tempo, capace di attraversare epoche e stili, rimanendo sempre attuale.",zh:"经典优雅是一种超越时间的表达形式，能够跨越时代和风格，始终保持其现代性。"},
+    {it:"È quella qualità discreta e sofisticata che non ha bisogno di ostentazione, ma si manifesta nella cura dei dettagli, nella consapevolezza di sé e nella capacità di scegliere ciò che davvero valorizza la propria personalità.",zh:"它是那种低调而精致的品质，不需要炫耀，而是通过对细节的关注、对自我的清晰认知，以及善于选择那些能真正凸显个人魅力的元素。"},
+  ],
+  vocab:[
+    {e:"Seguire le novità",m:"追随新潮",d:"\"Seguire\"=跟随；\"le novità\"=新事物、新潮流。",ex:"Molti giovani amano seguire le novità del mondo della moda.",exZh:"许多年轻人喜欢追随时尚界的新潮流。"},
+    {e:"stimolante e divertente",m:"刺激又有趣",d:"\"stimolante\"=刺激的；\"divertente\"=有趣的。",ex:"Il viaggio in Giappone è stato stimolante e divertente per tutta la famiglia.",exZh:"去日本旅行对全家人来说既刺激又有趣。"},
+    {e:"autentica",m:"真正的，纯正的",d:"形容词，真实、纯正、不造作。",ex:"Questo ristorante offre un'esperienza autentica della tradizione italiana.",exZh:"这家餐厅提供意大利传统的纯正体验。"},
+    {e:"ben oltre",m:"远远超过",d:"\"ben\"=很；\"oltre\"=超过。",ex:"Il suo contributo alla ricerca va ben oltre quello che ci aspettavamo.",exZh:"他对研究的贡献远远超出了我们的期望。"},
+    {e:"abbracciare il trend del momento",m:"拥抱当下流行趋势",d:"\"abbracciare\"=拥抱；\"trend del momento\"=当下的趋势。",ex:"Quell'azienda ha saputo abbracciare il trend del momento nel marketing digitale.",exZh:"那家公司善于拥抱数字营销领域的当前趋势。"},
+    {e:"forma d'espressione senza tempo",m:"超越时间的表达形式",d:"\"forma d'espressione\"=表达形式；\"senza tempo\"=不受时间限制的。",ex:"La musica classica è una forma d'espressione senza tempo che continua ad emozionare.",exZh:"古典音乐是一种超越时间的表达形式，持续打动人心。"},
+    {e:"attraversare epoche e stili",m:"跨越时代和风格",d:"\"attraversare\"=穿越；\"epoche\"=时代；\"stili\"=风格。",ex:"Il design italiano ha saputo attraversare epoche e stili rimanendo sempre riconoscibile.",exZh:"意大利设计能够跨越时代和风格，始终保持其辨识度。"},
+    {e:"rimanendo sempre attuale",m:"始终保持现代性",d:"\"rimanendo\"=保持；\"attuale\"=现代的、时新的。",ex:"Le opere di Shakespeare continuano ad essere rappresentate, rimanendo sempre attuali.",exZh:"莎士比亚的作品继续上演，始终保持其现代意义。"},
+    {e:"qualità discreta e sofisticata",m:"低调而精致的品质",d:"\"discreta\"=低调的；\"sofisticata\"=精致的、有品味的。",ex:"La sua eleganza ha una qualità discreta e sofisticata che non passa inosservata.",exZh:"她的优雅有一种低调而精致的品质，不会被忽视。"},
+    {e:"non ha bisogno di ostentazione",m:"不需要炫耀",d:"\"non ha bisogno di\"=不需要；\"ostentazione\"=炫耀。",ex:"La vera ricchezza non ha bisogno di ostentazione per essere apprezzata.",exZh:"真正的财富不需要炫耀就能得到欣赏。"},
+    {e:"si manifesta",m:"体现，表现",d:"反身动词，表示\"自我呈现\"。",ex:"La cultura di un popolo si manifesta anche attraverso le sue tradizioni culinarie.",exZh:"一个民族的文化也通过其烹饪传统表现出来。"},
+    {e:"cura dei dettagli",m:"对细节的关注",d:"\"cura\"=注意；\"dettagli\"=细节。",ex:"La cura dei dettagli è ciò che distingue un prodotto artigianale di qualità.",exZh:"对细节的关注是区分优质手工产品的关键。"},
+    {e:"consapevolezza di sé",m:"对自我的认知",d:"\"consapevolezza\"=意识、觉察；\"di sé\"=关于自己。",ex:"La consapevolezza di sé è il primo passo verso la crescita personale.",exZh:"自我认知是个人成长的第一步。"},
+    {e:"capacità di scegliere",m:"选择的能力",d:"\"capacità\"=能力；\"scegliere\"=选择。",ex:"La maturità si dimostra nella capacità di scegliere ciò che è giusto, non ciò che è facile.",exZh:"成熟体现在选择正确的而非容易的事物的能力上。"},
+    {e:"valorizza la propria personalità",m:"凸显个人特质",d:"\"valorizza\"=彰显；\"propria personalità\"=自己的个性。",ex:"Un buon abito valorizza la propria personalità senza mascherarla.",exZh:"一件好的衣服能凸显个人特质而不是掩盖它。"},
+  ]
+ },
+2: {
+  zh:"你好，我每天七点起床，为家里所有人准备早餐，然后送我妹妹去学校，她正在上初中，之后我一整天都在学习，还要再次为所有人做饭，因为我是家里唯一会做饭的人，然后我去接我妹妹，带她去参加她的活动，她和朋友们玩耍，然后我再把她带回家，和我的家人待在一起。",
+  it:"Ciao, io mi sveglio alle sette, preparo la colazione per tutti in casa, poi porto mia sorella a scuola, fa le scuole medie, e dopodiché passo la mia giornata a studiare e cucino di nuovo per tutti, perché sono l'unica che cucina e vado a prendere mia sorella e la porto a fare le sue attività, gioca con gli amici e poi la riporto a casa e resto con la mia famiglia.",
+  sent:[
+    {it:"Ciao, io mi sveglio alle sette, preparo la colazione per tutti in casa, poi porto mia sorella a scuola, fa le scuole medie.",zh:"你好，我每天七点起床，为家里所有人准备早餐，然后送我妹妹去学校，她正在上初中。"},
+    {it:"E dopodiché passo la mia giornata a studiare e cucino di nuovo per tutti, perché sono l'unica che cucina.",zh:"之后我一整天都在学习，还要再次为所有人做饭，因为我是家里唯一会做饭的人。"},
+    {it:"E vado a prendere mia sorella e la porto a fare le sue attività, gioca con gli amici e poi la riporto a casa e resto con la mia famiglia.",zh:"然后我去接我妹妹，带她去参加她的活动，她和朋友们玩耍，然后我再把她带回家，和我的家人待在一起。"},
+  ],
+  vocab:[
+    {e:"io mi sveglio alle sette",m:"我每天七点起床",d:"\"svegliarsi\"反身动词=醒来、起床；\"alle sette\"=在七点。",ex:"Io mi sveglio alle sei durante la settimana.",exZh:"工作日我六点起床。"},
+    {e:"la colazione",m:"早餐",d:"意大利人早餐通常简单：咖啡+甜点心。",ex:"La colazione italiana di solito include un caffè e un cornetto.",exZh:"意大利早餐通常包括一杯咖啡和一个牛角包。"},
+    {e:"porto",m:"送",d:"动词\"portare\"=带、送、携带。",ex:"Porto mio figlio all'asilo tutti i giorni.",exZh:"我每天送我儿子去幼儿园。"},
+    {e:"a scuola",m:"去学校",d:"固定短语，表示去上学。",ex:"I bambini vanno a scuola dal lunedì al venerdì.",exZh:"孩子们周一到周五去上学。"},
+    {e:"le scuole medie",m:"初中",d:"意大利教育系统中 11-14 岁阶段。",ex:"Dopo le scuole elementari, gli studenti frequentano le scuole medie per tre anni.",exZh:"小学之后，学生们上三年初中。"},
+    {e:"dopodiché",m:"之后",d:"连接副词=在那之后、随后。",ex:"Abbiamo finito la riunione, dopodiché siamo andati a pranzo.",exZh:"我们结束了会议，之后去吃午饭。"},
+    {e:"studiare",m:"学习",d:"动词=学习、研究。",ex:"Dedico molte ore a studiare le lingue straniere.",exZh:"我花很多时间学习外语。"},
+    {e:"cucino",m:"做饭",d:"动词\"cucinare\"=烹饪、做饭。",ex:"Cucino volentieri per i miei amici il fine settimana.",exZh:"周末我很乐意为朋友们做饭。"},
+    {e:"l'unica che cucina",m:"唯一会做饭的人",d:"\"unica/o\"=唯一的；\"che\"引导关系从句。",ex:"Mia madre è l'unica che sa preparare questo piatto tradizionale.",exZh:"我妈妈是唯一会做这道传统菜的人。"},
+    {e:"vado a prendere",m:"去接",d:"常用搭配=去接某人。",ex:"Vado a prendere mia figlia all'asilo alle cinque.",exZh:"我五点去幼儿园接我女儿。"},
+    {e:"la porto a fare le sue attività",m:"带她去参加她的活动",d:"\"portare a fare\"=带某人去做某事。",ex:"La porto a fare sport due volte alla settimana.",exZh:"我每周带她去两次运动。"},
+    {e:"resto con",m:"待在...一起",d:"动词\"restare\"=留下、停留。",ex:"Resto con i nonni durante le vacanze estive.",exZh:"暑假期间我和祖父母待在一起。"},
+  ]
+ },
+3: {
+  zh:"我把面团分成了六个小球，然后擀开，尽量保持圆形。接着，我用平底锅以中火煎烤，每面大约1分钟。至于配料，我用一点橄榄油炒了一根甜椒和一颗金黄洋葱，两者都切成条状。我加了点盐，用大火翻炒了大约5分钟，直到它们变软。然后，我准备了一些鹰嘴豆泥，具体的食谱我会在下面分享给大家。接着，我把所有食材摆上桌，还额外加了200克熟红豆，它们和鹰嘴豆泥一起，成为这道菜的蛋白质来源。在晚餐期间，每个人都可以按照自己的喜好来搭配馅料，制作属于自己的美味皮塔饼。",
+  it:"Ho diviso il mio impasto in 6 palline e le ho stese cercando di mantenere una forma rotonda. A questo punto le ho cotte in padella più o meno 1 min per lato a fuoco medio. Per condirle ho fatto saltare un peperone con una cipolla dorata e entrambi tagliati a strisce con un filo d'olio. Li ho salati e li ho cotti a fiamma alta per 5 min fino a quando non si sono ammorbiditi. Ho poi preparato dell'hummus con la ricetta che vi lascio qui sotto. E poi ho messo tutto in tavola aggiungendo anche 200g di fagioli rossi già cotti che saranno la fonte proteica di questo piatto insieme all'hummus. Durante la cena quindi ognuno di noi ha composto le proprie piadine nella maniera che preferiva.",
+  sent:[
+    {it:"Ho diviso il mio impasto in 6 palline e le ho stese cercando di mantenere una forma rotonda.",zh:"我把面团分成了六个小球，然后擀开，尽量保持圆形。"},
+    {it:"A questo punto le ho cotte in padella più o meno 1 min per lato a fuoco medio.",zh:"接着，我用平底锅以中火煎烤，每面大约 1 分钟。"},
+    {it:"Per condirle ho fatto saltare un peperone con una cipolla dorata e entrambi tagliati a strisce con un filo d'olio.",zh:"至于配料，我用一点橄榄油炒了一根甜椒和一颗金黄洋葱，两者都切成条状。"},
+    {it:"Li ho salati e li ho cotti a fiamma alta per 5 min fino a quando non si sono ammorbiditi.",zh:"我加了点盐，用大火翻炒了大约 5 分钟，直到它们变软。"},
+    {it:"Ho poi preparato dell'hummus con la ricetta che vi lascio qui sotto.",zh:"然后，我准备了一些鹰嘴豆泥，具体的食谱我会在下面分享给大家。"},
+    {it:"E poi ho messo tutto in tavola aggiungendo anche 200g di fagioli rossi già cotti che saranno la fonte proteica di questo piatto insieme all'hummus.",zh:"接着，我把所有食材摆上桌，还额外加了 200 克熟红豆，它们和鹰嘴豆泥一起，成为这道菜的蛋白质来源。"},
+    {it:"Durante la cena quindi ognuno di noi ha composto le proprie piadine nella maniera che preferiva.",zh:"在晚餐期间，每个人都可以按照自己的喜好来搭配馅料，制作属于自己的美味皮塔饼。"},
+  ],
+  vocab:[
+    {e:"impasto",m:"面团",d:"名词，混合制成的面团或糊状物。",ex:"L'impasto della pizza deve riposare almeno due ore.",exZh:"披萨面团至少需要发酵两小时。"},
+    {e:"palline",m:"小球",d:"\"palla\"（球）的小型形式。",ex:"Ho formato delle palline di pasta per fare i biscotti.",exZh:"我做了一些小面团球来做饼干。"},
+    {e:"ho stese",m:"我把它们擀平",d:"动词\"stendere\"（展开、擀平）的过去时。",ex:"Ho stese le lasagne sulla teglia prima di cuocerle.",exZh:"烹饪前我把千层面片铺平在烤盘上。"},
+    {e:"cercando di mantenere",m:"尽量保持",d:"\"cercare di\"+不定式=尝试做某事。",ex:"Sto cercando di mantenere un ritmo costante di studio.",exZh:"我正在尽量保持稳定的学习节奏。"},
+    {e:"rotonda",m:"圆形的",d:"形容词，描述圆形。",ex:"La luna era perfettamente rotonda quella notte.",exZh:"那晚的月亮是完美的圆形。"},
+    {e:"cotte in padella",m:"在平底锅中烤/煮",d:"\"cuocere\"过去分词+\"in padella\"=在平底锅中。",ex:"Le verdure cotte in padella mantengono più vitamine.",exZh:"平底锅烹调的蔬菜保留更多维生素。"},
+    {e:"più o meno",m:"大约",d:"表示\"或多或少\"、\"大致上\"。",ex:"Il viaggio durerà più o meno tre ore.",exZh:"旅程大约需要三小时。"},
+    {e:"fuoco medio",m:"中火",d:"烹饪术语，中等火力。",ex:"Cuoci la salsa a fuoco medio mescolando spesso.",exZh:"用中火煮酱汁，经常搅拌。"},
+    {e:"condirle",m:"调味",d:"动词\"condire\"（调味）不定式+代词\"le\"。",ex:"Prima di servire l'insalata, devo condirla con olio e aceto.",exZh:"上菜前，我要用油和醋给沙拉调味。"},
+    {e:"saltare un peperone",m:"炒辣椒",d:"\"saltare\"在烹饪中指快速翻炒。",ex:"Mi piace saltare i funghi in padella con aglio.",exZh:"我喜欢在平底锅里用蒜炒蘑菇。"},
+    {e:"una cipolla dorata",m:"一个金黄的洋葱",d:"\"dorata\"指金黄色的（炒熟的颜色）。",ex:"Soffriggi la cipolla fino a quando diventa dorata.",exZh:"炒洋葱直到它变成金黄色。"},
+    {e:"entrambi tagliati a strisce",m:"两者都切成条状",d:"\"entrambi\"=两者都；\"a strisce\"=成条状。",ex:"Prepara i peperoni e le carote entrambi tagliati a strisce sottili.",exZh:"准备辣椒和胡萝卜，两者都切成细条。"},
+    {e:"un filo d'olio",m:"一点橄榄油",d:"形象表达，字面\"一根油线\"，指少量油。",ex:"Aggiungi un filo d'olio sull'insalata prima di servirla.",exZh:"上沙拉前加一点橄榄油。"},
+    {e:"cotti a fiamma alta",m:"大火烹饪",d:"\"cuocere\"过去分词+\"a fiamma alta\"=用大火。",ex:"I gamberi vanno cotti a fiamma alta per pochissimo tempo.",exZh:"虾需要大火短时烹饪。"},
+    {e:"fino a quando non si sono ammorbiditi",m:"直到它们变软",d:"\"fino a quando\"=直到；\"ammorbidirsi\"=变软。",ex:"Cuoci le patate fino a quando non si sono ammorbidite abbastanza.",exZh:"煮土豆直到它们变得足够软。"},
+    {e:"hummus",m:"鹰嘴豆泥",d:"由鹰嘴豆、芝麻酱、柠檬和香料制成的酱。",ex:"L'hummus è perfetto da servire con il pane pita.",exZh:"鹰嘴豆泥配皮塔饼是完美搭配。"},
+    {e:"ho messo tutto in tavola",m:"把一切摆上桌",d:"\"mettere\"+\"in tavola\"=摆好饭桌。",ex:"Quando ho messo tutto in tavola, abbiamo iniziato a cenare.",exZh:"当我摆好餐桌，我们就开始晚餐。"},
+    {e:"fagioli rossi già cotti",m:"已煮熟的红豆",d:"\"fagioli rossi\"=红豆；\"già cotti\"=已煮熟的。",ex:"Per risparmiare tempo, uso spesso fagioli rossi già cotti in scatola.",exZh:"为节省时间，我常用罐装熟红豆。"},
+    {e:"la fonte proteica",m:"蛋白质来源",d:"营养学术语，蛋白质的来源。",ex:"La carne è una buona fonte proteica nella dieta.",exZh:"肉类是饮食中良好的蛋白质来源。"},
+    {e:"durante la cena",m:"在晚餐期间",d:"时间表达，晚餐进行的时候。",ex:"Durante la cena abbiamo discusso dei nostri progetti futuri.",exZh:"晚餐期间我们讨论了未来计划。"},
+    {e:"ognuno di noi",m:"我们每个人",d:"\"ognuno\"=每个人；\"di noi\"=我们的。",ex:"Ognuno di noi ha un compito specifico da svolgere.",exZh:"我们每个人都有一个特定任务要完成。"},
+    {e:"nella maniera che preferiva",m:"按照各自喜欢的方式",d:"\"nella maniera\"=以...方式；\"che preferiva\"=喜欢的。",ex:"Ciascuno può decorare il proprio dolce nella maniera che preferisce.",exZh:"每个人可以按自己喜欢的方式装饰甜点。"},
+  ]
+ },
+4: {
+  zh:"今天是星期天，我们一起度过。现在我正在等我姐姐，好一起去市中心散步。在这个 vlog 里，我的新眼镜首次亮相，终于能看清楚了！现在是早上 9:30，我们早点出门去市中心，这样能早些回来吃午饭。而且，早点出门的话，我希望能遇到比平时更少的人。毕竟，通常周日的早晨大家都会悠闲一点，对吧？所以散步的人一般都会晚点出门，可能在 11 点或 11 点半左右，或者干脆午饭后下午才出去。",
+  it:"Oggi è domenica e la passiamo insieme. Adesso sto aspettando mia sorella per andare a fare una passeggiata in centro. In questo vlog fanno il loro debutto i miei occhiali nuovi e finalmente vedo bene. Sono le 9:30 e così andiamo di buon'ora in centro, così torniamo presto per pranzo. E andando presto spero anche di trovare meno gente del solito perché di solito la domenica le persone se la prendono comoda la mattina, no? E quindi per la passeggiata si esce un po' più tardi, magari verso le 11/11:30 oppure direttamente nel pomeriggio dopo pranzo.",
+  sent:[
+    {it:"Oggi è domenica e la passiamo insieme.",zh:"今天是星期天，我们一起度过。"},
+    {it:"Adesso sto aspettando mia sorella per andare a fare una passeggiata in centro.",zh:"现在我正在等我姐姐，好一起去市中心散步。"},
+    {it:"In questo vlog fanno il loro debutto i miei occhiali nuovi e finalmente vedo bene.",zh:"在这个 vlog 里，我的新眼镜首次亮相，终于能看清楚了！"},
+    {it:"Sono le 9:30 e così andiamo di buon'ora in centro, così torniamo presto per pranzo.",zh:"现在是早上 9:30，我们早点出门去市中心，这样能早些回来吃午饭。"},
+    {it:"E andando presto spero anche di trovare meno gente del solito perché di solito la domenica le persone se la prendono comoda la mattina, no?",zh:"而且，早点出门的话，我希望能遇到比平时更少的人。毕竟，通常周日的早晨大家都会悠闲一点，对吧？"},
+    {it:"E quindi per la passeggiata si esce un po' più tardi, magari verso le 11/11:30 oppure direttamente nel pomeriggio dopo pranzo.",zh:"所以散步的人一般都会晚点出门，可能在 11 点或 11 点半左右，或者干脆午饭后下午才出去。"},
+  ],
+  vocab:[
+    {e:"Oggi è domenica e la passiamo insieme",m:"今天是星期天，我们一起度过",d:"\"passare\"在此处表示\"度过(时间)\"。",ex:"Passiamo il weekend al mare.",exZh:"我们在海边度过周末。"},
+    {e:"sto aspettando",m:"我正在等",d:"\"stare + 现在分词\"构成进行时态。",ex:"Sto aspettando l'autobus da mezz'ora.",exZh:"我已经等公交车半小时了。"},
+    {e:"andare a fare una passeggiata in centro",m:"去市中心散步",d:"\"andare a fare\"表示\"去做某事\"；\"passeggiata\"=散步；\"in centro\"=在市中心。",ex:"La domenica mi piace andare a fare una passeggiata in centro con gli amici.",exZh:"周日我喜欢和朋友们去市中心散步。"},
+    {e:"fanno il loro debutto",m:"首次亮相",d:"\"fare il debutto\"=首次登场、首次出现。",ex:"Gli attori fanno il loro debutto sul palcoscenico nazionale.",exZh:"这些演员在国家舞台上首次亮相。"},
+    {e:"vedo bene",m:"能看清楚",d:"\"vedere bene\"=视力良好、看得清楚。",ex:"Con questi occhiali finalmente vedo bene anche da lontano.",exZh:"有了这副眼镜，我终于能看清远处的东西了。"},
+    {e:"Sono le 9:30",m:"现在是早上9:30",d:"表达时间的常见结构。",ex:"Sono le otto, è ora di alzarsi.",exZh:"现在是8点，该起床了。"},
+    {e:"andiamo di buon'ora",m:"我们早点出门",d:"\"di buon'ora\"=很早、一大早。",ex:"Domani dobbiamo partire di buon'ora per evitare il traffico.",exZh:"明天我们要早点出发以避开交通拥堵。"},
+    {e:"torniamo presto per pranzo",m:"早些回来吃午饭",d:"表示回来的目的。",ex:"Torniamo presto per cena, non voglio cucinare tardi.",exZh:"我们早点回来吃晚饭，我不想晚上做饭。"},
+    {e:"andando presto",m:"早点出门",d:"\"andare presto\"=早点去。",ex:"Andando presto al supermercato, troviamo i prodotti più freschi.",exZh:"早点去超市，我们能找到更新鲜的产品。"},
+    {e:"trovare meno gente del solito",m:"遇到比平时更少的人",d:"\"trovare\"=遇到；\"del solito\"=比平常。",ex:"Il lunedì al museo si trova meno gente del solito.",exZh:"周一去博物馆会遇到比平常更少的人。"},
+    {e:"di solito",m:"通常，平常",d:"表示习惯或常态的副词短语。",ex:"Di solito mi sveglio alle sette.",exZh:"我通常七点起床。"},
+    {e:"le persone se la prendono comoda",m:"大家都会悠闲一点",d:"\"prendersela comoda\"=不着急、从容不迫地做事。",ex:"Il sabato mattina mi piace prendermela comoda e fare colazione con calma.",exZh:"周六早上我喜欢悠闲一点，慢慢享用早餐。"},
+    {e:"si esce un po' più tardi",m:"晚点出门",d:"\"si\"是非人称代词表示\"人们\"；\"un po' più tardi\"=稍晚一点。",ex:"D'estate si esce un po' più tardi perché fa troppo caldo durante il giorno.",exZh:"夏天人们会晚点出门，因为白天太热了。"},
+    {e:"verso le 11/11:30",m:"在11点或11点半左右",d:"\"verso\"表示时间时意为\"大约，左右\"。",ex:"Arriverò verso le tre del pomeriggio.",exZh:"我会在下午三点左右到达。"},
+    {e:"direttamente nel pomeriggio dopo pranzo",m:"干脆午饭后下午",d:"\"direttamente\"=直接；\"dopo pranzo\"=午饭后。",ex:"Oggi non esco la mattina, andrò in palestra direttamente nel pomeriggio dopo pranzo.",exZh:"今天早上我不出门，午饭后我会直接去健身房。"},
+  ]
+ },
+5: {
+  zh:"下午好！现在是 4 点 30 分，我刚刚从午睡中醒来。没办法，躺在沙发上睡着了，结果有点着凉了。所以，我裹上了小毯子，因为屋里很冷，甚至比外面还冷。虽然外面的温度刚刚好，但我还是觉得裹着毯子更舒服。等会儿我们要去公园散步一下，然后按计划，我还得整理明早发言的笔记。因为明天一早，我要录制 Rai Italia 电视节目《Paparazzi》的一期内容。",
+  it:"Buon pomeriggio, sono le quattro e mezza. Mi sono appena svegliata dal mio pisolino. E niente, mi sono infreddolita sul divano. Per questo motivo mi sono messa la copertina addosso, perché dentro casa fa freddo. Fa più freddo rispetto a fuori. Fuori si sta bene, però io sto ancora meglio con la mia copertina. Tra un po' andiamo al parco a fare una bella passeggiata e poi in teoria devo scrivere gli appunti per il mio intervento di domattina. Perché domattina presto registro la puntata del programma di Rai Italia \"Paparazzi\".",
+  sent:[
+    {it:"Buon pomeriggio, sono le quattro e mezza. Mi sono appena svegliata dal mio pisolino.", zh:"下午好！现在是 4 点 30 分，我刚刚从午睡中醒来。"},
+    {it:"E niente, mi sono infreddolita sul divano.", zh:"没办法，躺在沙发上睡着了，结果有点着凉了。"},
+    {it:"Per questo motivo mi sono messa la copertina addosso, perché dentro casa fa freddo.", zh:"所以，我裹上了小毯子，因为屋里很冷。"},
+    {it:"Fa più freddo rispetto a fuori. Fuori si sta bene, però io sto ancora meglio con la mia copertina.", zh:"甚至比外面还冷。虽然外面的温度刚刚好，但我还是觉得裹着毯子更舒服。"},
+    {it:"Tra un po' andiamo al parco a fare una bella passeggiata e poi in teoria devo scrivere gli appunti per il mio intervento di domattina.", zh:"等会儿我们要去公园散步一下，然后按计划，我还得整理明早发言的笔记。"},
+    {it:"Perché domattina presto registro la puntata del programma di Rai Italia \"Paparazzi\".", zh:"因为明天一早，我要录制 Rai Italia 电视节目《Paparazzi》的一期内容。"}
+  ],
+  vocab:[
+    {e:"Buon pomeriggio", m:"下午好", d:"\"Buon\"=好的；\"pomeriggio\"=下午。意大利语下午问候语。", ex:"Buon pomeriggio, signora. Come sta oggi?", exZh:"下午好，夫人。您今天好吗？"},
+    {e:"appena svegliata", m:"刚刚醒来", d:"\"appena\"=刚刚；\"svegliata\"=醒来的（阴性）。同义词：svegliarsi da poco。", ex:"Sono appena svegliata e ho bisogno di un caffè.", exZh:"我刚醒，需要喝杯咖啡。"},
+    {e:"pisolino", m:"午睡，小睡", d:"\"pisolino\"=小睡、午觉，指白天短暂的小憩。", ex:"Dopo pranzo faccio sempre un pisolino di mezz'ora.", exZh:"午饭后我总是小睡半小时。"},
+    {e:"infreddolita", m:"感到寒冷，受凉", d:"\"infreddolirsi\"=感到发冷、受凉，此处为阴性过去分词。", ex:"Ero infreddolita dopo essere stata fuori sotto la pioggia.", exZh:"在雨中淋过后我感到发冷。"},
+    {e:"divano", m:"沙发", d:"\"divano\"=沙发。", ex:"Mi sono addormentata sul divano mentre guardavo la TV.", exZh:"我看电视时在沙发上睡着了。"},
+    {e:"messa la copertina addosso", m:"把毯子盖在身上", d:"\"mettersi qualcosa addosso\"=把某物裹/盖在身上；\"copertina\"=小毯子。", ex:"Mi sono messa la copertina addosso perché avevo freddo.", exZh:"我因为冷而把毯子盖在身上。"},
+    {e:"dentro casa", m:"在屋内，在家里", d:"\"dentro\"=在…里面；\"casa\"=家。与\"fuori casa\"（屋外）相对。", ex:"Dentro casa si sta al caldo anche quando fuori nevica.", exZh:"即使外面下雪，屋里也很暖和。"},
+    {e:"fa freddo", m:"天气冷", d:"\"fa freddo\"=天冷，意大利语用\"fare\"表达天气。", ex:"Oggi fa freddo, mettiti il cappotto.", exZh:"今天很冷，穿上外套。"},
+    {e:"Fa più freddo rispetto a fuori", m:"比外面还冷", d:"\"rispetto a\"=与…相比。同义词：fa più freddo dentro che fuori。", ex:"In cantina fa più freddo rispetto a fuori in questa stagione.", exZh:"这个季节地下室比外面还冷。"},
+    {e:"Fuori si sta bene", m:"外面天气舒适", d:"\"si sta bene\"=待着很舒服，\"si\"为非人称形式。", ex:"Oggi fuori si sta bene, è una giornata perfetta per un picnic.", exZh:"今天外面天气很好，是野餐的好日子。"},
+    {e:"sto ancora meglio", m:"感觉更舒服", d:"\"sto meglio\"=我感觉更好；\"ancora\"=更、还。同义词：mi sento meglio。", ex:"Con questa medicina sto ancora meglio di prima.", exZh:"用了这药后我感觉比以前更好了。"},
+    {e:"copertina", m:"小毯子", d:"\"copertina\"=小毯子、盖毯，是\"coperta\"（毯子）的指小词。", ex:"Mi piace leggere con una copertina sulle gambe in inverno.", exZh:"冬天我喜欢盖着毯子看书。"},
+    {e:"Tra un po'", m:"过一会儿，一会儿后", d:"\"tra\"=在…之后；\"un po'\"=一点、一会儿。同义词：fra poco tempo。", ex:"Tra un po' andremo a cena fuori.", exZh:"过一会儿我们就出去吃晚饭。"},
+    {e:"al parco", m:"在公园", d:"\"al\"=在…（a+il 缩合）；\"parco\"=公园。", ex:"I bambini giocano al parco ogni pomeriggio.", exZh:"孩子们每天下午在公园玩耍。"},
+    {e:"bella passeggiata", m:"愉快的散步", d:"\"bella\"=美好的；\"passeggiata\"=散步。", ex:"Abbiamo fatto una bella passeggiata lungo il fiume.", exZh:"我们沿着河边进行了一次愉快的散步。"},
+    {e:"in teoria", m:"理论上，按计划", d:"\"in teoria\"=理论上、按说。同义词：secondo i piani。", ex:"In teoria dovremmo finire il progetto entro venerdì.", exZh:"理论上我们应该在周五前完成这个项目。"},
+    {e:"appunti", m:"笔记", d:"指为了记忆或将来参考而做的简短记录。", ex:"Ho preso degli appunti durante la conferenza.", exZh:"我在会议期间做了笔记。"},
+    {e:"intervento", m:"发言，讲话，干预", d:"指在公开场合发表的讲话或表达意见。同义词：discorso。", ex:"Il suo intervento alla riunione è stato molto apprezzato.", exZh:"他在会议上的发言受到了高度赞赏。"},
+    {e:"domattina", m:"明天早上", d:"\"domattina\"=明天早上（domani mattina 的合写）。", ex:"Domattina mi alzerò presto per andare in palestra.", exZh:"明天早上我会早起去健身房。"},
+    {e:"domattina presto", m:"明天一大早", d:"\"presto\"=早；\"domattina presto\"=明天一大早。", ex:"Domattina presto devo prendere il treno per Roma.", exZh:"明天一大早我要坐火车去罗马。"},
+    {e:"registro la puntata", m:"录制节目", d:"\"registrare\"=录制；\"puntata\"=（连续节目的）一集。同义词：registrare un episodio。", ex:"Oggi registro la puntata del mio podcast.", exZh:"今天我要录制我的播客节目。"},
+    {e:"programma", m:"节目，计划", d:"指电视或广播的特定节目。同义词：trasmissione。", ex:"Questo programma va in onda ogni martedì sera.", exZh:"这个节目每周二晚上播出。"},
+    {e:"Rai Italia", m:"意大利广播电视台", d:"Rai 为意大利国家广播电视台（Radiotelevisione Italiana）的缩写；Italia 为其国际频道。", ex:"Rai Italia trasmette programmi italiani in tutto il mondo.", exZh:"意大利广播电视台向全世界播放意大利节目。"}
+  ]
+},
+
+
+6: {
+  zh:"在米兰这样一座以时尚、艺术和高端场所闻名的城市，要靠少量预算度过一天似乎是不可能的。好吧，今天我口袋里只有10欧元，这些钱能做什么呢？我们去街头问问大家的看法。在米兰，10欧元能买到什么？——我不知道，我来自热那亚。——没多少东西，救命。——在一天之内？当然能买点好吃的……还有一些小玩意儿。——所以，10欧元基本上能买到这些东西，但肯定能吃到点好吃的。在米兰，10欧元能买什么？——这个问题得问我老婆，她负责买菜。——我自己嘛，不知道，可能能买一杯卡布奇诺和一个羊角面包，然后再买点别的，但真的不多。——要靠10欧元吃一天饭。——在一整天内？那么，为了能吃饭，最多就是两个三明治。没有夹馅的，否则很难用10欧元。——哦，这有点夸张了。——很少很少。——在一天之内。——嗯，也许可以买一本便宜的书籍，可能一本，然后喝杯咖啡，吃个早餐和一个三明治，勉强一个三明治，加一瓶装水，但不会更多了。——地铁票。——也许在某个地方买个三明治？——麦当劳。——没错，可能就买个麦当劳。热那亚比米兰更贵还是更便宜？——可能更贵。——更贵？——是的。——10欧元在热那亚能买到的东西？——差不多的东西，或多或少差不多的东西。即使有些价格更高，服装和商业产品在几乎所有城市的价格都差不多。意大利北部和南部的物价会有点区别，但热那亚也是北部城市，所以价格基本相同。只是像零食、饮料、那些东西可能在一个地方比另一个地方贵一点，但总体来说，价格差不多。",
+  it:"In una città come Milano, famosa per la moda, per l'arte, per i locali di lusso, sembra impossibile sopravvivere o vivere la giornata con un budget piccolo. Bene, oggi ho solo 10 euro in tasca. Cosa posso fare con questi soldi? Andiamo a chiederlo in giro. Cosa puoi comprare a Milano con 10 euro? Non ne ho idea, sono di Genova. Poche cose. Aiuto. In una giornata? E sicuramente del buon cibo, comunque... e poi anche tanta gadgettistica. Quindi con 10 euro quello, ma sicuro il buon cibo. Con 10 euro a Milano? Bisognerebbe chiederlo a mia moglie: è lei che fa la spesa. Io con 10 euro magari, non so, un cappuccio, una brioche e poi qualcos'altro, ma poca cosa comunque. In una giornata. In una giornata intera? Allora diciamo, per poter mangiare, massimo un paio di panini. Senza niente dentro, perché altrimenti è difficile con 10 euro. Beh, è un po' esagerato. Ben poco. In una giornata. Beh, magari qualche libro economico, forse uno, prendersi un caffè, fare colazione e un panino, a stenti con un panino, con una bottiglia d'acqua, direi non molto di più. Il biglietto della metropolitana. E forse un panino da qualche parte? McDonald. Esatto, forse un Mac. Genova è più cara o più economica rispetto a Milano? Probabilmente è più cara. Più cara? Sì. Cosa puoi comprare a Genova con 10 euro? Le stesse cose, più o meno le stesse cose. Anche con cifre più alte, vestiti e i prodotti commerciali più o meno sono dello stesso prezzo in quasi tutte le città. C'è un po' di differenza tra nord Italia e Sud Italia sui prezzi, però Genova è comunque nord Italia, quindi i prezzi si aggirano più o meno uguali. Giusto, prodotti tipo gli snack, le bibite, quelle cose lì magari costano un po' di più da una parte rispetto che dall'altra, ma alla fine il prezzo è più o meno lo stesso.",
+  sent:[
+    {it:"In una città come Milano, famosa per la moda, per l'arte, per i locali di lusso, sembra impossibile sopravvivere o vivere la giornata con un budget piccolo. Bene, oggi ho solo 10 euro in tasca. Cosa posso fare con questi soldi? Andiamo a chiederlo in giro.",zh:"在米兰这样一座以时尚、艺术和高端场所闻名的城市，要靠少量预算度过一天似乎是不可能的。好吧，今天我口袋里只有10欧元，这些钱能做什么呢？我们去街头问问大家的看法。"},
+    {it:"Cosa puoi comprare a Milano con 10 euro? Non ne ho idea, sono di Genova. Poche cose. Aiuto. In una giornata? E sicuramente del buon cibo, comunque... e poi anche tanta gadgettistica. Quindi con 10 euro quello, ma sicuro il buon cibo.",zh:"在米兰，10欧元能买到什么？——我不知道，我来自热那亚。——没多少东西，救命。——在一天之内？当然能买点好吃的……还有一些小玩意儿。——所以，10欧元基本上能买到这些东西，但肯定能吃到点好吃的。"},
+    {it:"Con 10 euro a Milano? Bisognerebbe chiederlo a mia moglie: è lei che fa la spesa. Io con 10 euro magari, non so, un cappuccio, una brioche e poi qualcos'altro, ma poca cosa comunque. In una giornata.",zh:"在米兰，10欧元能买什么？——这个问题得问我老婆，她负责买菜。——我自己嘛，不知道，可能能买一杯卡布奇诺和一个羊角面包，然后再买点别的，但真的不多。——要靠10欧元吃一天饭。"},
+    {it:"In una giornata intera? Allora diciamo, per poter mangiare, massimo un paio di panini. Senza niente dentro, perché altrimenti è difficile con 10 euro. Beh, è un po' esagerato. Ben poco. In una giornata.",zh:"——在一整天内？那么，为了能吃饭，最多就是两个三明治。没有夹馅的，否则很难用10欧元。——哦，这有点夸张了。——很少很少。——在一天之内。"},
+    {it:"Beh, magari qualche libro economico, forse uno, prendersi un caffè, fare colazione e un panino, a stenti con un panino, con una bottiglia d'acqua, direi non molto di più. Il biglietto della metropolitana. E forse un panino da qualche parte? McDonald. Esatto, forse un Mac.",zh:"——嗯，也许可以买一本便宜的书籍，可能一本，然后喝杯咖啡，吃个早餐和一个三明治，勉强一个三明治，加一瓶装水，但不会更多了。——地铁票。——也许在某个地方买个三明治？——麦当劳。——没错，可能就买个麦当劳。"},
+    {it:"Genova è più cara o più economica rispetto a Milano? Probabilmente è più cara. Più cara? Sì. Cosa puoi comprare a Genova con 10 euro? Le stesse cose, più o meno le stesse cose.",zh:"热那亚比米兰更贵还是更便宜？——可能更贵。——更贵？——是的。——10欧元在热那亚能买到的东西？——差不多的东西，或多或少差不多的东西。"},
+    {it:"Anche con cifre più alte, vestiti e i prodotti commerciali più o meno sono dello stesso prezzo in quasi tutte le città. C'è un po' di differenza tra nord Italia e Sud Italia sui prezzi, però Genova è comunque nord Italia, quindi i prezzi si aggirano più o meno uguali.",zh:"即使有些价格更高，服装和商业产品在几乎所有城市的价格都差不多。意大利北部和南部的物价会有点区别，但热那亚也是北部城市，所以价格基本相同。"},
+    {it:"Giusto, prodotti tipo gli snack, le bibite, quelle cose lì magari costano un po' di più da una parte rispetto che dall'altra, ma alla fine il prezzo è più o meno lo stesso.",zh:"只是像零食、饮料、那些东西可能在一个地方比另一个地方贵一点，但总体来说，价格差不多。"}
+  ],
+  vocab:[
+    {e:"sembra impossibile sopravvivere",m:"看起来不可能生存/维持生活",d:"sopravvivere 意为'生存'或'活下去'。",ex:"Con questo stipendio sembra impossibile sopravvivere in una città così costosa.",exZh:"用这样的薪水在这么昂贵的城市里似乎不可能生存。"},
+    {e:"un budget piccolo",m:"小预算，有限的预算",d:"同义词：pochi soldi da spendere（有限的消费预算）。",ex:"Nonostante un budget piccolo, siamo riusciti a organizzare una bella festa.",exZh:"尽管预算有限，我们还是成功举办了一场漂亮的派对。"},
+    {e:"in tasca",m:"在口袋里",d:"",ex:"Ho solo venti euro in tasca oggi.",exZh:"今天我口袋里只有二十欧元。"},
+    {e:"Andiamo a chiederlo in giro",m:"我们去四处询问",d:"in giro 意为'四处、到处'。",ex:"Non sono sicuro del prezzo, andiamo a chiederlo in giro.",exZh:"我不确定价格，我们去四处打听一下。"},
+    {e:"Non ne ho idea",m:"我不知道，我没有概念",d:"",ex:"Non ne ho idea di come funzioni questo apparecchio.",exZh:"我完全不知道这个设备是如何工作的。"},
+    {e:"poche cose",m:"很少的东西",d:"",ex:"Con questo denaro posso comprare poche cose al supermercato.",exZh:"用这些钱我只能在超市买很少的东西。"},
+    {e:"in una giornata",m:"在一天之内",d:"",ex:"È impossibile visitare tutti i musei di Roma in una giornata.",exZh:"在一天之内参观罗马所有的博物馆是不可能的。"},
+    {e:"buon cibo",m:"好食物，美食",d:"",ex:"In Italia si trova sempre del buon cibo a prezzi ragionevoli.",exZh:"在意大利总能找到价格合理的美食。"},
+    {e:"gadgettistica",m:"小物件，小玩意",d:"从英语 'gadget' 派生的意大利语名词，指各种小物件或小饰品。",ex:"Il negozio vende tanta gadgettistica per smartphone.",exZh:"这家商店销售很多智能手机的小配件。"},
+    {e:"Bisognerebbe chiederlo a mia moglie",m:"应该问我妻子",d:"Bisognerebbe 是 dovere 的条件式，表示'应该做某事'的委婉建议。",ex:"Non so cosa mangeremo stasera, bisognerebbe chiederlo a mia moglie.",exZh:"我不知道今晚吃什么，应该问问我妻子。"},
+    {e:"fa la spesa",m:"购物，买菜",d:"特指购买日常生活用品和食物。",ex:"Di solito fa la spesa al supermercato il sabato mattina.",exZh:"他通常在周六上午去超市买东西。"},
+    {e:"non so",m:"我不知道，不确定",d:"",ex:"Non so se riuscirò a venire alla festa domani.",exZh:"我不知道明天能否来参加派对。"},
+    {e:"cappuccio",m:"卡布奇诺（意大利式咖啡饮品）",d:"",ex:"Ogni mattina bevo un cappuccio al bar vicino all'ufficio.",exZh:"每天早上我都在办公室附近的咖啡店喝一杯卡布奇诺。"},
+    {e:"brioche",m:"羊角面包，甜面包",d:"",ex:"In Italia è comune fare colazione con cappuccio e brioche.",exZh:"在意大利，用卡布奇诺和羊角面包做早餐很常见。"},
+    {e:"qualcos'altro",m:"其他的东西，别的",d:"",ex:"Hai bisogno di qualcos'altro oltre al caffè?",exZh:"除了咖啡，你还需要别的东西吗？"},
+    {e:"poca cosa",m:"没什么，很少的东西",d:"",ex:"Con dieci euro è poca cosa quello che puoi comprare oggi.",exZh:"今天用十欧元能买到的东西真的很少。"},
+    {e:"un paio di panini",m:"两个三明治",d:"un paio di 意为'一对、两个'。",ex:"Per pranzo ho mangiato un paio di panini al prosciutto.",exZh:"午餐时我吃了两个火腿三明治。"},
+    {e:"senza niente dentro",m:"里面什么都没有，空的",d:"同义词：vuoti（空的）。",ex:"Questo panino è senza niente dentro, è solo pane.",exZh:"这个三明治里面什么都没有，只是面包。"},
+    {e:"è un po' esagerato",m:"有点夸张，有点过分",d:"esagerato 意为'夸张的'或'过分的'。",ex:"Dire che è il peggior film di sempre è un po' esagerato.",exZh:"说这是有史以来最糟糕的电影有点夸张。"},
+    {e:"Ben poco",m:"非常少，几乎没有",d:"同义词：molto poco（非常少）。",ex:"Con questi soldi puoi fare ben poco in una città così cara.",exZh:"在这么贵的城市里，用这些钱你几乎什么都做不了。"},
+    {e:"libro economico",m:"便宜的书，平装书",d:"同义词：libro a basso prezzo（低价书）。",ex:"Ho trovato un libro economico sulla storia di Roma.",exZh:"我找到了一本关于罗马历史的便宜书。"},
+    {e:"prendersi un caffè",m:"喝杯咖啡",d:"同义词：bere un caffè（喝咖啡）。",ex:"Facciamo una pausa per prenderci un caffè.",exZh:"我们休息一下，喝杯咖啡。"},
+    {e:"a stenti con un panino",m:"勉强够买一个三明治",d:"a stenti 意为'勉强'或'艰难地'；同义词：con difficoltà（勉强地）。",ex:"Con questi soldi posso comprare a stenti un panino per pranzo.",exZh:"用这些钱我勉强能买一个三明治当午餐。"},
+    {e:"bottiglia d'acqua",m:"一瓶水",d:"同义词：acqua in bottiglia（瓶装水）。",ex:"Durante l'escursione è importante portare una bottiglia d'acqua.",exZh:"徒步旅行时带一瓶水很重要。"},
+    {e:"non molto di più",m:"不会更多了，没有更多",d:"",ex:"Con questo budget possiamo comprare questo e non molto di più.",exZh:"用这个预算我们可以买这个，但不会更多了。"},
+    {e:"il biglietto della metropolitana",m:"地铁票",d:"",ex:"Il biglietto della metropolitana a Milano costa 2 euro.",exZh:"米兰的地铁票价格是2欧元。"},
+    {e:"Esatto",m:"没错，正确",d:"",ex:"\"Ci vediamo alle nove?\" \"Esatto, alle nove in punto.\"",exZh:"\"我们九点见面？\" \"没错，九点整。\""},
+    {e:"più cara o più economica",m:"更贵还是更便宜",d:"",ex:"Non so se questa marca sia più cara o più economica rispetto all'altra.",exZh:"我不知道这个品牌比另一个更贵还是更便宜。"},
+    {e:"le stesse cose",m:"同样的东西",d:"",ex:"In entrambi i negozi vendono le stesse cose.",exZh:"两家商店卖的都是同样的东西。"},
+    {e:"più o meno",m:"或多或少，大致上",d:"",ex:"Il prezzo è più o meno lo stesso in tutti i negozi del centro.",exZh:"市中心所有商店的价格大致相同。"},
+    {e:"cifre più alte",m:"更高的价格，更大的数字",d:"同义词：prezzi maggiori（更高的价格）。",ex:"Per una casa in centro devi pensare a cifre più alte.",exZh:"对于市中心的房子，你要考虑更高的价格。"},
+    {e:"vestiti",m:"衣服，服装",d:"指各种类型的衣物。",ex:"Ho comprato dei vestiti nuovi per l'inverno.",exZh:"我为冬季买了新衣服。"},
+    {e:"prodotti commerciali",m:"商业产品，商品",d:"",ex:"Questo negozio vende vari prodotti commerciali a prezzi competitivi.",exZh:"这家商店以有竞争力的价格销售各种商品。"},
+    {e:"C'è un po' di differenza",m:"有一点差别",d:"同义词：c'è qualche differenza（有一些差异）。",ex:"C'è un po' di differenza tra questi due modelli di smartphone.",exZh:"这两款智能手机型号之间有一点差别。"},
+    {e:"nord Italia e Sud Italia",m:"意大利北部和南部",d:"",ex:"Ci sono differenze culturali tra nord Italia e Sud Italia.",exZh:"意大利北部和南部之间存在文化差异。"},
+    {e:"si aggirano più o meno uguali",m:"价格大致相同",d:"si aggirano 是动词 aggirarsi 的第三人称复数形式，意为'围绕/徘徊'，在价格上下文中表示'价格大约在...左右'；同义词：sono circa gli stessi（大约相同）。",ex:"I prezzi degli appartamenti in questa zona si aggirano più o meno uguali.",exZh:"这个区域的公寓价格大致相同。"},
+    {e:"snack",m:"零食，小吃",d:"指在正餐之间食用的小食品；同义词：spuntini（小吃）。",ex:"Ho comprato degli snack per il viaggio in treno.",exZh:"我为火车旅行买了一些零食。"},
+    {e:"bibite",m:"饮料",d:"指各种非酒精饮料；同义词：bevande（饮料）。",ex:"D'estate consumo molte bibite fresche.",exZh:"夏天我喝很多冷饮。"},
+    {e:"quelle cose lì",m:"那些东西",d:"指代前面提到过或双方都知道的事物。",ex:"Non mi interessano quelle cose lì, preferisco qualcosa di più utile.",exZh:"我对那些东西不感兴趣，我更喜欢实用的东西。"},
+    {e:"un po' di più da una parte rispetto che dall'altra",m:"一个地方比另一个地方贵一点",d:"",ex:"I ristoranti in centro costano un po' di più da una parte rispetto che dall'altra.",exZh:"市中心的餐厅在某些地方比其他地方贵一点。"}
+  ]
+}
+,
+7: {
+  zh:"帮助我更好地学会健康饮食的最重要方法之一，肯定是每天坚持运动10分钟。锻炼的类型并不是特别重要，即使只是简单地在户外散步，或做一点轻度有氧运动，再或者做一些轻量的塑形训练，都已经足够了。重要的是让它成为一种稳定的习惯，也就是说，一个小而稳定的习惯。因为锻炼这件事总是会让我感觉更好，让我感受到更多的精力，也让我更有动力朝着我的外形目标前进。因此，当看到自己状态更好，更加喜欢自己，看起来更加紧致有型，感觉自己更加轻盈、更有活力。",
+  it:"Una delle cose che mi hanno aiutato di più a imparare ad alimentarmi meglio è stato sicuramente, muovermi ogni giorno 10 minuti al giorno. Non è tanto importante la tipologia di allenamento: basta anche una semplice camminata all'aria aperta, un piccolo cardio, un piccolo allenamento tonificante. L'importante è che sia un'abitudine consolidata, cioè una piccola abitudine consolidata. Perché il fatto di allenarmi comunque mi fa sentire meglio, mi fa sentire una maggiore energia e mi fa sentire anche più motivata verso quelli che sono i miei obiettivi estetici. Quindi il fatto di vedermi meglio, di piacermi di più, di vedermi più tonica, in forma, di sentirmi più leggera ed energica.",
+  sent:[
+    {it:"Una delle cose che mi hanno aiutato di più a imparare ad alimentarmi meglio è stato sicuramente, muovermi ogni giorno 10 minuti al giorno.",zh:"帮助我更好地学会健康饮食的最重要方法之一，肯定是每天坚持运动10分钟。"},
+    {it:"Non è tanto importante la tipologia di allenamento: basta anche una semplice camminata all'aria aperta, un piccolo cardio, un piccolo allenamento tonificante.",zh:"锻炼的类型并不是特别重要，即使只是简单地在户外散步，或做一点轻度有氧运动，再或者做一些轻量的塑形训练，都已经足够了。"},
+    {it:"L'importante è che sia un'abitudine consolidata, cioè una piccola abitudine consolidata.",zh:"重要的是让它成为一种稳定的习惯，也就是说，一个小而稳定的习惯。"},
+    {it:"Perché il fatto di allenarmi comunque mi fa sentire meglio, mi fa sentire una maggiore energia e mi fa sentire anche più motivata verso quelli che sono i miei obiettivi estetici.",zh:"因为锻炼这件事总是会让我感觉更好，让我感受到更多的精力，也让我更有动力朝着我的外形目标前进。"},
+    {it:"Quindi il fatto di vedermi meglio, di piacermi di più, di vedermi più tonica, in forma, di sentirmi più leggera ed energica.",zh:"因此，当看到自己状态更好，更加喜欢自己，看起来更加紧致有型，感觉自己更加轻盈、更有活力。"}
+  ],
+  vocab:[
+    {e:"mi hanno aiutato",m:"帮助了我",d:"第三人称复数完成时，表示\"他们帮助了我\"。同义词：mi sono stati d'aiuto, mi hanno dato una mano。",ex:"I miei amici mi hanno aiutato a traslocare.",exZh:"我的朋友们帮我搬家了。"},
+    {e:"imparare ad alimentarmi meglio",m:"学会更好地饮食",d:"同义词：nutrirmi in modo più sano, mangiare più correttamente。",ex:"Dopo la visita dal dietologo, ho iniziato a imparare ad alimentarmi meglio.",exZh:"看了营养师后，我开始学习更好地饮食。"},
+    {e:"sicuramente",m:"确实，毫无疑问",d:"同义词：certamente, senza dubbio。",ex:"Sicuramente verrò alla tua festa.",exZh:"我肯定会来参加你的派对。"},
+    {e:"muovermi",m:"移动自己，活动",d:"同义词：fare movimento, essere attivo。",ex:"Devo muovermi di più per restare in forma.",exZh:"我必须多活动以保持身材。"},
+    {e:"tipologia di allenamento",m:"训练/锻炼的类型",d:"同义词：tipo di esercizio fisico, genere di attività fisica。",ex:"Ogni tipologia di allenamento ha i suoi benefici specifici.",exZh:"每种训练类型都有其特定的好处。"},
+    {e:"semplice camminata all'aria aperta",m:"简单的户外散步",d:"同义词：passeggiata all'aperto, camminata in natura。",ex:"Una semplice camminata all'aria aperta può migliorare l'umore.",exZh:"一次简单的户外散步可以改善心情。"},
+    {e:"piccolo cardio",m:"轻度有氧运动",d:"同义词：breve allenamento cardiovascolare, esercizio aerobico leggero。",ex:"Faccio un piccolo cardio ogni mattina prima di colazione.",exZh:"我每天早餐前做一点轻度有氧运动。"},
+    {e:"allenamento tonificante",m:"塑形/紧致训练",d:"同义词：esercizio di tonificazione, allenamento per rassodare i muscoli。",ex:"L'allenamento tonificante aiuta a definire i muscoli senza aumentarne eccessivamente il volume.",exZh:"塑形训练有助于定义肌肉而不过度增加体积。"},
+    {e:"L'importante è che",m:"重要的是",d:"同义词：Ciò che conta è che, La cosa essenziale è che。该表达主观性强，从句需用虚拟语气。",ex:"L'importante è che tu sia felice con la tua scelta.",exZh:"重要的是你对自己的选择感到满意。"},
+    {e:"un'abitudine consolidata",m:"一个巩固的/稳定的习惯",d:"同义词：una routine stabile, un'abitudine radicata。",ex:"Leggere prima di dormire è diventata un'abitudine consolidata nella mia vita.",exZh:"睡前阅读已成为我生活中的一个稳定习惯。"},
+    {e:"piccola abitudine consolidata",m:"小而稳定的习惯",d:"同义词：piccola routine stabile, piccola abitudine radicata。",ex:"Bere un bicchiere d'acqua appena sveglio è una piccola abitudine consolidata che migliora la mia salute.",exZh:"起床后喝一杯水是一个有益健康的小而稳定的习惯。"},
+    {e:"il fatto di allenarmi",m:"锻炼这件事/锻炼的事实",d:"同义词：l'atto di fare esercizio, il praticare attività fisica。",ex:"Il fatto di allenarmi regolarmente ha migliorato il mio sonno.",exZh:"经常锻炼这件事改善了我的睡眠。"},
+    {e:"mi fa sentire meglio",m:"让我感觉更好",d:"同义词：migliora il mio stato d'animo, aumenta il mio benessere。",ex:"La meditazione mi fa sentire meglio quando sono stressato.",exZh:"当我有压力时，冥想让我感觉更好。"},
+    {e:"mi fa sentire una maggiore energia",m:"让我感受到更多的精力",d:"同义词：mi dà più vitalità, aumenta il mio livello energetico。",ex:"Mangiare frutta fresca mi fa sentire una maggiore energia durante la giornata.",exZh:"吃新鲜水果让我在一天中感受到更多的精力。"},
+    {e:"i miei obiettivi estetici",m:"我的外形/美观目标",d:"与外表或身体形象相关的个人目标。同义词：i miei scopi riguardanti l'aspetto fisico。",ex:"Uno dei miei obiettivi estetici è avere braccia più toniche.",exZh:"我的外形目标之一是拥有更紧实的手臂。"},
+    {e:"piacermi di più",m:"更喜欢自己",d:"同义词：apprezzarmi maggiormente, essere più soddisfatto di me stesso。",ex:"Dopo aver perso peso, ho iniziato a piacermi di più quando mi guardo allo specchio.",exZh:"减肥后，我开始在镜子前更喜欢自己了。"},
+    {e:"più tonica",m:"更紧致/更有张力",d:"同义词：più soda, più rassodata。",ex:"Con questi esercizi, la mia pelle sembra più tonica.",exZh:"通过这些锻炼，我的皮肤看起来更紧致了。"},
+    {e:"più leggera",m:"更轻盈",d:"同义词：meno pesante, più agile。",ex:"Dopo la detox, mi sento più leggera e meno gonfia.",exZh:"排毒后，我感觉更轻盈，不那么浮肿了。"},
+    {e:"energica",m:"精力充沛的/有活力的",d:"同义词：vivace, vitale, piena di energia。",ex:"Dopo una buona notte di sonno mi sento energica tutto il giorno.",exZh:"经过一晚好睡眠后，我整天都感到精力充沛。"}
+  ]
+}
+,
+8: {
+  zh:"幸好有太阳，这周天气一直不好，每天都在下雨。不过我觉得雨是晚上下的，因为这两天白天都有太阳，天气非常好。所以我觉得是晚上下雨。不管怎样，我们现在精神状态都超级好，已经重新开始我们的日常工作和其他事务了。",
+  it:"Meno male che c'è il sole, aveva messo brutto questa settimana e c'era pioggia tutti i giorni. eh però secondo me sta piovendo di notte, perché poi sono 2 giorni che c'è il sole c'è una bellissima giornata. Quindi secondo me piove di notte. comunque noi siamo super carichi, stiamo già ricominciando la nostra routine lavoro eccetera.",
+  sent:[
+    {it:"Meno male che c'è il sole, aveva messo brutto questa settimana e c'era pioggia tutti i giorni.",zh:"幸好有太阳，这周天气一直不好，每天都在下雨。"},
+    {it:"eh però secondo me sta piovendo di notte, perché poi sono 2 giorni che c'è il sole c'è una bellissima giornata.",zh:"不过我觉得雨是晚上下的，因为这两天白天都有太阳，天气非常好。"},
+    {it:"Quindi secondo me piove di notte.",zh:"所以我觉得是晚上下雨。"},
+    {it:"comunque noi siamo super carichi, stiamo già ricominciando la nostra routine lavoro eccetera.",zh:"不管怎样，我们现在精神状态都超级好，已经重新开始我们的日常工作和其他事务了。"}
+  ],
+  vocab:[
+    {e:"Meno male",m:"幸好",d:"表示庆幸某事发生或存在，相当于\"还好\"\"幸亏\"。同义词：per fortuna, fortunatamente, grazie al cielo。",ex:"Meno male che hai portato l'ombrello, sta iniziando a piovere.",exZh:"幸好你带了伞，开始下雨了。"},
+    {e:"aveva messo brutto",m:"天气一直不好",d:"描述天气变差的表达，字面意思是\"变得难看/糟糕\"。同义词：il tempo era cattivo, faceva brutto tempo。",ex:"Ieri aveva messo brutto, quindi siamo rimasti a casa.",exZh:"昨天天气不好，所以我们待在家里。"},
+    {e:"tutti i giorni",m:"每天/天天",d:"同义词：ogni giorno, quotidianamente。",ex:"Faccio jogging tutti i giorni per mantenermi in forma.",exZh:"我每天慢跑以保持身材。"},
+    {e:"secondo me",m:"我认为/依我看",d:"同义词：a mio parere, a mio avviso, per me。",ex:"Secondo me, questo film è uno dei migliori dell'anno.",exZh:"我认为，这部电影是今年最好的电影之一。"},
+    {e:"sta piovendo di notte",m:"雨是晚上下的/晚上在下雨",d:"同义词：piove durante la notte, cade la pioggia di notte。",ex:"Sta piovendo di notte, quindi non disturba le nostre attività diurne.",exZh:"晚上在下雨，所以不会影响我们白天的活动。"},
+    {e:"una bellissima giornata",m:"天气非常好/美好的一天",d:"同义词：una giornata splendida, una giornata meravigliosa。",ex:"Oggi c'è una bellissima giornata, andiamo al mare!",exZh:"今天天气非常好，我们去海边吧！"},
+    {e:"piove di notte",m:"晚上下雨",d:"同义词：la pioggia cade di notte, durante la notte piove。",ex:"D'estate spesso piove di notte, mentre di giorno c'è il sole.",exZh:"夏天经常晚上下雨，而白天出太阳。"},
+    {e:"siamo super carichi",m:"我们精神状态超级好/我们充满活力",d:"同义词：siamo pieni di energia, siamo molto motivati。",ex:"Dopo le vacanze siamo super carichi per iniziare questo nuovo progetto.",exZh:"假期之后，我们充满活力开始这个新项目。"},
+    {e:"stiamo già ricominciando",m:"我们已经开始重新/我们已经再次开始",d:"表示某个活动或过程已经再次开始。同义词：abbiamo già ripreso, stiamo già riprendendo。",ex:"Dopo la pausa estiva, stiamo già ricominciando con le nostre lezioni.",exZh:"夏休之后，我们已经重新开始上课了。"},
+    {e:"routine",m:"日常/常规",d:"日常生活中固定的活动或习惯。同义词：abitudini quotidiane, attività regolari。",ex:"La mia routine mattutina include yoga e colazione.",exZh:"我的早晨常规包括瑜伽和早餐。"},
+    {e:"eccetera",m:"等等/诸如此类",d:"用于列举时表示\"等等\"\"以及其他类似的事物\"，通常用在列表末尾。缩写形式：ecc.。同义词：e così via, e via dicendo, e altro。",ex:"Nella mia valigia ho messo vestiti, scarpe, libri, eccetera.",exZh:"我的行李箱里装了衣服、鞋子、书籍等等。"}
+  ]
+}
+,
+9: {
+  zh:"如何选择适合自己的完美面部精华？我来帮你！首先，你要明确自己想改善的皮肤问题，比如肤色暗沉、色斑、皱纹等等。为什么要使用面部精华呢？理由有很多，首先是因为精华通常比面霜含有更高浓度的活性成分；其次是因为精华质地轻盈，更容易被皮肤吸收，如果你想叠加使用多种精华产品也会更方便，这样还能通过叠加使用，让肌肤吸收到更多的活性成分。那么应该如何以及何时使用精华呢？应该在洁面之后、面霜之前使用。因此，完美的护肤顺序是：先洁面，再用精华，然后再涂抹面霜。在使用时要配合非常轻柔的动作，从脸部内侧向外侧涂抹，别忘了也要涂抹到脖子。",
+  it:"Come scelgo il siero viso perfetto per me? Ti aiuto io! Innanzitutto individua la problematica o le problematiche che vuoi migliorare: colorito spento, macchie, rughe e via dicendo. Perché usare un siero viso? Ci sono diverse motivazioni: innanzitutto perché tendenzialmente ha una concentrazione di attivi più elevata rispetto a una crema, e poi perché, avendo una texture molto leggera e di facile assorbimento, è anche molto facile da stratificare nel caso in cui si vogliano utilizzare più sieri, e quindi anche più attivi combinandoli appunto tra di loro. Come si applica e quando si applica? Dopo la detersione e prima della crema viso. Quindi la routine perfetta, l'ordine perfetto è: detersione, siero viso e poi crema viso. Si applica con movimenti molto delicati, dall'interno verso l'esterno, senza dimenticarsi del collo.",
+  sent:[
+    {it:"Come scelgo il siero viso perfetto per me? Ti aiuto io!",zh:"如何选择适合自己的完美面部精华？我来帮你！"},
+    {it:"Innanzitutto individua la problematica o le problematiche che vuoi migliorare: colorito spento, macchie, rughe e via dicendo.",zh:"首先，你要明确自己想改善的皮肤问题，比如肤色暗沉、色斑、皱纹等等。"},
+    {it:"Perché usare un siero viso? Ci sono diverse motivazioni: innanzitutto perché tendenzialmente ha una concentrazione di attivi più elevata rispetto a una crema, e poi perché, avendo una texture molto leggera e di facile assorbimento, è anche molto facile da stratificare nel caso in cui si vogliano utilizzare più sieri, e quindi anche più attivi combinandoli appunto tra di loro.",zh:"为什么要使用面部精华呢？理由有很多，首先是因为精华通常比面霜含有更高浓度的活性成分；其次是因为精华质地轻盈，更容易被皮肤吸收，如果你想叠加使用多种精华产品也会更方便，这样还能通过叠加使用，让肌肤吸收到更多的活性成分。"},
+    {it:"Come si applica e quando si applica? Dopo la detersione e prima della crema viso.",zh:"那么应该如何以及何时使用精华呢？应该在洁面之后、面霜之前使用。"},
+    {it:"Quindi la routine perfetta, l'ordine perfetto è: detersione, siero viso e poi crema viso.",zh:"因此，完美的护肤顺序是：先洁面，再用精华，然后再涂抹面霜。"},
+    {it:"Si applica con movimenti molto delicati, dall'interno verso l'esterno, senza dimenticarsi del collo.",zh:"在使用时要配合非常轻柔的动作，从脸部内侧向外侧涂抹，别忘了也要涂抹到脖子。"}
+  ],
+  vocab:[
+    {e:"scelgo il siero viso perfetto",m:"选择适合自己的完美面部精华",d:"scelgo（我选择），动词原形 scegliere（选择）；il siero 精华液；viso 脸部、面部。同义词：seleziono il siero ideale per il viso, trovo il siero viso adatto。",ex:"Quando scelgo il siero viso perfetto, considero sempre il mio tipo di pelle.",exZh:"当我选择完美的面部精华时，我总是考虑我的皮肤类型。"},
+    {e:"Ti aiuto io",m:"我来帮你",d:"同义词：ti do una mano, ti assisto io。",ex:"Non preoccuparti per il trasloco, ti aiuto io questo weekend.",exZh:"不用担心搬家的事，这个周末我来帮你。"},
+    {e:"Innanzitutto",m:"首先",d:"同义词：prima di tutto, in primo luogo, anzitutto。",ex:"Innanzitutto, dobbiamo analizzare il problema prima di trovare una soluzione.",exZh:"首先，我们需要在找到解决方案之前分析问题。"},
+    {e:"colorito spento",m:"肤色暗沉",d:"colorito 肤色、气色；spento 熄灭的、暗淡的、无光泽的。同义词：carnagione opaca, pelle senza luminosità。",ex:"L'uso di vitamina C può aiutare a migliorare il colorito spento della pelle.",exZh:"使用维生素C可以帮助改善肤色暗沉的问题。"},
+    {e:"macchie",m:"色斑",d:"同义词：discromie, macchie cutanee, macchie della pelle。",ex:"La protezione solare aiuta a prevenire la formazione di macchie sul viso.",exZh:"防晒有助于预防脸上色斑的形成。"},
+    {e:"rughe",m:"皱纹",d:"同义词：pieghe della pelle, linee d'espressione, segni dell'età。",ex:"L'acido ialuronico è un ingrediente efficace per ridurre le rughe.",exZh:"透明质酸是减少皱纹的有效成分。"},
+    {e:"via dicendo",m:"等等/诸如此类",d:"表示列举未完，还有其他类似的事物。同义词：eccetera, e così via, e altro ancora。",ex:"Nella valigia ho messo vestiti, scarpe, libri e via dicendo.",exZh:"我的行李箱里装了衣服、鞋子、书籍等等。"},
+    {e:"Perché usare",m:"为什么要使用",d:"询问使用某物的理由或好处。同义词：per quale motivo utilizzare, qual è il motivo per usare。",ex:"Perché usare prodotti biologici? Sono più rispettosi dell'ambiente.",exZh:"为什么要使用有机产品？它们更环保。"},
+    {e:"diverse motivazioni",m:"很多不同的原因",d:"diverse 不同的、多样的；motivazioni 理由、原因（动机复数）。同义词：vari motivi, numerose ragioni。",ex:"Ci sono diverse motivazioni per imparare una lingua straniera.",exZh:"学习一门外语有很多不同的原因。"},
+    {e:"tendenzialmente",m:"通常/一般来说",d:"表示一般趋势或倾向。同义词：generalmente, solitamente, di solito。",ex:"I giovani tendenzialmente preferiscono i social media alle email.",exZh:"年轻人通常更喜欢社交媒体而不是电子邮件。"},
+    {e:"concentrazione di attivi più elevata",m:"更高浓度的活性成分",d:"concentrazione 浓度；attivi 活性成分（principi attivi 的简化）；elevata 高的。同义词：maggiore concentrazione di principi attivi, più alta percentuale di ingredienti attivi。",ex:"Questo prodotto ha una concentrazione di attivi più elevata, quindi è più efficace.",exZh:"这个产品有更高浓度的活性成分，因此更有效。"},
+    {e:"crema",m:"面霜",d:"同义词：lozione, emulsione, idratante。",ex:"Applico la crema idratante ogni sera prima di andare a dormire.",exZh:"每晚睡前我都会涂抹保湿面霜。"},
+    {e:"texture molto leggera e di facile assorbimento",m:"质地轻盈且易吸收",d:"texture 质地；leggera 轻盈的（阴性修饰 texture）；assorbimento 吸收。同义词：consistenza leggera e facilmente assorbibile, formula leggera che si assorbe rapidamente。",ex:"Preferisco i sieri con texture molto leggera e di facile assorbimento per la mia pelle grassa.",exZh:"对于我的油性皮肤，我更喜欢质地轻盈且易吸收的精华。"},
+    {e:"facile da stratificare",m:"容易叠加使用",d:"stratificare 叠加、分层。同义词：facile da sovrapporre, si combina facilmente con altri prodotti。",ex:"Questo prodotto è facile da stratificare con altri trattamenti per la pelle.",exZh:"这个产品容易与其他护肤品叠加使用。"},
+    {e:"attivi combinandoli",m:"活性成分相互结合",d:"attivi 活性成分（复数）；combinandoli 结合它们（combinare + li，副动词形式）。同义词：principi attivi che si combinano, ingredienti attivi che lavorano insieme。",ex:"Si ottengono risultati migliori attivi combinandoli in modo strategico.",exZh:"通过策略性地结合活性成分，可以获得更好的效果。"},
+    {e:"Come si applica",m:"如何使用/怎么使用",d:"同义词：in che modo si usa, come si utilizza。",ex:"Come si applica correttamente la maschera per il viso?",exZh:"如何正确使用面膜？"},
+    {e:"quando si applica",m:"什么时候使用",d:"同义词：in quale momento si utilizza, quando va usato。",ex:"Quando si applica il tonico nella routine di skincare?",exZh:"在护肤流程中什么时候使用爽肤水？"},
+    {e:"la detersione",m:"洁面",d:"同义词：la pulizia del viso, il lavaggio del viso。",ex:"La detersione è il primo passo essenziale di ogni routine di bellezza.",exZh:"洁面是每个美容程序的第一个基本步骤。"},
+    {e:"crema viso",m:"面霜",d:"同义词：crema per il viso, crema facciale。",ex:"Applico la crema viso ogni mattina dopo la detersione.",exZh:"每天早上洁面后我都会涂抹面霜。"},
+    {e:"la routine perfetta, l'ordine perfetto",m:"完美的护肤顺序",d:"routine 日常程序、习惯性步骤；ordine 顺序、次序。同义词：la sequenza ideale, i passaggi ottimali。",ex:"Per ottenere i migliori risultati, segui la routine perfetta consigliata dagli esperti.",exZh:"要获得最佳效果，请遵循专家推荐的完美护肤顺序。"},
+    {e:"movimenti molto delicati",m:"非常轻柔的动作",d:"movimenti 动作（复数）；delicati 轻柔的、细致的。同义词：gesti delicati, tocchi leggeri。",ex:"Applica la crema con movimenti molto delicati per non irritare la pelle.",exZh:"用非常轻柔的动作涂抹面霜，以免刺激皮肤。"},
+    {e:"dall'interno verso l'esterno",m:"从内向外",d:"interno 内部的（指脸部中心）；esterno 外部的（指脸部边缘）。同义词：dal centro verso la periferia, dal centro verso l'esterno del viso。",ex:"Massaggia il viso dall'interno verso l'esterno per stimolare la circolazione.",exZh:"从内向外按摩面部以促进血液循环。"},
+    {e:"senza dimenticarsi del collo",m:"不要忘记涂抹脖子",d:"dimenticarsi 忘记；collo 脖子、颈部。同义词：ricordandosi di includere il collo, prestando attenzione anche al collo。",ex:"Applica la crema anti-età senza dimenticarsi del collo, che mostra i segni dell'invecchiamento.",exZh:"涂抹抗衰老面霜时不要忘记涂抹脖子，脖子也会显示老化迹象。"}
+  ]
+}
+,
+10: {
+  zh:"下午好，欢迎回到我的新 vlog！今天我的心情特别好，因为天气太棒了，阳光明媚！今天是星期六，我的早晨是从在电脑前工作开始的。在 vlog 后面的部分，我会告诉你们我正在做什么。终于，我收到了正式的许可去做这件事！所以，我已经迫不及待了，心里还有点小激动！现在差不多是下午 3 点 30 分。我想出去走走，呼吸一下新鲜空气。我要去接我姐姐，然后我们一起去市中心逛逛。不过在那之前，我得先加油，因为车子的油箱已经快空了。我投了一张 20 欧元的纸币，然后选择了要加油的油泵，我打算在那里加油。接着，我打开油箱盖，加油。最近汽油价格上涨了，20 欧元大概能加 10 升左右的汽油。我一直选择在\"自助加油\"区域加油，因为这里的油价比人工服务区更便宜。",
+  it:"Buon pomeriggio e bentornati ad un nuovo vlog! Oggi sono di buonissimo umore perché è una giornata di sole fantastica. Oggi è sabato, ho iniziato la giornata lavorando al computer. Più avanti nel vlog potrò dirvi su cosa sto lavorando. Finalmente ho ricevuto il via libera per farlo! Quindi non vedo l'ora! Ho un po' le farfalle nello stomaco. Comunque adesso sono le 3:30 del pomeriggio, più o meno. Voglio fare una passeggiata all'aria aperta e sto andando a prendere mia sorella e così andiamo a fare un giro in centro. Ma prima devo fare benzina perché attualmente la macchina è in riserva. Inserisco una banconota da €20 e poi seleziono la pompa da cui intendo fare rifornimento. Poi apro il bocchettone dell'auto e faccio benzina. Ultimamente il prezzo del carburante è aumentato. Con €20 rifornisco l'auto con 10 L di benzina più o meno. E faccio sempre benzina nella sezione \"fai da te\", dove costa meno della parte servita.",
+  sent:[
+    {it:"Buon pomeriggio e bentornati ad un nuovo vlog! Oggi sono di buonissimo umore perché è una giornata di sole fantastica.",zh:"下午好，欢迎回到我的新 vlog！今天我的心情特别好，因为天气太棒了，阳光明媚！"},
+    {it:"Oggi è sabato, ho iniziato la giornata lavorando al computer. Più avanti nel vlog potrò dirvi su cosa sto lavorando.",zh:"今天是星期六，我的早晨是从在电脑前工作开始的。在 vlog 后面的部分，我会告诉你们我正在做什么。"},
+    {it:"Finalmente ho ricevuto il via libera per farlo! Quindi non vedo l'ora! Ho un po' le farfalle nello stomaco.",zh:"终于，我收到了正式的许可去做这件事！所以，我已经迫不及待了，心里还有点小激动！"},
+    {it:"Comunque adesso sono le 3:30 del pomeriggio, più o meno.",zh:"现在差不多是下午 3 点 30 分。"},
+    {it:"Voglio fare una passeggiata all'aria aperta e sto andando a prendere mia sorella e così andiamo a fare un giro in centro.",zh:"我想出去走走，呼吸一下新鲜空气。我要去接我姐姐，然后我们一起去市中心逛逛。"},
+    {it:"Ma prima devo fare benzina perché attualmente la macchina è in riserva.",zh:"不过在那之前，我得先加油，因为车子的油箱已经快空了。"},
+    {it:"Inserisco una banconota da €20 e poi seleziono la pompa da cui intendo fare rifornimento.",zh:"我投了一张 20 欧元的纸币，然后选择了要加油的油泵，我打算在那里加油。"},
+    {it:"Poi apro il bocchettone dell'auto e faccio benzina.",zh:"接着，我打开油箱盖，加油。"},
+    {it:"Ultimamente il prezzo del carburante è aumentato. Con €20 rifornisco l'auto con 10 L di benzina più o meno.",zh:"最近汽油价格上涨了，20 欧元大概能加 10 升左右的汽油。"},
+    {it:"E faccio sempre benzina nella sezione \"fai da te\", dove costa meno della parte servita.",zh:"我一直选择在\"自助加油\"区域加油，因为这里的油价比人工服务区更便宜。"}
+  ],
+  vocab:[
+    {e:"buonissimo umore",m:"非常好的心情",d:"buonissimo 是 buono（好的）的最高级形式，意为\"非常好的\"；umore 心情，情绪。同义词：ottimo stato d'animo, eccellente disposizione。",ex:"Dopo aver ricevuto quella bella notizia, ero di buonissimo umore per tutto il giorno.",exZh:"收到那个好消息后，我整天都心情非常好。"},
+    {e:"sole fantastica",m:"美好的阳光，阳光明媚",d:"sole 太阳，阳光；fantastica 极好的，精彩的。同义词：splendido sole, bellissima giornata di sole。",ex:"C'è un sole fantastico oggi, dovremmo andare in spiaggia.",exZh:"今天阳光很好，我们应该去海滩。"},
+    {e:"cosa sto lavorando",m:"我正在做什么工作",d:"cosa 什么事物；sto lavorando 现在进行时，表示\"正在工作\"。同义词：a che progetto sto lavorando, su quale lavoro mi sto dedicando。",ex:"Ti dirò dopo cosa sto lavorando, è una sorpresa.",exZh:"我稍后会告诉你我在做什么工作，这是个惊喜。"},
+    {e:"il via libera",m:"许可，批准，允许",d:"via 路，通道；libera 自由的，畅通的；合起来表示\"绿灯\"，比喻获得前进或行动的许可。同义词：l'autorizzazione, il permesso, l'approvazione。",ex:"Finalmente ho ricevuto il via libera per iniziare il progetto.",exZh:"我终于获得了开始这个项目的许可。"},
+    {e:"non vedo l'ora",m:"我迫不及待，我等不及了（习语）",d:"字面意思是\"我看不到时间\"，实际表达强烈期待。同义词：sono impaziente, sono ansioso di。",ex:"Non vedo l'ora di andare in vacanza la prossima settimana.",exZh:"我迫不及待想去下周的假期了。"},
+    {e:"Ho un po' le farfalle nello stomaco",m:"我有点紧张/激动",d:"习语，字面意思是\"肚子里有点蝴蝶\"，描述紧张或激动时胃部的感觉。farfalle 蝴蝶；stomaco 胃。同义词：sono un po' nervoso/emozionato。",ex:"Prima dell'esame avevo le farfalle nello stomaco.",exZh:"考试前我感到紧张。"},
+    {e:"Voglio fare una passeggiata all'aria aperta",m:"我想在户外散步",d:"fare una passeggiata 散步；all'aria aperta 在户外，在露天。同义词：desidero camminare all'esterno。",ex:"Quando fa bel tempo, mi piace fare una passeggiata all'aria aperta.",exZh:"天气好的时候，我喜欢在户外散步。"},
+    {e:"fare benzina",m:"加汽油",d:"fare 这里作为功能动词，表示\"进行\"；benzina 汽油。同义词：rifornire di carburante, riempire il serbatoio。",ex:"Prima di partire per il viaggio dobbiamo fare benzina.",exZh:"出发旅行前我们需要加油。"},
+    {e:"la macchina è in riserva",m:"汽车油箱快空了",d:"macchina 汽车；in riserva 油表指示进入储备油量区域。同义词：l'auto è quasi senza benzina。",ex:"Accidenti, la macchina è in riserva e non ci sono distributori vicini.",exZh:"糟糕，汽车快没油了，附近也没有加油站。"},
+    {e:"Inserisco una banconota da €20",m:"我投入一张20欧元的纸币",d:"inserisco 插入，投入（动词 inserire 的第一人称单数现在时）；banconota 纸币。同义词：metto una banconota di 20 euro。",ex:"Inserisco una banconota da €20 nel distributore automatico per comprare il biglietto.",exZh:"我在自动售票机里投入一张20欧元的纸币来买票。"},
+    {e:"Seleziono",m:"我选择，我挑选",d:"动词 selezionare 的第一人称单数现在时。同义词：scelgo, opto per。",ex:"Seleziono sempre prodotti di qualità quando faccio la spesa.",exZh:"购物时我总是选择高质量的产品。"},
+    {e:"la pompa",m:"加油泵，加油枪",d:"加油站用来给车辆加油的设备。同义词：l'erogatore di benzina, il distributore。",ex:"Ho scelto la pompa numero tre perché era l'unica libera.",exZh:"我选择了3号加油泵，因为只有它是空闲的。"},
+    {e:"intendo fare rifornimento",m:"我打算加油",d:"intendo 我打算，我意图（动词 intendere 的第一人称单数现在时）；fare rifornimento 补给，加油，补充燃料。同义词：ho intenzione di fare benzina, voglio rifornire il serbatoio。",ex:"Intendo fare rifornimento prima di partire per il lungo viaggio.",exZh:"在开始长途旅行前我打算加油。"},
+    {e:"apro il bocchettone dell'auto",m:"我打开汽车的油箱盖",d:"bocchettone 加油口，油箱盖；dell'auto 汽车的。同义词：apro il tappo del serbatoio。",ex:"Prima di fare benzina, apro il bocchettone dell'auto e rimuovo il tappo.",exZh:"加油前，我打开汽车的油箱盖并取下盖子。"},
+    {e:"il prezzo del carburante è aumentato",m:"燃料价格上涨了",d:"prezzo 价格；carburante 燃料（比 benzina 更正式的表达）；è aumentato 已经增加（动词 aumentare 的过去分词）。同义词：il costo della benzina è salito。",ex:"Negli ultimi mesi il prezzo del carburante è aumentato di circa 20 centesimi al litro.",exZh:"最近几个月燃料价格每升上涨了大约20欧分。"},
+    {e:"Rifornisco",m:"我加油，我补充(燃料)",d:"动词 rifornire 的第一人称单数现在时，意为\"重新供应\"或\"补充\"。同义词：riempio, faccio il pieno。",ex:"Rifornisco sempre l'auto quando il serbatoio è a metà.",exZh:"油箱半满时我总会给车加油。"},
+    {e:"sezione \"fai da te\"",m:"自助加油区",d:"sezione 区域，部分；fai da te 自己动手做，DIY。同义词：area self-service, zona self。",ex:"Preferisco usare la sezione \"fai da te\" del distributore perché è più economica.",exZh:"我更喜欢使用加油站的自助区，因为更便宜。"},
+    {e:"costa meno della parte servita",m:"比服务区便宜",d:"costa meno 更便宜（动词 costare 的第三人称单数现在时）；parte servita 有服务人员的区域。同义词：è più economico del servizio con personale。",ex:"La benzina nella zona self-service costa meno della parte servita, circa 20 centesimi in meno per litro.",exZh:"自助区的汽油比服务区便宜，每升大约便宜20欧分。"}
+  ]
+}
+,
+11: {
+  zh:"所以，来市中心、在科索街一带逛逛，在阳光明媚的周六下午，这是个好主意吗？不，绝对不是！你们还想补充点什么吗？不，只是人真的太多了。你想说点什么吗？我太累了。现在我们在阿尔贝托·索尔迪长廊。我们来这里是想试着去一下最近刚刚在这边开业的伊吉尼奥·马萨里的店。不过呢……算了吧，人排得实在太多了！现在就是那种典型的时刻：你刚把外套脱掉，一阵冷风吹来，你就会生病。",
+  it:"Allora, venire a passeggiare in centro nella zona di via del corso, il sabato pomeriggio con una bellissima giornata di sole è una buona idea? No, assolutamente no! Volete aggiungere qualcosa? No, semplicemente c'è troppa gente. Vuoi dire qualcosa? Sono esausta. Allora siamo nella Galleria Alberto Sordi e siamo venute qui perché volevamo provare a entrare da Iginio Massari che ha appena aperto qui. Però, insomma... Vabbè ma c'è troppa fila! Questa è la tipica stazione in cui se ti togli il giacchetto e arriva una folata di vento freddo, ti ammali.",
+  sent:[
+    {it:"Allora, venire a passeggiare in centro nella zona di via del corso, il sabato pomeriggio con una bellissima giornata di sole è una buona idea? No, assolutamente no!",zh:"所以，来市中心、在科索街一带逛逛，在阳光明媚的周六下午，这是个好主意吗？不，绝对不是！"},
+    {it:"Volete aggiungere qualcosa? No, semplicemente c'è troppa gente.",zh:"你们还想补充点什么吗？不，只是人真的太多了。"},
+    {it:"Vuoi dire qualcosa? Sono esausta.",zh:"你想说点什么吗？我太累了。"},
+    {it:"Allora siamo nella Galleria Alberto Sordi e siamo venute qui perché volevamo provare a entrare da Iginio Massari che ha appena aperto qui.",zh:"现在我们在阿尔贝托·索尔迪长廊。我们来这里是想试着去一下最近刚刚在这边开业的伊吉尼奥·马萨里的店。"},
+    {it:"Però, insomma... Vabbè ma c'è troppa fila!",zh:"不过呢……算了吧，人排得实在太多了！"},
+    {it:"Questa è la tipica stazione in cui se ti togli il giacchetto e arriva una folata di vento freddo, ti ammali.",zh:"现在就是那种典型的时刻：你刚把外套脱掉，一阵冷风吹来，你就会生病。"}
+  ],
+  vocab:[
+    {e:"Assolutamente no",m:"绝对不是！完全不行！",d:"assolutamente 副词，表示\"绝对地\"，\"完全地\"；no 否定词，\"不\"。同义词：Per niente!, Neanche per idea!, Assolutamente negativo!。",ex:"Vuoi mangiare quel cibo scaduto? Assolutamente no!",exZh:"你想吃那个过期食品吗？绝对不行！"},
+    {e:"Aggiungere",m:"添加，补充",d:"动词不定式，表示\"添加\"或\"增加\"信息、观点等。同义词：integrare, addizionare, accrescere。",ex:"Vorrei aggiungere un commento a quanto detto prima.",exZh:"我想对之前说的添加一点评论。"},
+    {e:"c'è troppa gente",m:"人太多了",d:"c'è 表示\"有\"的存在句式；troppa 太多的；gente 人群，人们。同义词：è molto affollato, ci sono troppe persone。",ex:"Non andiamo al centro commerciale sabato, c'è troppa gente.",exZh:"我们周六不去购物中心，那里人太多了。"},
+    {e:"Sono esausta",m:"我筋疲力尽了，我太累了",d:"sono 我是（essere 的第一人称单数）；esausta 精疲力竭的，耗尽的（阴性形式）。同义词：sono stanchissima, sono sfinita。",ex:"Dopo la maratona, sono esausta e ho bisogno di riposare.",exZh:"马拉松之后，我筋疲力尽了，需要休息。"},
+    {e:"nella Galleria Alberto Sordi",m:"在阿尔贝托·索尔迪长廊（罗马一个著名的购物中心）",d:"nella 在...里面（in + la）；Galleria 长廊，购物中心；Alberto Sordi 以意大利著名演员命名的地点。同义词：nel centro commerciale Alberto Sordi。",ex:"Ci incontriamo nella Galleria Alberto Sordi alle 15:00.",exZh:"我们下午3点在阿尔贝托·索尔迪长廊见面。"},
+    {e:"ha appena aperto qui",m:"刚刚在这里开业",d:"ha aperto 已经开了（开业）；appena 刚刚，才；qui 这里。同义词：è stato inaugurato recentemente in questo posto。",ex:"Il nuovo ristorante ha appena aperto qui e vorrei provarlo.",exZh:"新餐厅刚刚在这里开业，我想去尝试一下。"},
+    {e:"Vabbè",m:"好吧，算了吧（口语表达，表示妥协或放弃）",d:"口语缩写，来自\"va bene\"（好的，行）。同义词：va bene, comunque, pazienza。",ex:"Vabbè, se non vuoi venire andrò da solo.",exZh:"好吧，如果你不想来我就自己去。"},
+    {e:"c'è troppa fila",m:"排队的人太多了",d:"c'è 有；troppa 太多的；fila 队伍，排队。同义词：c'è una coda lunghissima, bisogna aspettare troppo。",ex:"Volevo entrare al museo, ma c'è troppa fila e ho rinunciato.",exZh:"我想进博物馆，但排队的人太多了我就放弃了。"},
+    {e:"la tipica stazione",m:"典型的情况/场景",d:"tipica 典型的，特有的；stazione 这里不是指\"车站\"，而是比喻某种情况。同义词：la situazione classica, la circostanza tipica。",ex:"È la tipica stazione in cui non sai come comportarti.",exZh:"这是典型的你不知道该怎么做的情况。"},
+    {e:"ti togli il giacchetto",m:"你脱掉外套",d:"ti togli 你脱掉（动词 togliersi 的第二人称单数）；giacchetto 轻便外套，夹克。同义词：ti levi la giacca, ti spogli della giacca。",ex:"Se ti togli il giacchetto in montagna, rischi di prendere freddo.",exZh:"如果你在山上脱掉外套，你可能会着凉。"},
+    {e:"una folata di vento freddo",m:"一阵冷风",d:"folata 一阵（风）；vento 风；freddo 冷的。同义词：una raffica di aria fredda, uno sbuffo di vento gelido。",ex:"Una folata di vento freddo mi ha fatto rabbrividire.",exZh:"一阵冷风使我打了个寒战。"},
+    {e:"ti ammali",m:"你会生病",d:"动词 ammalare(si) 的第二人称单数现在时，表示\"生病\"。同义词：ti prendi un raffreddore, ti viene l'influenza。",ex:"Se esci con i capelli bagnati, ti ammali facilmente.",exZh:"如果你湿着头发出门，你很容易生病。"}
+  ]
+}
+,
+12: {
+  zh:"巧克力还是覆盆子？嗯，我尝试了那个爆火的酸奶吐司食谱，真的太好吃了！做法超简单：我只需要把一个鸡蛋和酸奶、蜂蜜混合在一起，然后取两片全麦面包，压扁中心部分。再加入覆盆子和巧克力豆作为馅料。最后，放进空气炸锅，180°C 烘烤 13 分钟，就完成了！",
+  it:"Cioccolato o lamponi? Ho provato la ricetta virale dello yogurt toast, davvero deliziosa! Mi è bastato unire un uovo con yogurt e miele, farcire due fette di pane integrale di cui avevo schiacciato il centro. Aggiungere lamponi e gocce di cioccolato. Puoi cuocere in friggitrice ad aria 13 minuti a 180 gradi.",
+  sent:[
+    {it:"Cioccolato o lamponi? Ho provato la ricetta virale dello yogurt toast, davvero deliziosa!",zh:"巧克力还是覆盆子？嗯，我尝试了那个爆火的酸奶吐司食谱，真的太好吃了！"},
+    {it:"Mi è bastato unire un uovo con yogurt e miele, farcire due fette di pane integrale di cui avevo schiacciato il centro.",zh:"做法超简单：我只需要把一个鸡蛋和酸奶、蜂蜜混合在一起，然后取两片全麦面包，压扁中心部分。"},
+    {it:"Aggiungere lamponi e gocce di cioccolato.",zh:"再加入覆盆子和巧克力豆作为馅料。"},
+    {it:"Puoi cuocere in friggitrice ad aria 13 minuti a 180 gradi.",zh:"最后，放进空气炸锅，180°C 烘烤 13 分钟，就完成了！"}
+  ],
+  vocab:[
+    {e:"lamponi",m:"覆盆子",d:"名词，复数形式，单数是 lampone。同义词：frutti di bosco rossi, more rosse。",ex:"Ho raccolto dei lamponi freschi nel bosco questa mattina.",exZh:"今天早上我在森林里采摘了新鲜的覆盆子。"},
+    {e:"la ricetta virale dello yogurt toast",m:"爆火的酸奶吐司食谱",d:"ricetta：食谱，配方；virale：病毒式传播的，爆火的；yogurt：酸奶；toast：吐司。同义词：la preparazione dello yogurt toast che ha spopolato sui social。",ex:"Tutte le ricette virali su TikTok vengono provate dai giovani cuochi.",exZh:"所有在TikTok上爆火的食谱都被年轻厨师们尝试过。"},
+    {e:"deliziosa",m:"美味的，可口的",d:"形容词，阴性单数形式。同义词：squisita, gustosa, buonissima。",ex:"La torta che hai preparato è davvero deliziosa.",exZh:"你做的蛋糕真的很美味。"},
+    {e:"mi è bastato",m:"对我来说足够了，我只需要",d:"mi：代词，\"对我\"；è bastato：动词 bastare（足够）的过去分词。表示\"对我来说做某事就足够了\"或\"我只需要做某事\"。同义词：mi è stato sufficiente, ho avuto bisogno solo di。",ex:"Mi è bastato guardarlo per capire che era arrabbiato.",exZh:"我只需看他一眼就知道他生气了。"},
+    {e:"unire un uovo con yogurt e miele",m:"把鸡蛋与酸奶和蜂蜜混合在一起",d:"unire：联合，混合；uovo：鸡蛋；yogurt：酸奶；miele：蜂蜜。同义词：mescolare un uovo con yogurt e miele, amalgamare gli ingredienti。",ex:"Per preparare la crema, devi unire le uova con lo zucchero e la vaniglia.",exZh:"要做奶油，你需要把鸡蛋与糖和香草混合。"},
+    {e:"farcire",m:"填馅，填充，塞入（食物）",d:"动词不定式，在烹饪语境中常用来指给食物添加馅料。同义词：riempire, imbottire, guarnire。",ex:"Farcire i cannoli con la crema di ricotta.",exZh:"用里科塔奶酪馅填充意大利甜管。"},
+    {e:"pane integrale",m:"全麦面包",d:"pane：面包；integrale：全麦的，未经精制的。同义词：pane di grano intero, pane completo。",ex:"Il pane integrale contiene più fibre rispetto a quello bianco.",exZh:"全麦面包比白面包含有更多纤维。"},
+    {e:"avevo schiacciato il centro",m:"我已经压扁了中心部分",d:"avevo schiacciato：过去完成时，表示\"已经压扁\"；centro：中心，中央。同义词：avevo premuto al centro, avevo appiattito la parte centrale。",ex:"Avevo schiacciato la lattina prima di gettarla nel riciclo.",exZh:"在扔进回收箱前，我已经压扁了易拉罐。"},
+    {e:"aggiungere lamponi e gocce di cioccolato",m:"添加覆盆子和巧克力豆",d:"aggiungere：添加；lamponi：覆盆子；gocce di cioccolato：巧克力豆（字面意思是\"巧克力滴\"）。同义词：inserire lamponi e pepite di cioccolato。",ex:"Per arricchire i muffin, puoi aggiungere gocce di cioccolato all'impasto.",exZh:"为了让松饼更丰富，你可以在面糊中添加巧克力豆。"},
+    {e:"friggitrice ad aria",m:"空气炸锅",d:"friggitrice：炸锅，煎锅；ad aria：气炸的，空气的。同义词：fornetto ad aria calda, air fryer。",ex:"La friggitrice ad aria permette di cucinare in modo più sano rispetto alla frittura tradizionale.",exZh:"空气炸锅比传统油炸方式更健康地烹饪食物。"}
+  ]
+}
+,
+13: {
+  zh:"那不勒斯披萨还是罗马披萨？那不勒斯披萨！那不勒斯！那不勒斯的，因为更松软一些。更松软，你呢？因为我喜欢披萨边缘（玉米饼边）。披萨边，选那不勒斯的！我更喜欢稍微软一点的披萨。罗马的。罗马披萨，因为它更脆一点。那不勒斯！那不勒斯披萨！罗马的。为什么选罗马披萨？你得好好解释一下哦！因为我不喜欢披萨的厚边缘（玉米饼边）。",
+  it:"Pizza napoletana o pizza romana? Pizza napoletana! Napoletana! Napoletana, perché napoletana? Più soffice. Più soffice, per te perché? Mi piace il cornicione. Il cornicione, napoletana! Preferisco una pizza un po' più morbida. Romana. Romana, perché pizza romana? Perché è più croccante. Napoletana! Pizza napoletana! Romana. Perché pizza romana? Devi argomentare bene. Perché a me invece non piace il cornicione.",
+  sent:[
+    {it:"Pizza napoletana o pizza romana?",zh:"那不勒斯披萨还是罗马披萨？"},
+    {it:"Pizza napoletana! Napoletana!",zh:"那不勒斯披萨！那不勒斯！"},
+    {it:"Napoletana, perché napoletana? Più soffice.",zh:"那不勒斯的，因为更松软一些。"},
+    {it:"Più soffice, per te perché? Mi piace il cornicione.",zh:"更松软，你呢？因为我喜欢披萨边缘（玉米饼边）。"},
+    {it:"Il cornicione, napoletana! Preferisco una pizza un po' più morbida.",zh:"披萨边，选那不勒斯的！我更喜欢稍微软一点的披萨。"},
+    {it:"Romana. Romana, perché pizza romana? Perché è più croccante.",zh:"罗马的。罗马披萨，因为它更脆一点。"},
+    {it:"Napoletana! Pizza napoletana! Romana.",zh:"那不勒斯！那不勒斯披萨！罗马的。"},
+    {it:"Perché pizza romana? Devi argomentare bene.",zh:"为什么选罗马披萨？你得好好解释一下哦！"},
+    {it:"Perché a me invece non piace il cornicione.",zh:"因为我不喜欢披萨的厚边缘（玉米饼边）。"}
+  ],
+  vocab:[
+    {e:"Pizza napoletana",m:"那不勒斯披萨",d:"指那不勒斯风格的披萨，特点是饼边厚且蓬松、中间薄。文化背景：那不勒斯披萨是联合国教科文组织认证的非物质文化遗产，有严格的制作标准；饼底中间薄（约0.3厘米）、边缘厚（1-2厘米），传统用柴火烤炉在高温（约485°C）下烤制60-90秒。同义词：pizza di Napoli。",ex:"La pizza napoletana è famosa in tutto il mondo.",exZh:"那不勒斯披萨在全世界都很有名。"},
+    {e:"più soffice",m:"更松软",d:"soffice 松软的、蓬松的；più 更。同义词：più morbida, più soffice。",ex:"Il pane fatto in casa è più soffice di quello comprato.",exZh:"家制面包比买的更松软。"},
+    {e:"il cornicione",m:"披萨边缘",d:"指披萨的饼边（外圈隆起部分），即中文语境中的\"玉米饼边\"。同义词：il bordo della pizza。",ex:"Il cornicione della pizza napoletana deve essere alto e soffice.",exZh:"那不勒斯披萨的边缘应该是高且松软的。"},
+    {e:"un po' più morbida",m:"稍微更软一点的",d:"un po' 一点；più morbida 更软的。同义词：leggermente più soffice。",ex:"Preferisco la pasta un po' più morbida, non troppo al dente.",exZh:"我喜欢稍微更软一点的面食，不要太硬。"},
+    {e:"più croccante",m:"更脆的",d:"più 更；croccante 酥脆的。同义词：più friabile, più croccante。",ex:"La pizza romana è più croccante grazie alla cottura più lunga.",exZh:"罗马披萨因为烤制时间更长而更脆。"},
+    {e:"argomentare bene",m:"好好解释/论证",d:"argomentare 是动词，意为\"论证、说明理由\"；bene 意为\"好\"。同义词：spiegare chiaramente, giustificare。",ex:"Devi argomentare bene la tua posizione durante il dibattito.",exZh:"在辩论中你必须清楚地说明你的立场。"}
+  ]
+}
+,
+14: {
+  zh:"我们习惯于把意大利想象成这样一个国家：这里的食物是全世界最美味的，这里的人穿着最有品味，这里有世界上最美丽的旅游景点。这些，确实是我们身份认同中非常重要的一部分。所以，人们会自然而然地认为，意大利的经济就是靠这些支撑起来的——靠美食、靠旅游，总之，靠那个闻名世界的\"意大利制造\"。但其实，除了这些之外，意大利经济还靠着另外一些东西支撑着。我亲眼见证了这一切，在全国各地奔走，走访了各个地区的企业，试图弄明白，一家家小作坊是如何成长为全球知名的工业巨头。又是为什么有些企业却没能成功，在全球化的竞争中被远远落下。最后，我终于真正明白了——意大利经济到底靠什么支撑起来的。",
+  it:"Siamo abituati a pensare all'Italia com'è: il paese in cui si mangia meglio, ci si veste meglio e con i posti da visitare più belli al mondo. E questa è una parte, sicuramente importante, della nostra identità. E quindi verrebbe da pensare che l'economia italiana si regga proprio su questo: sul cibo, sul turismo, insomma, sul famoso made in Italy. Ecco, in realtà, oltre che su questo, l'economia italiana si regge su questo. L'ho visto con i miei occhi, girando l'Italia in lungo e in largo, visitando aziende in tutto il paese, per capire come piccole botteghe sono diventate colossi industriali riconosciuti in tutto il mondo. E come invece chi non ce l'ha fatta è rimasto indietro nella competizione globale. E alla fine ho capito davvero su cosa si regge l'economia italiana.",
+  sent:[
+    {it:"Siamo abituati a pensare all'Italia com'è: il paese in cui si mangia meglio, ci si veste meglio e con i posti da visitare più belli al mondo.",zh:"我们习惯于把意大利想象成这样一个国家：这里的食物是全世界最美味的，这里的人穿着最有品味，这里有世界上最美丽的旅游景点。"},
+    {it:"E questa è una parte, sicuramente importante, della nostra identità.",zh:"这些，确实是我们身份认同中非常重要的一部分。"},
+    {it:"E quindi verrebbe da pensare che l'economia italiana si regga proprio su questo: sul cibo, sul turismo, insomma, sul famoso made in Italy.",zh:"所以，人们会自然而然地认为，意大利的经济就是靠这些支撑起来的——靠美食、靠旅游，总之，靠那个闻名世界的\"意大利制造\"。"},
+    {it:"Ecco, in realtà, oltre che su questo, l'economia italiana si regge su questo.",zh:"但其实，除了这些之外，意大利经济还靠着另外一些东西支撑着。"},
+    {it:"L'ho visto con i miei occhi, girando l'Italia in lungo e in largo, visitando aziende in tutto il paese, per capire come piccole botteghe sono diventate colossi industriali riconosciuti in tutto il mondo.",zh:"我亲眼见证了这一切，在全国各地奔走，走访了各个地区的企业，试图弄明白，一家家小作坊是如何成长为全球知名的工业巨头。"},
+    {it:"E come invece chi non ce l'ha fatta è rimasto indietro nella competizione globale.",zh:"又是为什么有些企业却没能成功，在全球化的竞争中被远远落下。"},
+    {it:"E alla fine ho capito davvero su cosa si regge l'economia italiana.",zh:"最后，我终于真正明白了——意大利经济到底靠什么支撑起来的。"}
+  ],
+  vocab:[
+    {e:"abituati a pensare",m:"习惯于思考/想象",d:"动词短语，\"习惯于以某种方式思考\"。abituati 是 abituare（使习惯）的过去分词，表示\"习惯的、适应的\"。同义词：soliti a credere, avvezzi a immaginare。",ex:"Siamo abituati a pensare che il mare sia sempre blu, ma può assumere molti colori.",exZh:"我们习惯认为海是蓝色的，但它可以呈现多种颜色。"},
+    {e:"si mangia meglio",m:"吃得更好",d:"无人称结构，\"人们吃得更好\"。meglio 是副词 bene（好）的比较级，意为\"更好地\"。同义词：la cucina è migliore, il cibo è più buono。",ex:"In Italia si mangia meglio che in molti altri paesi europei.",exZh:"在意大利比在许多其他欧洲国家吃得更好。"},
+    {e:"ci si veste meglio",m:"穿着更有品味",d:"无人称结构，\"人们穿得更好\"。同义词：le persone si vestono con più stile, l'abbigliamento è più elegante。",ex:"A Milano ci si veste meglio che in altre città italiane.",exZh:"在米兰，人们比其他意大利城市穿着更有品味。"},
+    {e:"i posti da visitare più belli al mondo",m:"世界上最美丽的旅游景点",d:"posti 是 posto（地方）的复数形式；mondo 是名词\"世界\"。同义词：le località turistiche più attraenti del mondo, i luoghi più affascinanti da vedere。",ex:"La Costiera Amalfitana è uno dei posti da visitare più belli al mondo.",exZh:"阿马尔菲海岸是世界上最美丽的旅游景点之一。"},
+    {e:"nostra identità",m:"我们的身份认同",d:"nostra 是形容词性物主代词，阴性单数；identità 是名词，阴性单数，\"身份、特性、认同感\"。同义词：il nostro carattere nazionale, la nostra essenza culturale。",ex:"La lingua italiana è parte fondamentale della nostra identità.",exZh:"意大利语是我们身份认同的基本组成部分。"},
+    {e:"verrebbe da pensare",m:"会自然而然地想到",d:"条件式动词结构，表示\"人们会自然地认为/想到\"。verrebbe 是 venire（来）的条件式现在时第三人称单数。同义词：si potrebbe pensare, sarebbe naturale credere。",ex:"Verrebbe da pensare che sia facile, ma in realtà è molto complicato.",exZh:"人们会自然而然地认为这很容易，但实际上非常复杂。"},
+    {e:"l'economia italiana si regga proprio su questo",m:"意大利经济就是靠这些支撑起来的",d:"reggersi su 是表示结构支撑或依赖的习语。si regga 是 reggersi（支撑自己、依靠）的虚拟式现在时第三人称单数；proprio 是副词，强调\"恰恰、正是\"。同义词：l'economia italiana si basi su questo, l'economia italiana dipenda da questo。",ex:"L'economia di Venezia si regge principalmente sul turismo.",exZh:"威尼斯的经济主要靠旅游业支撑。"},
+    {e:"made in Italy",m:"意大利制造",d:"英语借词，指在意大利生产的商品，特别是高品质的时装、食品和工艺品。同义词：prodotto in Italia, di produzione italiana。",ex:"Le scarpe made in Italy sono famose per la loro qualità.",exZh:"意大利制造的鞋子以其质量而闻名。"},
+    {e:"in realtà",m:"实际上，事实上",d:"副词短语，用于表示与预期或假设相反的真实情况。realtà 是名词，阴性单数，\"现实、实际\"。同义词：effettivamente, a dire il vero。",ex:"Sembra facile, ma in realtà richiede molto impegno.",exZh:"看起来容易，但实际上需要很多努力。"},
+    {e:"si regge",m:"支撑，依赖",d:"反身动词 reggersi 的现在时形式，表示\"依靠、基于\"。同义词：si basa, si fonda, dipende。",ex:"Il suo argomento si regge su prove concrete.",exZh:"他的论点基于具体证据。"},
+    {e:"visto con i miei occhi",m:"亲眼所见",d:"visto 是 vedere（看见）的过去分词。同义词：testimoniato personalmente, osservato direttamente。",ex:"L'ho visto con i miei occhi, quindi sono sicuro che sia successo.",exZh:"我亲眼所见，所以我确定这事发生了。"},
+    {e:"girando l'Italia in lungo e in largo",m:"走遍意大利各地",d:"习语表达，字面意思是\"纵横穿越意大利\"，意为全面、彻底地游历。girando 是 girare（转、走、环游）的现在分词；lungo 长度；largo 宽度。同义词：percorrendo tutta l'Italia, visitando ogni angolo d'Italia。",ex:"Ha passato un anno girando l'Italia in lungo e in largo per il suo documentario.",exZh:"他花了一年时间走遍意大利各地为他的纪录片取材。"},
+    {e:"botteghe",m:"作坊，小店铺",d:"传统的小型手工艺作坊或商店。同义词：laboratori artigianali, piccoli negozi。",ex:"Nelle botteghe del centro storico si possono trovare prodotti artigianali.",exZh:"在历史中心的小作坊里可以找到手工艺品。"},
+    {e:"diventate colossi industriali riconosciuti in tutto il mondo",m:"成长为全球知名的工业巨头",d:"diventate 是 diventare（成为）的过去分词，阴性复数；colossi 是 colosso（巨头）的复数；industriali 工业的；riconosciuti 是 riconoscere 的过去分词，阳性复数。同义词：trasformate in grandi aziende di fama mondiale, evolute in imprese globali。",ex:"Alcune start-up italiane sono diventate colossi industriali riconosciuti in tutto il mondo in pochi anni.",exZh:"一些意大利初创公司在短短几年内成长为全球知名的工业巨头。"},
+    {e:"chi non ce l'ha fatta",m:"那些没能成功的",d:"farcela 是表示\"成功\"的习语，这个短语指那些没有成功的人或企业。同义词：chi non ha avuto successo, chi ha fallito。",ex:"Rispetto chi non ce l'ha fatta ma ha comunque provato.",exZh:"我尊重那些虽然没有成功但至少尝试过的人。"},
+    {e:"rimasto indietro",m:"落后，被抛在后面",d:"字面意思是\"留在后面\"，表示在竞争或进展中落后。rimasto 是 rimanere（留下）的过去分词，阳性单数；indietro 是副词\"向后、落后\"。同义词：è stato superato, non ha tenuto il passo。",ex:"Chi non si aggiorna rimane indietro nel mondo del lavoro.",exZh:"不更新知识的人在职场中会落后。"},
+    {e:"competizione globale",m:"全球竞争",d:"competizione 是名词，阴性单数，\"竞争\"；globale 是形容词\"全球的、世界性的\"。同义词：concorrenza internazionale, sfida mondiale。",ex:"Le piccole aziende faticano nella competizione globale.",exZh:"小型企业在全球竞争中很艰难。"},
+    {e:"ho capito davvero",m:"真正明白了",d:"davvero 是副词\"真正地、确实\"。同义词：ho compreso profondamente, ho realizzato pienamente。",ex:"Solo dopo anni di studio ho capito davvero come funziona questo sistema.",exZh:"只有在多年学习后，我才真正明白这个系统如何运作。"}
+  ]
+}
+};
+
+/* ============ 状态 ============ */
+const UNLOCK_CODE='RA26-2026', FREE_UNTIL=1, UNLOCK_KEY='vl_unlocked2', SK_KEY='vl_steps_';
+let view='home', curEp=null, curIdx=0, curAudio=null, curAudioKind='audio', curPlayingN=null, autoAdvance=true;
+
+/* 全局媒体池：任何视图切换时停止所有正在播放的音频/视频/TTS，避免跨页音频残留与重叠 */
+const __mediaPool=new Set();
+function trackMedia(m){ if(m&&typeof m.pause==='function'){ __mediaPool.add(m); } return m; }
+function stopAllGlobal(){
+  try{ if('speechSynthesis' in window) speechSynthesis.cancel(); }catch(e){}
+  __mediaPool.forEach(m=>{ try{ if(!m.paused) m.pause(); }catch(e){} });
+  document.querySelectorAll('audio,video').forEach(m=>{ try{ if(!m.paused) m.pause(); }catch(e){} });
+}
+
+function isUnlocked(){ try{return localStorage.getItem(UNLOCK_KEY)==='1';}catch(e){return false;} }
+function svUn(){ try{localStorage.setItem(UNLOCK_KEY,'1');}catch(e){} }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escJs(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),2000); }
+function stars(n){ return '★'.repeat(n); }
+const playIcon='▶', pauseIcon='⏸';
+
+/* ============ 迷你播放器 ============ */
+function ensureMini(){
+  let mp=document.getElementById('miniPlayer');
+  if(!mp.querySelector('.mp-badge')) mp.innerHTML=`
+    <span class="mp-badge">ITALIANO</span>
+    <span class="mp-title" id="mpTitle">—</span>
+    <button class="mp-play" id="mpPlay">▶</button>
+    <div class="mp-progress" id="mpProg"><i id="mpBar"></i></div>
+    <span class="mp-time" id="mpTime">0:00</span>
+    <button class="mp-close" id="mpClose">✕</button>`;
+  return mp;
+}
+function bindMiniPlayer(audio, label, kind){
+  const mp=ensureMini();
+  mp.classList.remove('hidden');
+  mp.querySelector('#mpTitle').textContent=label;
+  const playBtn=mp.querySelector('#mpPlay');
+  const setIcon=()=>{ playBtn.innerHTML = audio.paused ? playIcon : pauseIcon; };
+  const upd=()=>{ if(!audio.duration)return; mp.querySelector('#mpBar').style.width=(audio.currentTime/audio.duration*100)+'%'; mp.querySelector('#mpTime').textContent=fmtT(audio.currentTime)+' / '+fmtT(audio.duration); };
+  if(mp.__audio!==audio){ audio.addEventListener('play',setIcon); audio.addEventListener('pause',setIcon); audio.addEventListener('timeupdate',upd); audio.addEventListener('ended',setIcon); mp.__audio=audio; }
+  playBtn.onclick=()=>{ if(audio.paused){audio.play();}else{audio.pause();} };
+  mp.querySelector('#mpClose').onclick=()=>{ try{audio.pause();}catch(e){} if(curAudio===audio)curAudio=null; mp.classList.add('hidden'); };
+  setIcon(); upd();
+  // 迷你播放器进度条：点击/拖拽跳转
+  mp.__media=audio;
+  const mpProg=mp.querySelector('#mpProg');
+  if(!mp.__seekBound){
+    mp.__seek=false;
+    function seekMiniBy(e){ const m=mp.__media; if(!m||!m.duration)return; const r=mpProg.getBoundingClientRect(); const ratio=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width)); try{ m.currentTime=ratio*m.duration; }catch(_){} }
+    mpProg.addEventListener('pointerdown',e=>{ mp.__seek=true; try{mpProg.setPointerCapture(e.pointerId);}catch(_){} seekMiniBy(e); });
+    mpProg.addEventListener('pointermove',e=>{ if(mp.__seek)seekMiniBy(e); });
+    mpProg.addEventListener('pointerup',()=>{ mp.__seek=false; });
+    mpProg.addEventListener('pointercancel',()=>{ mp.__seek=false; });
+    mp.__seekBound=true;
+  }
+}
+function fmtT(s){ if(!isFinite(s))return '0:00'; const m=Math.floor(s/60), r=Math.floor(s%60); return m+':'+String(r).padStart(2,'0'); }
+function hideMini(){ ensureMini().classList.add('hidden'); }
+
+/* ============ 视图：主页 ============ */
+function viewHome(){
+  stopAllGlobal();
+  const COVERS=[1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+  view='home';
+  document.getElementById('floatBack').style.display='none';
+  document.getElementById('topbar').querySelector('.tb-left').innerHTML='';
+  document.getElementById('topbar').querySelector('.tb-right').innerHTML='';
+  const unlocked=isUnlocked();
+  const cards=EPS.map(ep=>{
+    const locked=!unlocked && ep.n>FREE_UNTIL && ep.st!=='free';
+    const th=THEMES[ep.theme]||{e:'📖',c:'#e8f3ef',c2:'#cfe4dc'};
+    const ready=ep.st!=='soon';
+    const tag=ep.st==='free'?'免费试听':(locked?'已锁定':(ready?'':'制作中'));
+    const tagCls=ep.st==='free'?'':(locked?'':'');
+    const lockedBtn=locked?`<button class="mini-btn locked" data-lock="${ep.n}">🔒 已锁定</button>`
+      :`<button class="mini-btn primary" data-go="listen-all" data-ep="${ep.n}">${playIcon} 泛听</button>
+        <button class="mini-btn secondary" data-go="listen" data-ep="${ep.n}">🎧 精听</button>`;
+    const pendingTag=!ready?`<span class="tag-pending">制作中</span>`:'';
+    return `<div class="ep-card ${locked?'locked':''} ${ready?'':'locked'}" data-ep="${ep.n}" data-go="listen-all">
+      <div class="ep-cover">
+        ${COVERS.includes(ep.n)&&ep.st!=='soon'?`<img class="cv" src="media/covers/ep${ep.n}.jpg" alt="${esc(ep.title)}">`:`<div class="cv" style="--cc1:${th.c};--cc2:${th.c2||th.c}">${th.e}</div>`}
+        <span class="ep-no">EPISODIO ${String(ep.n).padStart(2,'0')}</span>
+        <span class="ep-time">${ep.dur}</span>
+        ${locked?'<span class="lock-badge">🔒</span>':''}
+      </div>
+      <div class="ep-body">
+        <h3>${esc(ep.title)}</h3>
+        <div class="ep-it">${esc(ep.it)}</div>
+        <div class="ep-desc">${esc(ep.desc)}</div>
+        <div class="ep-meta"><span class="stars">${stars(ep.diff)}</span> <span>${esc(ep.blog)}</span> ${pendingTag}</div>
+      </div>
+      <div class="ep-actions">${lockedBtn}</div>
+    </div>`;
+  }).join('');
+
+  const ths=[...new Set(EPS.map(e=>e.theme))];
+  document.getElementById('app').innerHTML=`
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="kicker">ITALIANO CON YOUTUBER · 意大利语视频课</span>
+          <div class="house-no">IMPARA GUARDANDO I VIDEO · A1–A5</div>
+          <h1 class="serif">跟着油管博主学意大利语</h1>
+          <div class="it-sub">Ascolta, ripeti, parla — 看视频，磨耳朵，练口语</div>
+          <p class="intro">精选意大利语博主的真实生活视频：咖啡、街访、美食、vlog……一句一句把意大利语听进耳朵里。每期都有<strong>视频、音频、中意对照</strong>和重点表达，跟着母语者开口说。</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" data-nav="listen-all" data-ep="1">从第 1 期开始 ▶</a>
+            <a class="btn btn-ghost" data-nav="listen" data-ep="1">🎧 直接进入精听</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="frame"><span class="big-emoji">🇮🇹</span><span class="badge">ITALIANO · VIDEO</span></div>
+          <div class="cito-float"><span class="led"></span> ${EPS.length} 期 · 泛听 / 精听</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="stats">
+        <div class="stat"><b>${EPS.length}</b><span>期课程</span></div>
+        <div class="stat"><b>${ths.length}</b><span>主题</span></div>
+        <div class="stat"><b>${EPS.filter(e=>e.st==='free').length}</b><span>免费试听</span></div>
+        <div class="stat"><b>${EPS.filter(e=>e.st!=='soon').length}</b><span>已上线</span></div>
+      </div>
+      <div class="toolbar" id="toolbar">
+        <input class="search" id="q" placeholder="🔍 搜索标题 / 主题 / 博主..." autocomplete="off">
+        <span class="chip on" data-f="all">全部</span>
+        ${ths.map(t=>`<span class="chip" data-f="${esc(t)}">${THEMES[t]?.e||''} ${esc(t)}</span>`).join('')}
+      </div>
+      <div class="sec-head">
+        <div><h2 class="serif">课程目录</h2><span class="en">Indice degli episodi</span></div>
+        <span class="meta">点击任意一期 · 选择泛听或精听</span>
+      </div>
+      <div class="episode-grid">${cards}</div>
+    </div>`;
+
+  // 事件绑定
+  document.getElementById('q').addEventListener('input', ()=>{ applyFilter(); });
+  document.querySelectorAll('#toolbar .chip').forEach(c=>{
+    c.addEventListener('click', ()=>{ document.querySelectorAll('#toolbar .chip').forEach(x=>x.classList.remove('on')); c.classList.add('on'); applyFilter(); });
+  });
+  document.querySelectorAll('[data-nav]').forEach(a=>{
+    a.addEventListener('click', e=>{ e.preventDefault(); const ep=Number(a.dataset.ep); const go=a.dataset.nav; if(go==='listen-all')openListenAll(ep); else openListen(ep); });
+  });
+  document.querySelectorAll('[data-go]').forEach(a=>{
+    a.addEventListener('click', e=>{ e.stopPropagation(); const ep=Number(a.dataset.ep); if(a.dataset.go==='listen-all')openListenAll(ep); else openListen(ep); });
+  });
+  document.querySelectorAll('[data-lock]').forEach(a=>{
+    a.addEventListener('click', e=>{ e.stopPropagation(); openUnlock(Number(a.dataset.lock)); });
+  });
+  document.querySelectorAll('.ep-card').forEach(card=>{
+    card.addEventListener('click', e=>{
+      if(e.target.closest('.mini-btn'))return;
+      const ep=Number(card.dataset.ep); openListenAll(ep);
+    });
+  });
+}
+function applyFilter(){
+  const q=(document.getElementById('q').value||'').toLowerCase().trim();
+  const f=document.querySelector('#toolbar .chip.on')?.dataset.f||'all';
+  document.querySelectorAll('.ep-card').forEach(card=>{
+    const ep=EPS.find(e=>e.n===Number(card.dataset.ep));
+    const okT=f==='all'||ep.theme===f;
+    const okQ=!q||(ep.title+ep.theme+ep.blog+ep.n+'').toLowerCase().includes(q);
+    card.style.display=(okT&&okQ)?'':'none';
+  });
+}
+
+/* ============ 解锁 ============ */
+let unlockTarget=null;
+function openUnlock(ep){ unlockTarget=ep||1; document.getElementById('umCode').value=''; document.getElementById('umErr').textContent=''; document.getElementById('umodal').classList.remove('hidden'); document.getElementById('umCode').focus(); }
+document.getElementById('umClose').onclick=()=>{ document.getElementById('umodal').classList.add('hidden'); };
+document.querySelector('.um-mask').onclick=()=>{ document.getElementById('umodal').classList.add('hidden'); };
+document.getElementById('umGo').onclick=()=>{
+  const v=document.getElementById('umCode').value.trim().toUpperCase();
+  if(v===UNLOCK_CODE){ svUn(); document.getElementById('umodal').classList.add('hidden'); toast('🎉 解锁成功！全部课程已开放～'); }
+  else { document.getElementById('umErr').textContent='❌ 激活码不正确，请检查后重试'; }
+};
+document.getElementById('umCode').addEventListener('keydown',e=>{ if(e.key==='Enter')document.getElementById('umGo').click(); });
+
+/* ============ 视图切换通用 ============ */
+function renderTopbar(ep, modeLabel, modeTarget, modeTitle){
+  const tbL=document.getElementById('topbar').querySelector('.tb-left');
+  const tbR=document.getElementById('topbar').querySelector('.tb-right');
+  tbL.innerHTML=`<a class="tb-back" id="tbBack">← 目录</a>`;
+  document.getElementById('tbBack').onclick=()=>viewHome();
+  tbR.innerHTML=`<a class="tb-back" id="tbMode">${modeLabel} ${modeTitle}</a>`;
+  const tgt=modeTarget==='listen'?()=>openListen(ep.n):()=>openListenAll(ep.n);
+  document.getElementById('tbMode').onclick=tgt;
+  document.getElementById('floatBack').style.display='flex';
+  document.getElementById('floatBack').onclick=()=>viewHome();
+}
+function epHeader(ep, showModeSwitch){
+  const th=THEMES[ep.theme]||{e:'📖',c:'#1e6f5c'};
+  const unlocked=isUnlocked();
+  const stTag=ep.st==='free'?`<span style="background:rgba(110,116,67,.12);color:var(--olive-deep);border:1px solid rgba(110,116,67,.28);padding:3px 11px;border-radius:999px;font-size:11.5px;font-weight:600;">🎁 免费试听</span>`
+    :(unlocked?`<span style="background:rgba(110,116,67,.12);color:var(--olive-deep);border:1px solid rgba(110,116,67,.28);padding:3px 11px;border-radius:999px;font-size:11.5px;font-weight:600;">🔓 已解锁</span>`:`<span style="background:rgba(180,88,46,.1);color:var(--terracotta-deep);border:1px solid rgba(180,88,46,.28);padding:3px 11px;border-radius:999px;font-size:11.5px;font-weight:600;">🔒 需激活码</span>`);
+  return `<div class="ep-hero">
+    <span class="kicker">${th.e} EPISODIO ${String(ep.n).padStart(2,'0')} · ${esc(ep.theme)}</span>
+    <h1 class="serif">${esc(ep.title)}</h1>
+    <div class="sub"><em>${esc(ep.it)}</em> &nbsp;·&nbsp; 难度 ${stars(ep.diff)} &nbsp;·&nbsp; ${esc(ep.blog)} &nbsp;·&nbsp; ⏱ ${ep.dur} &nbsp; ${stTag}</div>
+  </div>`;
+}
+
+/* ============ 视图：泛听（视频） ============ */
+function openListenAll(n){
+  stopAllGlobal();
+  const ep=EPS.find(e=>e.n===n); if(!ep)return;
+  if(ep.st==='soon'){ toast('🛠️ 该期内容制作中，敬请期待～'); return; }
+  if(ep.st==='lock' && !isUnlocked()){ openUnlock(n); return; }
+  view='listen-all'; curEp=n; curAudioKind='video';
+  renderTopbar(ep,'🎧','listen','切到精听');
+  const L=LESSONS[n]||{zh:'',it:'',sent:[],vocab:[]};
+  const lines=(L.sent&&L.sent.length?L.sent:[{it:L.it,zh:L.zh}]);
+  const lineHtml=lines.map((s,i)=>`
+    <div class="all-line" data-i="${i}" data-txt="${escJs(s.it)}">
+      <span class="ln-no">${String(i+1).padStart(2,'0')}</span>
+      <div class="ln-body"><div class="ln-it">${esc(s.it)}</div><div class="ln-zh">${esc(s.zh)}</div></div>
+      <button class="ln-play">▶</button>
+    </div>`).join('');
+  document.getElementById('app').innerHTML=`
+    ${epHeader(ep)}
+    <div class="listen-all-card">
+      <div class="video-box">
+        <video id="pv" controls playsinline preload="metadata" src="media/ep${n}.mp4" preload="auto"></video>
+      </div>
+      <div class="all-player">
+        <button class="big-play" id="allPlayBtn">${playIcon}</button>
+        <div class="progress" id="allProg"><div class="pbar"><i id="allBar"></i></div><div class="ptext"><span id="allCur">0:00</span><span id="allTime">${ep.dur}</span></div></div>
+        <div class="mode-toggle">
+          <button data-k="all" class="active">整段视频</button>
+          <button data-k="audio">只听音频</button>
+        </div>
+      </div>
+      <div class="listen-hint"><div class="lh-txt"><b>泛听</b>：先完整看一遍视频，抓大意。<b>点击任意句子</b> → 该句高亮并朗读视频原声。</div><button id="txtToggle" class="txt-toggle">🔤 显示文本</button></div>
+      <div class="all-lines hide-txt" id="allLines">${lineHtml}</div>
+    </div>`;
+  bindAllPlayer(ep, lines);
+}
+
+function bindAllPlayer(ep, lines){
+  const video=trackMedia(document.getElementById('pv'));
+  // 竖屏/横屏自动适配：让 video 元素贴合视频本身比例，避免拉伸变形
+  video.addEventListener('loadedmetadata',()=>{
+    const vw=video.videoWidth, vh=video.videoHeight;
+    if(!vw||!vh)return;
+    if(vh>vw){
+      video.style.width='auto'; video.style.height='min(58vh,560px)'; video.style.maxWidth='100%'; video.style.margin='0 auto'; video.style.display='block';
+    }else{
+      video.style.width='100%'; video.style.height='auto'; video.style.maxHeight='58vh'; video.style.margin='0 auto'; video.style.display='block';
+    }
+  });
+  const playBtn=document.getElementById('allPlayBtn');
+  const bar=document.getElementById('allBar'), curT=document.getElementById('allCur'), timeT=document.getElementById('allTime');
+  const prog=document.getElementById('allProg');
+  const audio=trackMedia(new Audio('media/ep'+ep.n+'.mp3'));
+  let kind='all', sentIdx=0, tts=null;
+  const txtToggle=document.getElementById('txtToggle');
+  const allLinesEl=document.getElementById('allLines');
+  if(txtToggle&&allLinesEl){ txtToggle.onclick=()=>{ const hide=allLinesEl.classList.toggle('hide-txt'); txtToggle.innerHTML=hide?'🔤 显示文本':'🔤 隐藏文本'; }; }
+
+  function setPlayingState(el){
+    document.querySelectorAll('.all-line').forEach((x,i)=>x.classList.toggle('playing', i===el));
+    if(el>=0){ const line=document.querySelectorAll('.all-line')[el]; if(line)line.scrollIntoView({block:'nearest',behavior:'smooth'}); }
+  }
+  let sentTick=null;
+  function stopAllMedia(){
+    if(tts){ speechSynthesis.cancel(); tts=null; }
+    if(!audio.paused)audio.pause();
+    if(!video.paused)video.pause();
+  }
+  // 模式切换
+  document.querySelectorAll('.mode-toggle button').forEach(b=>{
+    b.onclick=()=>{
+      document.querySelectorAll('.mode-toggle button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+      kind=b.dataset.k; stopAllMedia();
+      playBtn.innerHTML=playIcon;
+      if(kind==='audio'){ bindMiniPlayer(audio,'EP'+String(ep.n).padStart(2,'0')+' · 只听音频','audio'); }
+      else if(kind==='all'){ if(curAudio&&curAudioKind==='video')hideMini(); }
+      else if(kind==='sent'){ sentIdx=0; playSent(0); }
+    };
+  });
+  // 大播放按钮
+  playBtn.onclick=()=>{
+    if(kind==='all'){
+      if(video.paused){ stopAllMedia(); video.play(); playBtn.innerHTML=pauseIcon; bindMiniPlayer(video,'EP'+String(ep.n).padStart(2,'0')+' · '+ep.title,'video'); }
+      else{ video.pause(); playBtn.innerHTML=playIcon; }
+    }else if(kind==='audio'){
+      if(audio.paused){ stopAllMedia(); audio.play(); playBtn.innerHTML=pauseIcon; }
+      else{ audio.pause(); playBtn.innerHTML=playIcon; }
+    }else{
+      if(!video.paused){ video.pause(); playBtn.innerHTML=playIcon; }
+      else { playSent(sentIdx); }
+    }
+  };
+  // 视频事件
+  video.addEventListener('play',()=>{ playBtn.innerHTML=pauseIcon; if(kind==='all'){ document.querySelectorAll('.mode-toggle button').forEach(x=>x.classList.toggle('active',x.dataset.k==='all')); bindMiniPlayer(video,'EP'+String(ep.n).padStart(2,'0')+' · '+ep.title,'video'); } });
+  video.addEventListener('pause',()=>{ playBtn.innerHTML=playIcon; });
+  video.addEventListener('timeupdate',()=>{ if(video.duration){ bar.style.width=(video.currentTime/video.duration*100)+'%'; curT.textContent=fmtT(video.currentTime); } });
+  // 音频事件
+  audio.addEventListener('play',()=>{ playBtn.innerHTML=pauseIcon; });
+  audio.addEventListener('pause',()=>{ playBtn.innerHTML=playIcon; });
+  audio.addEventListener('timeupdate',()=>{ if(audio.duration){ bar.style.width=(audio.currentTime/audio.duration*100)+'%'; curT.textContent=fmtT(audio.currentTime); } });
+  // 进度条点击
+  prog.addEventListener('click',e=>{
+    const r=prog.getBoundingClientRect(); const p=(e.clientX-r.left)/r.width;
+    if(kind==='all'&&video.duration){ video.currentTime=p*video.duration; }
+    if(kind==='audio'&&audio.duration){ audio.currentTime=p*audio.duration; }
+  });
+  // 逐句播放（视频原声片段）
+  function playSent(i){
+    if(i<0||i>=lines.length)return;
+    const t=(TS[ep.n]&&TS[ep.n][i]);
+    stopAllMedia();
+    sentIdx=i; setPlayingState(i);
+    if(!t){ setPlayingState(-1); return; }
+    const wt0=(WTS[ep.n]&&WTS[ep.n][i])||[];
+    const endT=(wt0.length&&wt0[wt0.length-1]&&isFinite(wt0[wt0.length-1][1]))?wt0[wt0.length-1][1]+0.35:t[1];
+    if(sentTick){ video.removeEventListener('timeupdate',sentTick); sentTick=null; }
+    video.currentTime=t[0];
+    video.play();
+    playBtn.innerHTML=pauseIcon;
+    bindMiniPlayer(video,'EP'+String(ep.n).padStart(2,'0')+' · 第'+(i+1)+'句','video');
+    const tick=()=>{
+      if(video.currentTime>=endT){
+        video.removeEventListener('timeupdate',tick);
+        sentTick=null;
+        video.pause();
+        playBtn.innerHTML=playIcon;
+        if(autoAdvance&&i<lines.length-1){ setTimeout(()=>playSent(i+1),450); }
+        else setPlayingState(-1);
+      }
+    };
+    sentTick=tick;
+    video.addEventListener('timeupdate',tick);
+  }
+  // 逐句行点击
+  document.querySelectorAll('.all-line').forEach(line=>{
+    line.addEventListener('click',()=>{
+      const i=Number(line.dataset.i);
+      kind='sent'; document.querySelectorAll('.mode-toggle button').forEach(x=>x.classList.toggle('active',x.dataset.k==='sent'));
+      playSent(i);
+    });
+  });
+
+  // 主播放按钮默认绑定视频（泛听）
+  bindMiniPlayer(video,'EP'+String(ep.n).padStart(2,'0')+' · '+ep.title,'video');
+  curAudio=video; curAudioKind='video';
+  // 大进度条：点击/拖拽跳转
+  const seekM=()=> (kind==='audio')?audio:video;
+  let allSeek=false;
+  function seekAllBy(e){ const m=seekM(); if(!m||!m.duration)return; const r=prog.getBoundingClientRect(); const ratio=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width)); try{ m.currentTime=ratio*m.duration; }catch(_){} }
+  prog.addEventListener('pointerdown',e=>{ allSeek=true; try{prog.setPointerCapture(e.pointerId);}catch(_){} seekAllBy(e); });
+  prog.addEventListener('pointermove',e=>{ if(allSeek)seekAllBy(e); });
+  prog.addEventListener('pointerup',()=>{ allSeek=false; });
+  prog.addEventListener('pointercancel',()=>{ allSeek=false; });
+}
+
+/* 模拟 TTS 为可绑定的 mini 播放对象 */
+function ttsLikeAudio(tts){
+  return {
+    paused:false, duration:NaN, currentTime:0,
+    addEventListener:function(t,fn){ if(t==='play'){ /* noop */ } if(t==='pause'){ /* noop */ } },
+    play:function(){ return true; }, pause:function(){ speechSynthesis.cancel(); }
+  };
+}
+
+/* ============ 视图：精听 ============ */
+function openListen(n){
+  stopAllGlobal();
+  const ep=EPS.find(e=>e.n===n); if(!ep)return;
+  if(ep.st==='soon'){ toast('🛠️ 该期内容制作中，敬请期待～'); return; }
+  if(ep.st==='lock' && !isUnlocked()){ openUnlock(n); return; }
+  view='listen'; curEp=n; curIdx=0;
+  renderTopbar(ep,'🎬','listen-all','切到泛听');
+  renderListenView(ep);
+}
+function renderListenView(ep){
+  const L=LESSONS[ep.n]||{zh:'',it:'',sent:[],vocab:[]};
+  const lines=(L.sent&&L.sent.length?L.sent:[{it:L.it,zh:L.zh}]);
+  const lineHtml=lines.map((s,i)=>`<div class="ll-line ${i===curIdx?'active':''}" data-i="${i}"><span class="ll-no">${String(i+1).padStart(2,'0')}</span><span>${esc(s.it)}</span></div>`).join('');
+  const vocab=L.vocab||[];
+  const noteHtml='<div class="note-box" id="lcNote"></div>';
+  document.getElementById('app').innerHTML=`
+    ${epHeader(ep)}
+    <div class="player-shell">
+      <video id="jv" src="media/ep${ep.n}.mp4" preload="auto" playsinline style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;"></video>
+      <div class="listen-card">
+        <div class="lc-head">
+          <span class="lc-no" id="lcNo">EPISODIO ${String(ep.n).padStart(2,'0')} · FRASE ${String(curIdx+1).padStart(2,'0')} / ${lines.length}</span>
+          <span class="lc-role">🎧 精听 · 听一句 · 跟一句</span>
+        </div>
+        <div class="it-full" id="itFull"></div>
+        <div class="zh-full" id="zhFull"></div>
+        <div class="audio-row">
+          <button class="play-btn" id="jtPlay">▶</button>
+          <div class="wave"><span>点击播放本句（视频原声）· 逐词点击可发音</span><b id="jtLabel">FRASE ${curIdx+1}</b></div>
+        </div>
+        <div class="nav-row">
+          <button class="nbtn" id="jtPrev" ${curIdx===0?'disabled':''}>← 上一句</button>
+          <button class="nbtn" id="jtNext" ${curIdx===lines.length-1?'disabled':''}>下一句 →</button>
+          <button class="nbtn" id="jtAuto" style="margin-left:auto;">🔁 自动连读</button>
+        </div>
+        ${noteHtml}
+      </div>
+      <div class="listen-list">
+        <h4>逐句列表 · 点击跳转</h4>
+        ${lineHtml}
+      </div>
+    </div>`;
+  showCur(ep, lines);
+  bindJint(ep, lines);
+}
+function showCur(ep, lines){
+  const cur=lines[curIdx];
+  const vocab=(LESSONS[ep.n]||{}).vocab||[];
+  const noEl=document.getElementById('lcNo');
+  if(noEl)noEl.textContent='EPISODIO '+String(ep.n).padStart(2,'0')+' · FRASE '+String(curIdx+1).padStart(2,'0')+' / '+lines.length;
+  document.getElementById('itFull').innerHTML=renderIt(cur.it, vocab);
+  document.getElementById('zhFull').textContent=cur.zh;
+  const noteEl=document.getElementById('lcNote');
+  if(noteEl){
+    const curVocab=vocab.filter(v=>new RegExp(esc_re(v.e),'i').test(cur.it));
+    noteEl.innerHTML = curVocab.length
+      ? `<div class="note-title">📌 重点表达 & 地道短语</div><ul>${curVocab.map(v=>`<li><b>${esc(v.e)}</b> — ${esc(v.m)}：${esc(v.d)}${v.ex?`<div class="v-ex">💬 ${esc(v.ex)}</div><div class="v-ex-zh">${esc(v.exZh||'')}</div>`:''}</li>`).join('')}</ul>`
+      : '<div class="note-title">📌 精听提示</div><p>点击播放，逐句听清每个单词的发音和连读，再跟读。</p>';
+  }
+  document.getElementById('jtLabel').textContent='FRASE '+(curIdx+1);
+  const jtPrev=document.getElementById('jtPrev'), jtNext=document.getElementById('jtNext');
+  if(jtPrev)jtPrev.disabled=curIdx===0;
+  if(jtNext)jtNext.disabled=curIdx===lines.length-1;
+  document.querySelectorAll('.ll-line').forEach(ln=>ln.classList.toggle('active',Number(ln.dataset.i)===curIdx));
+  document.querySelectorAll('#itFull .w').forEach((w,wi)=>{
+    w.onclick=()=>{
+      document.querySelectorAll('#itFull .w').forEach(x=>x.classList.remove('lit'));
+      w.classList.add('lit');
+      setTimeout(()=>w.classList.remove('lit'),1100);
+      const wt=(WTS[ep.n]&&WTS[ep.n][curIdx])||[];
+      const t=wt[wi];
+      if(!t)return;
+      const v=document.getElementById('jv');
+      if(!v)return;
+      v.pause();
+      try{ v.currentTime=Math.max(0,t[0]-0.06); }catch(e){}
+      if(v._wfn){ v.removeEventListener('timeupdate',v._wfn); v._wfn=null; }
+      let end=t[1]+0.4;
+      const nxt=wt[wi+1];
+      if(nxt){ end=Math.min(t[1]+0.4, nxt[0]-0.03); if(end<t[1]+0.18) end=t[1]+0.18; }
+      v._wfn=()=>{ if(v.currentTime>=end){ v.pause(); if(v._wfn){ v.removeEventListener('timeupdate',v._wfn); v._wfn=null; } } };
+      v.addEventListener('timeupdate',v._wfn);
+      v.play();
+    };
+  });
+}
+
+function bindJint(ep, lines){
+  let auto=false, playing=false;
+  const playBtn=document.getElementById('jtPlay');
+  function curVideo(){ return document.getElementById('jv'); }
+  function stopVoice(){
+    const v=curVideo();
+    if(v&&!v.paused){ v.pause(); }
+    playing=false;
+  }
+  function setPlayingLine(i){
+    document.querySelectorAll('.ll-line').forEach((ln,x)=>ln.classList.toggle('playing',x===i));
+  }
+  let jTick=null;
+  function playRange(i){
+    const t=(TS[ep.n]&&TS[ep.n][i]);
+    const v=curVideo();
+    if(!v||!t)return;
+    stopVoice();
+    const wt0=(WTS[ep.n]&&WTS[ep.n][i])||[];
+    const endT=(wt0.length&&wt0[wt0.length-1]&&isFinite(wt0[wt0.length-1][1]))?wt0[wt0.length-1][1]+0.35:t[1];
+    curIdx=i; showCur(ep, lines);
+    try{ v.currentTime=t[0]; }catch(e){}
+    const pp=v.play(); if(pp&&pp.catch){ pp.catch(function(){ try{ v.currentTime=t[0]; v.play(); }catch(e){} }); }
+    playing=true;
+    playBtn.innerHTML=pauseIcon;
+    bindMiniPlayer(v,'EP'+String(ep.n).padStart(2,'0')+' · 第'+(i+1)+'句','video');
+    setPlayingLine(i);
+    if(jTick){ v.removeEventListener('timeupdate',jTick); jTick=null; }
+    const tick=()=>{
+      if(v.currentTime>=endT){
+        v.removeEventListener('timeupdate',tick);
+        jTick=null;
+        v.pause();
+        playing=false;
+        playBtn.innerHTML=playIcon;
+        setPlayingLine(-1);
+        if(auto&&i<lines.length-1){ setTimeout(()=>{ if(auto)playRange(i+1); },450); }
+      }
+    };
+    jTick=tick;
+    v.addEventListener('timeupdate',tick);
+  }
+  playBtn.onclick=()=>{
+    const v=curVideo();
+    if(playing&&v&&!v.paused){ stopVoice(); playBtn.innerHTML=playIcon; setPlayingLine(-1); }
+    else playRange(curIdx);
+  };
+  document.getElementById('jtPrev').onclick=()=>{ if(curIdx>0){ stopVoice(); playRange(curIdx-1); } };
+  document.getElementById('jtNext').onclick=()=>{ if(curIdx<lines.length-1){ stopVoice(); playRange(curIdx+1); } };
+  document.getElementById('jtAuto').onclick=e=>{
+    auto=!auto;
+    e.target.style.background=auto?'var(--terracotta)':'var(--white)';
+    e.target.style.color=auto?'#fff':'var(--olive-deep)';
+    e.target.textContent=auto?'⏹ 停止连读':'🔁 自动连读';
+    if(auto)playRange(curIdx);
+  };
+  document.querySelectorAll('.ll-line').forEach(ln=>{
+    ln.addEventListener('click',()=>{ playRange(Number(ln.dataset.i)); });
+  });
+}
+
+function sayWord(t){ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t); u.lang='it-IT'; u.rate=0.85; const v=pickVoice(); if(v)u.voice=v; speechSynthesis.speak(u); }
+
+/* ============ 工具 ============ */
+function pickVoice(){
+  const vs=speechSynthesis.getVoices();
+  return vs.find(v=>/it[-_]IT/i.test(v.lang))||vs.find(v=>/^it/i.test(v.lang))||null;
+}
+if('speechSynthesis' in window){ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>{}; }
+function esc_re(t){ return t.replace(/[.*+?^${}()|[\]\\]/g,function(m){return '\\'+m;}); }
+function wrapWords(t){ return t.replace(/([A-Za-z0-9àèéìòùÀÈÉÌÒÙ'’]+)/g,m=>'<span class="w">'+m+'</span>'); }
+function renderIt(txt,vocab){
+  const kws=(vocab||[]).map(v=>v.e).sort((a,b)=>b.length-a.length);
+  let t=esc(txt);
+  const kwRe=kws.length?new RegExp('('+kws.map(k=>esc_re(k)).join('|')+')','gi'):null;
+  let html='';
+  if(kwRe){
+    let last=0,m;
+    while((m=kwRe.exec(t))!==null){
+      html+=wrapWords(t.slice(last,m.index));
+      const hit=m[0];
+      const vi=(vocab||[]).findIndex(v=>v.e.toLowerCase()===hit.toLowerCase());
+      const vv=vi>=0?vocab[vi]:null;
+      html+='<span class="kw" data-m="'+esc(vv?vv.m:'')+'">'+wrapWords(hit)+'</span>';
+      last=m.index+m[0].length;
+      if(m.index===kwRe.lastIndex)kwRe.lastIndex++;
+    }
+    html+=wrapWords(t.slice(last));
+  }else{ html=wrapWords(t); }
+  return html;
+}
+
+/* 悬浮返回 */
+document.getElementById('floatBack').addEventListener('click',()=>viewHome());
+
+/* 初始化 */
+viewHome();
+</script>
+</body>
+</html>
