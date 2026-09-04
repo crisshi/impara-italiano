@@ -334,6 +334,7 @@
 </footer>
 
 <script>
+if(history.scrollRestoration){history.scrollRestoration="manual";}
 /* ============ 数据 ============ */
 const THEMES = {
   '生活美学':{e:'🎨',c:'#d4728a'}, '日常生活vlog':{e:'☕',c:'#d9a441'}, '制作美食':{e:'🍳',c:'#e8853a'},
@@ -1171,7 +1172,7 @@ function openListenAll(n){
       <div class="all-lines hide-txt" id="allLines">${lineHtml}</div>
     </div>`;
   bindAllPlayer(ep, lines);
-  window.scrollTo({top:0,behavior:"instant"});
+  setTimeout(function(){ window.scrollTo(0,0); }, 30);
 }
 
 function bindAllPlayer(ep, lines){
@@ -1311,7 +1312,7 @@ function openListen(n){
   view='listen'; curEp=n; curIdx=0;
   renderTopbar(ep,'🎬','listen-all','切到泛听');
   renderListenView(ep);
-  window.scrollTo({top:0,behavior:"instant"});
+  setTimeout(function(){ window.scrollTo(0,0); }, 30);
 }
 function renderListenView(ep){
   const L=LESSONS[ep.n]||{zh:'',it:'',sent:[],vocab:[]};
