@@ -1523,7 +1523,14 @@ function showCur(ep, lines){
       if(nxt){ end=Math.min(t[1]+0.4, nxt[0]-0.03); if(end<t[1]+0.18) end=t[1]+0.18; }
       v._wfn=()=>{ if(v.currentTime>=end){ v.pause(); if(v._wfn){ v.removeEventListener('timeupdate',v._wfn); v._wfn=null; } } };
       v.addEventListener('timeupdate',v._wfn);
-      v.play();
+      const p=v.play();
+      if(p&&p.catch){ p.catch(function(){
+        if(v._wfn){ v.removeEventListener('timeupdate',v._wfn); v._wfn=null; }
+        w.classList.remove('lit');
+        toast('🔊 浏览器限制自动播放，请先点击 ▶ 播放按钮');
+        const pb=document.getElementById('jtPlay');
+        if(pb){ pb.click(); }
+      }); }
     };
   });
 }
