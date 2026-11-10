@@ -62842,7 +62842,7 @@ function openListenAll(n){
 
 
 
-  if(ep.st==='lock' && !isUnlocked()){ openUnlock(n); return; }
+  if(!isUnlocked() && n>FREE_UNTIL && ep.st!=='free'){ openUnlock(n); return; }
 
 
 
@@ -68122,7 +68122,7 @@ function openListen(n){
 
 
 
-  if(ep.st==='lock' && !isUnlocked()){ openUnlock(n); return; }
+  if(!isUnlocked() && n>FREE_UNTIL && ep.st!=='free'){ openUnlock(n); return; }
 
 
 
